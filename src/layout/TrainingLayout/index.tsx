@@ -12,8 +12,6 @@ const TrainingLayout = ({children}: LayoutType) => {
     
     const route = useRouter().pathname;
 
-    // console.log({route})
-
   return (
     <div className='w-full h-[100vw] bg-white'>
         
