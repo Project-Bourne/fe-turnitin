@@ -25,6 +25,63 @@ export const NavBarContents = [
   }
 ];
 
+export const HomeData = [
+  {
+    name: 'Detect Language',
+    nameType: 'text',
+    id: 1,
+    isActive: false
+  },
+  {
+    name: 'Chinese',
+    nameType: 'text',
+    id: 2,
+    isActive: false
+  },
+  {
+    name: 'French',
+    nameType: 'text',
+    id: 3,
+    isActive: false
+  },
+  {
+    name: '',
+    nameType: 'dropdown',
+    id: 4,
+    isActive: false
+  },
+  {
+    name: '',
+    nameType: 'arrows',
+    id: 5,
+    isActive: false
+  },
+  {
+    name: 'French',
+    nameType: 'text',
+    id: 6,
+    isActive: false
+  },
+  {
+    name: 'Spanish',
+    nameType: 'text',
+    id: 7,
+    isActive: false
+  },
+  {
+    name: 'Arabic',
+    nameType: 'text',
+    id: 8,
+    isActive: false
+  },
+  {
+    name: '',
+    nameType: 'dropdown',
+    id: 9,
+    isActive: false
+  }
+];
+
 export const SettingsData = [
   {
     name: 'Profile',
@@ -168,62 +225,69 @@ export const LogData = [
 ];
 
 export const TrainingData = [
+  // {
+  //   name: "All",
+  //   icon: "all.svg",
+  //   selectedIcon: "on.all.svg",
+  //   id: 1,
+  //   route: "/help/all",
+  // },
   {
-    name: 'All',
-    icon: 'all.svg',
-    selectedIcon: 'on.all.svg',
-    id: 1,
-    route: '/help/all'
-  },
-  {
-    name: 'IRP',
-    icon: 'irp.svg',
-    selectedIcon: 'on.irp.svg',
-    id: 2,
-    route: '/help/irp'
-  },
-  {
-    name: 'Fact Checker',
-    icon: 'checker.svg',
-    selectedIcon: 'on.checker.svg',
+    name: "Fact Checker",
+    icon: "checker.svg",
+    selectedIcon: "on.checker.svg",
     id: 3,
-    route: '/help/checker'
+    route: "/help/checker",
   },
   {
-    name: 'Analyzer',
-    icon: 'analyzer.svg',
-    selectedIcon: 'on.analyzer.svg',
+    name: "IRP",
+    icon: "irp.svg",
+    selectedIcon: "on.irp.svg",
+    id: 2,
+    route: "/help/irp",
+  },
+  {
+    name: "Analyzer",
+    icon: "analyzer.svg",
+    selectedIcon: "on.analyzer.svg",
     id: 4,
-    route: '/help/analyzer'
+    route: "/help/analyzer",
   },
   {
-    name: 'Summarizer',
-    icon: 'summarizer.svg',
-    selectedIcon: 'on.summarizer.svg',
+    name: "Summarizer",
+    icon: "summarizer.svg",
+    selectedIcon: "on.summarizer.svg",
     id: 5,
-    route: '/help/summarizer'
+    route: "/help/summarizer",
   },
   {
-    name: 'Collab Workspace',
-    icon: 'collab.svg',
-    selectedIcon: 'on.collab.svg',
+    name: "Collab Workspace",
+    icon: "collab.svg",
+    selectedIcon: "on.collab.svg",
     id: 6,
-    route: '/help/workspace'
+    route: "/help/workspace",
   },
   {
-    name: 'Translator',
-    icon: 'translator.svg',
-    selectedIcon: 'on.translator.svg',
+    name: "Translator",
+    icon: "translator.svg",
+    selectedIcon: "on.translator.svg",
     id: 7,
-    route: '/help/translator'
+    route: "/help/translator",
   },
   {
-    name: 'Interrogator',
-    icon: 'interrogator.svg',
-    selectedIcon: 'on.interrogator.svg',
+    name: "Interrogator",
+    icon: "interrogator.svg",
+    selectedIcon: "on.interrogator.svg",
     id: 8,
-    route: '/help/interrogator'
-  }
+    route: "/help/interrogator",
+  },
+  {
+    name: "FAQ",
+    icon: "all.svg",
+    selectedIcon: "on.all.svg",
+    id: 1,
+    route: "/help/faq",
+  },
 ];
 
 export const QuickSearch = [
@@ -239,4 +303,73 @@ export const FAQS = [
   'How to use Fact checker',
   'How does fact checker work',
   'Exporting from fact checker'
+];
+export const CardData = [
+  {
+    title:
+      "Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa ati garri?",
+    tag: "nature",
+    // image: null,
+    video: null,
+  },
+  {
+    title: "Cityscape",
+    tag: "city",
+    image: "avatar.jpg",
+    video: null,
+  },
+  {
+    title:
+      "Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa ati garri?",
+    tag: "food",
+    // image: null,
+    video: null,
+  },
+  {
+    title:
+      "Sunset at the Beach Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa",
+    tag: "nature",
+    image: "avatar.jpg",
+    // video: null,
+  },
+  {
+    title:
+      "Adventure Time Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa",
+    tag: "travel",
+    // image: null,
+    video: "travel_video1.mp4",
+  },
+  {
+    title:
+      "Tech Gadgets Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa",
+    tag: "technology",
+    image: "avatar.jpg",
+    // video: null,
+  },
+  {
+    title:
+      "Artistic Expression Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa",
+    tag: "art",
+    image: "avatar.jpg",
+    // video: null,
+  },
+  {
+    title:
+      "Music Melody Delicious Redesigned Naira: CBN launches Cash Swap Programme for rural and Corn Ewa",
+    tag: "music",
+    // image: null,
+    video: "music_video1.mp4",
+  },
+  {
+    title: "Historical Landmark",
+    tag: "travel",
+    image: "avatar.jpg",
+    // video: null,
+  },
+  {
+    title: "Morning Coffee",
+    tag: "food",
+    image: "avatar.jpg",
+    // video: null,
+  },
 ];
