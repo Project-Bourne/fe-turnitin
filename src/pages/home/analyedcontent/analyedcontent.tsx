@@ -5,7 +5,7 @@ import Min_and_Max_icon from "../components/Min_Max_icon";
 import DummyText from "../components/dummyText";
 import { useRouter } from "next/router";
 
-function homecontent() {
+function Homecontent() {
   const router = useRouter(); //router
 
   const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
@@ -68,4 +68,4 @@ function homecontent() {
   );
 }
 
-export default homecontent;
+export default Homecontent;

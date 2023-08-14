@@ -13,7 +13,7 @@ function Card({ data, style }) {
   return (
     <div className={`${style ? style : ""}`}>
       {data.map((item, i) => (
-        <div onClick={() => goToDetails(i)}>
+        <div onClick={() => goToDetails(i)} key={i}>
           <CardWithoutMedia item={item} />
         </div>
       ))}

@@ -8,7 +8,7 @@ import MetaData from "./components/MetaData";
 import StepperMetaData from "./components/stepperMetaData";
 import DummyText from "./components/dummyText";
 
-function crawled() {
+function Crawled() {
     const router = useRouter();
     const [hideMeta, setHideMeta] = useState(true); //hide and show meta data
     const handleMax = () => {
@@ -39,4 +39,4 @@ function crawled() {
     );
 }
 
-export default crawled;
+export default Crawled;

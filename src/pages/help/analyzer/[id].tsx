@@ -1,5 +1,4 @@
 import TrainingLayout from "@/layout/TrainingLayout";
-import { ActivityCard } from "@/pages/collaborators/components/ActivityCard";
 import { FAQS, LogData, QuickSearch } from "@/utils/constants";
 import React from "react";
 import { SearchComp, FAQComp } from "../components";

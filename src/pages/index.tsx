@@ -17,7 +17,7 @@ export default function Home() {
       undefined,
       { shallow: true }
     )
-  }, []);
+  },);
 
   return (
     <>

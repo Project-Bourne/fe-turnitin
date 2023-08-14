@@ -12,7 +12,7 @@ function Training() {
       undefined,
       { shallow: true }
     )
-  }, []);
+  },);
 
   return (
     <></>

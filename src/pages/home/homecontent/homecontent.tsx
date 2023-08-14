@@ -6,7 +6,7 @@ import Min_and_Max_icon from '../components/Min_Max_icon';
 import DummyText from '../components/dummyText';
 import Link from 'next/link';
 
-function homecontent() {
+function Homecontent() {
   const [hideMeta, setHideMeta] = useState(true);
   const handleMax = () => {
     setHideMeta(true);
@@ -53,4 +53,4 @@ function homecontent() {
   );
 }
 
-export default homecontent;
+export default Homecontent;
