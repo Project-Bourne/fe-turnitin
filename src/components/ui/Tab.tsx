@@ -15,7 +15,7 @@ function Tab({ tabHeaderContents, tabBodyContents }) {
                         <li 
                         onClick={() => setToggleIndex(content.id)}
                         className={`flex px-3 md:px-8 pb-2 pt-1 font-light text-xs hover:text-sirp-primary hover:border-b-2 hover:border-b-sirp-primary active:text-sirp-primary transition ease-in-out ${toggleIndex === content.id ? 'text-sirp-primary border-b-2 border-b-sirp-primary' : 'text-gray-800'}`}
-                        >
+                        key={content.id}>
                             {content?.icon && 
                             <Image
                                 src={content?.icon}
@@ -33,9 +33,9 @@ function Tab({ tabHeaderContents, tabBodyContents }) {
             {/* tab body  */}
             <div>
             {tabBodyContents.map((content) => (
-                <>
+                <div key={content.id}>
                     {toggleIndex === content.id && content.component}
-                </>
+                </div>
             ))}
             </div>
         </>

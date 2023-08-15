@@ -16,7 +16,7 @@ function Settings() {
       undefined,
       { shallow: true }
     )
-  }, []);
+  },);
 
   return (
     <></>

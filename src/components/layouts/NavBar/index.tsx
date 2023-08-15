@@ -15,10 +15,10 @@ function NavBar() {
                 className='md:mr-[20px]'
                 priority
             />
-            <h1 className='text-sirp-primary font-semibold text-[30px] hidden md:block'>Fact Checker</h1>
+            <h1 className='text-sirp-primary font-semibold text-[25px] hidden md:block'>Fact Checker</h1>
         </div>
         {/* items-center justify-center py-4 md:px-5 w-[100%] flex flex-row self-center */}
-        <div 
+        {/* <div 
             className='flex py-4 px-0 md:px-3 lg:px-5 text-center justify-center border-[1.3px] border-sirp-primaryLess1 rounded-xl 
                  cursor-pointer shadow-sm shadow-sirp-primaryLess1 hover:bg-blue-50'
         >
@@ -32,7 +32,7 @@ function NavBar() {
             />
 
             <h2 className='text-sirp-primary font-semibold text-[14px] hidden md:block'>Start Crawler</h2>
-        </div>
+        </div> */}
 
         <div className='w-full mt-10'>
             {

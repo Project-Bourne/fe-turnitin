@@ -11,11 +11,12 @@ const LogSettings = () => {
         {
           LogData.map((item, index) => (
             <ActivityCard
-               time={item.time}
-               actionText={item.action}
-               activityText={'Redesigned Naira: CBN launches Cash Swap Programme for rural '}
-               docId={item.id}
-             />
+              key={index}
+              time={item.time}
+              actionText={item.action}
+              activityText={'Redesigned Naira: CBN launches Cash Swap Programme for rural '}
+              docId={item.id}
+            />
           ))
         }
       </div>
