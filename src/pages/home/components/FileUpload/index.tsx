@@ -1,24 +1,38 @@
-import Image from "next/image";
-import React, { useState } from "react";
-import FileUploadSection from "./FileUploadSection";
+import React, { useState } from 'react';
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
+import Image from 'next/image';
+import FactcheckService from '@/services/factcheck.service';
+import FileUploadSection from './FileUploadSection';
+import { setFileName } from '@/redux/reducer/factcheckSlice';
+
+import LoadingModal from './LoadingModal';
 
 const FileUpload = () => {
-  const [formData, setFormData] = useState("");
+  const [formData, setFormData] = useState('');
   const [file, setFile] = useState(null);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [showReader, setShowReader] = useState(false);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const factcheckService = new FactcheckService();
 
-  const handleChange = (e) => {
-    const value = e.target.value;
-    setFormData(value);
-    console.log("Form Data:", value);
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault(); // Prevent the form from submitting via default behavior
-    setFormData("");
-    console.log("Form submitted:", formData); // Do whatever you want with the form data here
+  const handleSubmit = async e => {
+    e.preventDefault();
+    console.log('Form submitted:', formData);
+    try {
+      setIsLoading(true);
+      const dataObj = { url: formData };
+      const response = await factcheckService.factcheckUrl(dataObj);
+      console.log(response.data.uuid, 'response');
+    
+      router.push(`/home/${response.data.uuid}`);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+      setFormData('');
+    }
   };
 
   const handleDeleteFile = () => {
@@ -26,85 +40,86 @@ const FileUpload = () => {
     setIsFileUploaded(false);
   };
 
-  const handleFileUpload = (e) => {
-    e.preventDefault();
-    const selectedFile = e.target.files[0]; // Get the first file from the array
-    const formData = new FormData();
-    formData.append("file", selectedFile);
-    console.log(formData, "formdata");
+  const handleFileUpload = async event => {
+    event.preventDefault();
+   dispatch(setFileName((event.target.files[0].name)));
+    const selectedFile = event.target.files[0];
     setFile(selectedFile);
     if (selectedFile) {
       setIsFileUploaded(true);
+      const formData = new FormData();
+      formData.append('files', selectedFile);
+
+      try {
+        const response = await fetch(
+          'http://192.81.213.226:89/api/v1/uploads',
+          {
+            method: 'POST',
+            body: formData
+          }
+        );
+
+        if (response.status) {
+          const responseData = await response.json();
+          // Dispatch actions if needed
+        } else {
+          console.error('File upload failed.');
+        }
+      } catch (error) {
+        console.error('Error uploading file:', error);
+      }
     }
   };
 
-  const handleDragOver = (event) => {
-    event.preventDefault();
-  };
-
-  const handleDrop = (event) => {
-    event.preventDefault();
-    const droppedFile = event.dataTransfer.files[0];
-    setFile(droppedFile);
-    if (droppedFile) {
-      setIsFileUploaded(true);
-    }
-  };
-
-  const handleClearInput = () => {
-    setFormData("");
+  const closeModal = () => {
+    setIsLoading(false);
   };
 
   return (
     <div className="m-5">
-      {isFileUploaded && !showReader ? (
-        <FileUploadSection
-          file={file}
-          handleDeleteFile={handleDeleteFile}
-          isLoading={isLoading}
-        />
+      {isFileUploaded ? (
+        <FileUploadSection file={file} handleDeleteFile={handleDeleteFile} />
       ) : (
-        <>
-          <form onSubmit={handleSubmit}>
-            <div className="flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500  border-dotted">
-              <span className="flex align-middle justify-center mx-3">
-                <Image
-                  src={require(`../../../../assets/icons/link.svg`)}
-                  alt="upload image"
-                  width={20}
-                  height={20}
-                  priority
-                />
-              </span>
-              <input
-                placeholder="Copy and paste link here"
-                className="py-5 w-[95%] bg-sirp-secondary2 outline-none focus:ring-0"
-                value={formData}
-                onChange={handleChange}
-              />
-              <span className="flex align-middle justify-center mx-3">
-                <Image
-                  className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
-                  src={require(`../../../../assets/icons/x.svg`)}
-                  alt="upload image"
-                  width={20}
-                  height={20}
-                  onClick={handleClearInput}
-                />
-              </span>
-            </div>
-          </form>
-
-          <div
-            onDragOver={handleDragOver}
-            onDrop={handleDrop}
-            className="h-[30vh] mt-5 flex align-middle w-full justify-center border rounded-[30px] border-[#E5E7EB]"
+        <div>
+          {/* Text Summary Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500 border-dotted"
           >
+            <span className="flex align-middle justify-center mx-3">
+              <Image
+                src={require('../../../../assets/icons/link.svg')}
+                alt="upload image"
+                width={20}
+                height={20}
+                priority
+              />
+            </span>
+            <input
+              type="text"
+              placeholder="Copy and paste content text here"
+              className="w-[95%] h-[4rem] outline-none focus:ring-0"
+              onChange={e => setFormData(e.target.value)}
+              value={formData}
+            />
+            <span className="flex align-middle justify-center mx-3">
+              <Image
+                className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
+                src={require('../../../../assets/icons/x.svg')}
+                alt="upload image"
+                width={20}
+                height={20}
+                onClick={() => setFormData('')}
+              />
+            </span>
+          </form>
+          {/* File Upload */}
+          <div className="h-[30vh] mt-5 flex align-middle w-full justify-center border rounded-[30px] border-[#E5E7EB]">
             <div className="flex flex-col align-middle justify-center">
               <span className="flex align-middle justify-center mx-3">
                 <Image
                   className="flex align-middle justify-center"
-                  src={require(`../../../../assets/icons/cloud.svg`)}
+                  src={require('../../../../assets/icons/cloud.svg')}
                   alt="upload image"
                   width={25}
                   height={25}
@@ -115,7 +130,7 @@ const FileUpload = () => {
                 <input
                   id="file-upload"
                   type="file"
-                  accept=".txt,.rtf,.doc,.pdf,.jpeg,"
+                  accept=".txt,.rtf,.doc,.docx,.pdf,.ppt,.pptx"
                   className="hidden"
                   onChange={handleFileUpload}
                 />
@@ -124,15 +139,20 @@ const FileUpload = () => {
                   htmlFor="file-upload"
                 >
                   Upload a file
-                </label>{" "}
-                or drag and drop
+                </label>
+                <span> </span>or drag and drop
               </span>
-              <span className="font-light  text-[#383E42]">
-                TXT, RFT, DOC, PDF upto 5MB
+              <span className="font-light text-[#383E42]">
+                TXT, RFT, DOC, PDF up to 5MB
               </span>
             </div>
           </div>
-        </>
+        </div>
+      )}
+      {isLoading && (
+       
+          <LoadingModal closeModal={closeModal} />
+      
       )}
     </div>
   );

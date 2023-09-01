@@ -11,7 +11,7 @@ const ActionIcons = () => {
   const [documents, setDocuments] = useState(false);
   return (
     <>
-      <div className="flex gap-2 mr-2 px-5">
+      <div className="flex gap-1 mr-2 px-5">
         <Image
           src={require("../../../../assets/icons/h3.svg")}
           alt="documents"
@@ -20,7 +20,7 @@ const ActionIcons = () => {
           onClick={() => setDocuments(true)}
         />
         <Image
-          src={require("../../../../assets/icons/h22.svg")}
+          src={require("../../../../assets/icons/h2.svg")}
           alt="documents"
           className=" cursor-pointer"
           width={50}
@@ -32,7 +32,7 @@ const ActionIcons = () => {
           width={50}
         />
         <Image
-          src={require("../../../../assets/icons/on.saved.svg")}
+          src={require("../../../../assets/icons/action.saved.svg")}
           alt="documents"
           className="cursor-pointer"
           width={50}
@@ -84,4 +84,4 @@ const ActionIcons = () => {
   );
 };
 
-export default ActionIcons
+export default ActionIcons;
