@@ -1,18 +1,18 @@
-import React, { useState } from 'react';
-import Image from 'next/image';
-import { Button } from '@/components/ui';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import React, { useState } from "react";
+import Image from "next/image";
+import { Button } from "@/components/ui";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function DocumentExport() {
-  const success = () => toast('Copied!');
+  const success = () => toast("Copied!");
   const copyToClipboard = () => {
-    const paragraphText = document.getElementById('paragraph').innerText;
+    const paragraphText = document.getElementById("paragraph").innerText;
     navigator.clipboard.writeText(paragraphText);
     success();
   };
   const navigateToDashboard = () => {
-    window.location.href = '../../home/dashboard/homedashboard';
+    window.location.href = "../../home/dashboard/homedashboard";
   };
 
   return (
@@ -22,7 +22,7 @@ function DocumentExport() {
         <div className="flex flex-col justify-center items-center">
           <div className="relative mx-10 my-10">
             <Image
-              src={require('../../../../assets/icons/exportfram.svg')}
+              src={require("../../../../assets/icons/exportfram.svg")}
               alt="add user"
               width={50}
               height={50}
@@ -74,12 +74,12 @@ function DocumentExport() {
                   Export to collab work work space
                 </label>
                 <Image
-                  src={require('../../../../assets/icons/arrow-narrow-white-left 1.svg')}
+                  src={require("../../../../assets/icons/arrow-narrow-white-left_1.svg")}
                   alt="add user"
                   width={25}
                   height={25}
                   className="self-center"
-                  style={{ alignSelf: 'center' }}
+                  style={{ alignSelf: "center" }}
                   priority
                 />
                 <ToastContainer />

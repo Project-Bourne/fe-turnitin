@@ -64,7 +64,7 @@
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts"
-  ],
+, "src/pages/dashboard/components/data.js"  ],
   "exclude": [
     "node_modules"
   ]

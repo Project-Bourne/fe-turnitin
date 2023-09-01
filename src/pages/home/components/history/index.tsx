@@ -1,40 +1,22 @@
-import React, { useEffect, useState } from "react";
-import Content from "../Content";
-import dummy from "../../../../utils/dummy.json";
-import Image from "next/image";
+import HomeLayout from '@/layout/HomeLayout';
+import { useRouter } from 'next/router';
+import FileUpload from '../FileUpload';
+import TabLayout from './TabLayout';
 
 function HomeHistory() {
-  const [historyData, setHistoryData] = useState([]);
 
-  useEffect(() => {
-    // Fetch the data from the dummy file each time the component mounts
-    setHistoryData(dummy);
-  }, []);
-
-  const handleCheck = (id) => {
-    // Update the historyData state based on the clicked item
-    const updatedData = historyData.map((item) =>
-      item.id === id ? { ...item, isMarked: !item.isMarked } : item,
-    );
-    setHistoryData(updatedData);
-  };
+  const route = useRouter().pathname;
+  const showTitle = false;
 
   return (
-    <div>
-      {/* the history tab */}
-      <div className="flex pl-[2.5rem] gap-2 border-b-2 border-sirp-primary w-[15rem] py-5">
-        <Image
-          src={require("../../../../assets/icons/Histroy.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={20}
-        />
-        <h1 className="text-sirp-primary text-xl">History</h1>
-      </div>
-      <hr />
+    // eslint-disable-next-line react/jsx-filename-extension
+    <div className='mt-[8rem] h-[100%] rounded-[1rem] bg-[#F9F9F9] mx-5'>
+      <HomeLayout>
+        <h1 className='pl-10 pt-5 font-bold text-2xl '>Add Content</h1>
+        <FileUpload />
+      </HomeLayout>
 
-      {/* the history page */}
-      <Content data={historyData} onCheck={handleCheck} />
+      <TabLayout/>
     </div>
   );
 }
