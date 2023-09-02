@@ -17,7 +17,7 @@ function LoadingModal({ closeModal}) {
                         <h1 className="font-[700] text-2xl">Running Fact Check</h1>
                         <div className="flex items-center justify-center bg-sirp-primary w-[50%] font-bold text-white p-3 rounded-[1rem] gap-3 text-xl ">
                             <span> <Image
-                                src={require(`../../../../assets/icons/circle.svg`)}
+                                src={require(`../../../../../public/icons/circle.svg`)}
                                 alt="upload image"
                                 width={20}
                                 height={20}

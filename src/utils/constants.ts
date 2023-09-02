@@ -293,7 +293,7 @@ export const TrainingData = [
     },
 ]
 
-export const QuickSearch = [
+export const QuickSearch:any[] = [
     "What is crawler",
     "How to use fact checker",
     "What is fact checker",

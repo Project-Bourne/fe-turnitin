@@ -5,7 +5,7 @@ import CustomCard from '@/components/ui/CustomCard';
 export const data = [
   {
     id: 1,
-    imgSrc: require('../../../assets/icons/frame_05.svg'),
+    imgSrc: require('../../../../public/icons/frame_05.svg'),
     mainText: '4000',
     subText: 'Total Documents Crawled',
     url: '/dashboard',
@@ -13,7 +13,7 @@ export const data = [
   },
   {
     id: 2,
-    imgSrc: require('../../../assets/icons/frame_08.svg'),
+    imgSrc: require('../../../../public/icons/frame_08.svg'),
     mainText: '4000',
     subText: 'Total Documents Analyzed',
     url: '/dashboard',
@@ -21,7 +21,7 @@ export const data = [
   },
   {
     id: 3,
-    imgSrc: require('../../../assets/icons/frame_09.svg'),
+    imgSrc: require('../../../../public/icons/frame_09.svg'),
     mainText: '4000',
     subText: 'Total Documents Summarized',
     url: '/dashboard',
@@ -29,7 +29,7 @@ export const data = [
   },
   {
     id: 4,
-    imgSrc: require('../../../assets/icons/frame_0100.svg'),
+    imgSrc: require('../../../../public/icons/frame_0100.svg'),
     mainText: '4000',
     subText: 'Total Documents',
     url: '/dashboard',
@@ -37,7 +37,7 @@ export const data = [
   },
   {
     id: 5,
-    imgSrc: require('../../../assets/icons/frame_011.svg'),
+    imgSrc: require('../../../../public/icons/frame_011.svg'),
     mainText: '4000',
     subText: 'Total Documents Fact-Checked',
     url: '/dashboard',
@@ -45,7 +45,7 @@ export const data = [
   },
   {
     id: 6,
-    imgSrc: require('../../../assets/icons/frame_07.svg'),
+    imgSrc: require('../../../../public/icons/frame_07.svg'),
     mainText: '4000',
     subText: 'Total Exports to Collab',
     url: '/dashboard',
@@ -53,7 +53,7 @@ export const data = [
   },
   {
     id: 7,
-    imgSrc: require('../../../assets/icons/frame_013.svg'),
+    imgSrc: require('../../../../public/icons/frame_013.svg'),
     mainText: '4000',
     subText: 'Total Documents',
     url: '/dashboard',

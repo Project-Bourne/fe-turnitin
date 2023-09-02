@@ -3,7 +3,7 @@ import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-function LocationSection({ isLoading, location }) {
+function LocationSection({ isLoading }) {
   return (
     <div className="w-[25rem]">
       <p className="text-gray-500">
@@ -14,7 +14,7 @@ function LocationSection({ isLoading, location }) {
           <Skeleton width={50} height={50} circle />
         ) : (
           <Image
-            src={require("../../../../assets/icons/map.svg")}
+            src={require("../../../../../public/icons/map.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -23,10 +23,10 @@ function LocationSection({ isLoading, location }) {
 
         <div>
           <p className="font-bold">
-            {isLoading ? <Skeleton width={150} /> : location.country}
+            {isLoading ? <Skeleton width={150} /> : "Nigeria"}
           </p>
           <p className="text-gray-500 text-sm">
-            {isLoading ? <Skeleton width={150} /> : location.city}
+            {isLoading ? <Skeleton width={150} /> : "Abuja"}
           </p>
         </div>
       </div>

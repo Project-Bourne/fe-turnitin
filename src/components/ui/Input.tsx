@@ -32,7 +32,7 @@ function Input(props: InputModel) {
                         onClick={handleToggle}>
                         {!toggle ?
                             <Image
-                                src={require("../../assets/icons/hide.svg")}
+                                src={require("../../../public/icons/hide.svg")}
                                 alt="Filter"
                                 width={20}
                                 height={20}

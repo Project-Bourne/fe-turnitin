@@ -3,7 +3,7 @@ import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ProgressBar from "../ProgressBar";
 
-function ConfidenceSection({ isLoading, confidence }) {
+function ConfidenceSection({ isLoading }) {
   return (
     <div className="mt-3 w-[25rem]">
       <p className="text-gray-500 mt-3 pl-10">
@@ -22,7 +22,7 @@ function ConfidenceSection({ isLoading, confidence }) {
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              `${confidence}% Confidence Level`
+              `${20}% Confidence Level`
             )}
           </p>
           {isLoading ? (

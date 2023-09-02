@@ -88,7 +88,7 @@ const FileUpload = () => {
           >
             <span className="flex align-middle justify-center mx-3">
               <Image
-                src={require('../../../../assets/icons/link.svg')}
+                src={require('../../../../../public/icons/link.svg')}
                 alt="upload image"
                 width={20}
                 height={20}
@@ -105,7 +105,7 @@ const FileUpload = () => {
             <span className="flex align-middle justify-center mx-3">
               <Image
                 className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
-                src={require('../../../../assets/icons/x.svg')}
+                src={require('../../../../../public/icons/x.svg')}
                 alt="upload image"
                 width={20}
                 height={20}
@@ -119,7 +119,7 @@ const FileUpload = () => {
               <span className="flex align-middle justify-center mx-3">
                 <Image
                   className="flex align-middle justify-center"
-                  src={require('../../../../assets/icons/cloud.svg')}
+                  src={require('../../../../../public/icons/cloud.svg')}
                   alt="upload image"
                   width={25}
                   height={25}

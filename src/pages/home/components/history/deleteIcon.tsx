@@ -9,7 +9,7 @@ const DeleteIcon = ({ doc }) => {
       <div className="flex gap-2 px-5">
         <Tooltip title="Delete">
           <Image
-            src={require("../../../../assets/icons/delete.svg")}
+            src={require("../../../../../public/icons/delete.svg")}
             alt="documents"
             className=" cursor-pointer"
             width={15}

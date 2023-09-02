@@ -3,6 +3,8 @@ interface ListItemModels {
   uuid?: string | number;
   factUuid?: string | number;
   isBookmarked?: any;
+  summaryUuid?:any;
+  summary?:any;
   title?: string;
   factLevel?: any;
   time?: string;

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import "react-loading-skeleton/dist/skeleton.css";
-import data from "./data";
 import TitleSection from "./section_skeleton/TitleSection";
 import AuthorSection from "./section_skeleton/AuthorSection";
 import ConfidenceSection from "./section_skeleton/ConfidenceSection";
@@ -11,7 +10,6 @@ import SourceSection from "./section_skeleton/SourceSection";
 
 
 function MetaData() {
-  const { title, author, confidence, location, date, tags, sources } = data;
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -23,14 +21,14 @@ function MetaData() {
 
   return (
     <div className="bg-white mt-10 mx-5 mb-5">
-      <TitleSection isLoading={isLoading} title={title} />
+      <TitleSection isLoading={isLoading}  />
       <div className="mx-5 flex flex-wrap gap-10">
-        <AuthorSection isLoading={isLoading} author={author} />
-        <ConfidenceSection isLoading={isLoading} confidence={confidence} />
-        <LocationSection isLoading={isLoading} location={location} />
-        <DateSection isLoading={isLoading} date={date} />
-        <TagsKeywordsSection isLoading={isLoading} tags={tags} />
-        <SourceSection isLoading={isLoading} sources={sources} />
+        <AuthorSection isLoading={isLoading}  />
+        <ConfidenceSection isLoading={isLoading} />
+        <LocationSection isLoading={isLoading}  />
+        <DateSection isLoading={isLoading}  />
+        <TagsKeywordsSection isLoading={isLoading} />
+        <SourceSection isLoading={isLoading}  />
       </div>
     </div>
   );

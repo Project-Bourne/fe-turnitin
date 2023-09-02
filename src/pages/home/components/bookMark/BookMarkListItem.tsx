@@ -94,7 +94,7 @@ function ListItem({
       <div className="flex gap-3 items-center  hover:text-gray-400">
         {/* Save icon */}
         <Image
-          src={require(`../../../../assets/icons/on.saved.svg`)}
+          src={require(`../../../../../public/icons/on.saved.svg`)}
           alt="documents"
           className="cursor-pointer w-4 h-4"
           width={10}

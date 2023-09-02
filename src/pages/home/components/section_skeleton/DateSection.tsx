@@ -3,7 +3,7 @@ import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 
-function DateSection({ isLoading, date }) {
+function DateSection({ isLoading }) {
   return (
     <div className="w-[25rem]">
       <p className="text-gray-500 pl-10">
@@ -14,7 +14,7 @@ function DateSection({ isLoading, date }) {
           <Skeleton width={50} height={50} circle />
         ) : (
           <Image
-            src={require("../../../../assets/icons/date.svg")}
+            src={require("../../../../../public/icons/date.svg")}
             alt="documents"
             className="cursor-pointer"
             width={50}
@@ -23,10 +23,10 @@ function DateSection({ isLoading, date }) {
 
         <div>
           <p className="font-bold">
-            {isLoading ? <Skeleton width={150} /> : date.date}
+            {isLoading ? <Skeleton width={150} /> : "12/07/2023"}
           </p>
           <p className="text-gray-500 text-sm">
-            {isLoading ? <Skeleton width={150} /> : date.time}
+            {isLoading ? <Skeleton width={150} /> : "10PM"}
           </p>
         </div>
       </div>

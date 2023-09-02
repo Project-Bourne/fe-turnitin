@@ -32,8 +32,8 @@ function TabLayout() {
               <Image
                 src={
                   item.id === selectedTab
-                    ? require(`../../../assets/icons/${item.selectedIcon}`)
-                    : require(`../../../assets/icons/${item.icon}`)
+                    ? require(`../../../../../public/icons/${item.selectedIcon}`)
+                    : require(`../../../../../public/icons/${item.icon}`)
                 }
                 alt="Dashboard icon"
                 width={22}

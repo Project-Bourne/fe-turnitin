@@ -22,7 +22,7 @@ function DocumentExport() {
         <div className="flex flex-col justify-center items-center">
           <div className="relative mx-10 my-10">
             <Image
-              src={require("../../../../assets/icons/exportfram.svg")}
+              src={require("../../../../../public/icons/exportfram.svg")}
               alt="add user"
               width={50}
               height={50}
@@ -74,7 +74,7 @@ function DocumentExport() {
                   Export to collab work work space
                 </label>
                 <Image
-                  src={require("../../../../assets/icons/arrow-narrow-white-left_1.svg")}
+                  src={require("../../../../../public/icons/arrow-narrow-white-left_1.svg")}
                   alt="add user"
                   width={25}
                   height={25}

@@ -6,7 +6,7 @@ function NoHistory() {
         <main className="flex items-center justify-center flex-col gap-4">
             <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
                 <span> <Image
-                    src={require(`../../../../assets/icons/no_history.svg`)}
+                    src={require(`../../../../../public/icons/no_history.svg`)}
                     alt="upload image"
                     width={150}
                     height={150}

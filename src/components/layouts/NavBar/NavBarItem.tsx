@@ -30,7 +30,7 @@ function NavBarItem({item, index}: NavBarItemType) {
             key={index}
         >
             <Image
-                src={isSelected ? require(`../../../assets/icons/on.${item.icon}`) : require(`../../../assets/icons/${item.icon}`)}
+                src={isSelected ? require(`../../../../public/icons/on.${item.icon}`) : require(`../../../../public/icons/${item.icon}`)}
                 alt="Dashboard icon"
                 width={22}
                 height={22}

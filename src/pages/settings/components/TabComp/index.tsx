@@ -51,8 +51,8 @@ const TabComp = ({item, index, route, callback}: TabCompType) => {
       onClick={updatePath}
     >
       <Image
-        src={router.pathname == `${item.route}` ? require(`../../../../assets/icons/${item.selectedIcon}`) : require(`../../../../assets/icons/${item.icon}`)}
-        // item.route.includes(route) ? require(`../../../../assets/icons/on.${item.icon}`) : 
+        src={router.pathname == `${item.route}` ? require(`../../../../../public/icons/${item.selectedIcon}`) : require(`../../../../../public/icons/${item.icon}`)}
+        // item.route.includes(route) ? require(`../../../../../public/icons/on.${item.icon}`) : 
         alt="settings tab"
         width={18}
         height={18}
