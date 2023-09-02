@@ -12,7 +12,7 @@ function HistoryContent() {
       {history.length > 0 ? (
         <>
           {history.map((item) => {
-            console.log("URL:", item.fact.url); // Console log the URL
+            // console.log("URL:", item.fact.url); // Console log the URL
             return (
               <div key={item.uuid}>
                 <ListItem
