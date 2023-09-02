@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import ActionIcons from './components/actionIcons/ActionIcon';
 import Min_and_Max_icon from './components/Min_Max_icon';
 import MetaData from './components/MetaData';
+import { setData } from '@/redux/reducer/factcheckSlice';
 import FactcheckService from '@/services/factcheck.service';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -21,7 +22,8 @@ function Crawled() {
         try {
           const response = await factService.getFact(id);
           if (response.status) {
-            console.log(response.data);
+            // console.log(response.data);
+            dispatch(setData(response.data)); 
           } else {
             // Handle error
           }

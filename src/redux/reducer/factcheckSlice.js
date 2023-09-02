@@ -5,7 +5,8 @@ const factcheckSlice = createSlice({
   initialState: {
     fileName: '',
     history: [],
-    bookMark: []
+    bookMark: [],
+    data: [],
   
 
   },
@@ -19,6 +20,9 @@ const factcheckSlice = createSlice({
     setBookMark: state => {
       state.bookMark = state.history.filter(item => item.bookmark);
     },
+    setData: (state, action) => {
+      state.data = action.payload;
+    },
 
   }
 });
@@ -26,7 +30,8 @@ const factcheckSlice = createSlice({
 export const {
   setFileName,
   setHistory,
-  setBookMark
+  setBookMark,
+  setData,
 } = factcheckSlice.actions;
 
 export default factcheckSlice.reducer;
