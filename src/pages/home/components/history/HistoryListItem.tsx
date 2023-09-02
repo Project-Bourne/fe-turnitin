@@ -26,7 +26,7 @@ function ListItem({
 
   const handleHover = () => {
     setShowAction(1);
-    console.log(factLevel, 'factLevel')
+    // console.log(factLevel, 'factLevel')
   };
 
   const handleHoverOut = () => {  // Handle the hover out event

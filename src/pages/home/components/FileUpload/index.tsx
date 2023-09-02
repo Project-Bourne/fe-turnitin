@@ -19,12 +19,12 @@ const FileUpload = () => {
 
   const handleSubmit = async e => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    // console.log('Form submitted:', formData);
     try {
       setIsLoading(true);
       const dataObj = { url: formData };
       const response = await factcheckService.factcheckUrl(dataObj);
-      console.log(response.data.uuid, 'response');
+      // console.log(response.data.uuid, 'response');
     
       router.push(`/home/${response.data.uuid}`);
     } catch (error) {

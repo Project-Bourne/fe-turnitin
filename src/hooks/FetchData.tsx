@@ -6,7 +6,7 @@ export async function fetchData(dispatch) {
   try {
     const Data = await homeService.getFactHistory();
     if (Data.status) {
-      console.log(Data.data, 'data');
+      // console.log(Data.data, 'data');
       dispatch(setHistory(Data.data));
     } 
   } catch (error) {
