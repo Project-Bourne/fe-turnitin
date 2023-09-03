@@ -14,7 +14,7 @@ function TitleSection({ isLoading }) {
   const truncatedTitle = useTruncate(title, 65);
 
   return (
-    <div className="mx-5">
+    <div className="mx-5 md:w-full ">
       <p className="text-gray-500">
         {isLoading ? <Skeleton width={50} /> : 'Title'}
       </p>
@@ -24,4 +24,5 @@ function TitleSection({ isLoading }) {
     </div>
   );
 }
+
 export default TitleSection;

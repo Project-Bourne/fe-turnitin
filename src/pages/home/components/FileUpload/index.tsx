@@ -7,6 +7,7 @@ import FileUploadSection from './FileUploadSection';
 import { setFileName } from '@/redux/reducer/factcheckSlice';
 
 import LoadingModal from './LoadingModal';
+import NotificationService from '@/services/notification.service';
 
 const FileUpload = () => {
   const [formData, setFormData] = useState('');
@@ -17,18 +18,34 @@ const FileUpload = () => {
   const dispatch = useDispatch();
   const factcheckService = new FactcheckService();
 
-  const handleSubmit = async e => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log('Form submitted:', formData);
+
+    // Validation: Check if formData is empty or has less than five characters
+    if (formData.trim() === '' || formData.length < 5) {
+      // Notify the user of the validation error, and don't proceed with the submission.
+      NotificationService.error({
+        message: 'Error!',
+        addedText: <p>Input must not be empty and should have at least five characters.</p>,
+      });
+      return;
+    }
+
     try {
       setIsLoading(true);
       const dataObj = { url: formData };
       const response = await factcheckService.factcheckUrl(dataObj);
-      // console.log(response.data.uuid, 'response');
-    
-      router.push(`/home/${response.data.uuid}`);
+      if (response.status) {
+        router.push(`/home/${response.data.uuid}`);
+      } else {
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>Something went wrong. Please try again.</p>,
+        });
+        router.push(`/home`);
+      }
     } catch (error) {
-      console.error(error);
+      // Handle the error appropriately
     } finally {
       setIsLoading(false);
       setFormData('');

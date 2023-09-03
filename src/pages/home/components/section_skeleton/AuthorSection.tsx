@@ -13,7 +13,7 @@ function AuthorSection({ isLoading }) {
       <p className="text-gray-500 mt-3">
         {isLoading ? <Skeleton width={50} /> : 'Author'}
       </p>
-      <div className="flex gap-3 items-center my-5 cursor-pointer">
+      <div className="flex gap-3 items-center my-5  cursor-pointer">
         {isLoading ? (
           <Skeleton circle width={50} height={50} />
         ) : (

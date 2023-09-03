@@ -2,14 +2,13 @@ import { Dropdown, DropdownWithFlag } from '@/components/ui';
 import Image from 'next/image';
 import React, { useState } from 'react'
 import { UserRoles } from '@/utils/constants';
-import { useCountries } from 'use-react-countries';
 import { useRouter } from 'next/router';
 
 const View2 = () => {
 
 
     const router = useRouter();
-    const { countries } = useCountries()
+    const { countries } = require('../../../../utils/countries.json');
 
     const [country, setCountry] = useState(null);
     const [role, setRole] = useState("");

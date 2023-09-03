@@ -20,7 +20,7 @@ function MetaData() {
   }, []);
 
   return (
-    <div className="bg-white mt-10 mx-5 mb-5">
+    <div className="mt-10 mx-5 mb-5">
       <TitleSection isLoading={isLoading}  />
       <div className="mx-5 flex flex-wrap gap-10">
         <AuthorSection isLoading={isLoading}  />
