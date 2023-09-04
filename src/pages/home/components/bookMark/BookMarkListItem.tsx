@@ -3,81 +3,74 @@ import { useRouter } from 'next/router';
 import { useTruncate } from '@/components/custom-hooks';
 import Image from 'next/image';
 import ListItemModels from '../../../../utils/model/home.models';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { DateTime } from 'luxon';
-import HomeService from '@/services/factcheck.service';
-// import { fetchData } from '@/hooks/FetchData';
+import FactcheckService from '@/services/factcheck.service';
+import { fetchData } from '@/hooks/FetchData';
 import NotificationService from '@/services/notification.service';
+
+//Needs any help with this on this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
 
 function ListItem({
   uuid,
-  summaryUuid,
+  factUuid,
   title,
-  summary,
+  factLevel,
   time,
-  actionButtons
+  actionButtons,
+  isBookmarked
 }: ListItemModels) {
   const [showaction, setShowAction] = useState(0);
   const router = useRouter();
   const dispatch = useDispatch();
 
-  //hover effect in
   const handleHover = () => {
     setShowAction(1);
+    // console.log(factLevel, 'factLevel')
   };
 
-  //hover effect out
   const handleHoverOut = () => {
+    // Handle the hover out event
     setShowAction(0);
   };
 
-  const handleItemClick = () => {        //handle item click to open the summary from history
-    router.push(`/home/${summaryUuid}`);
+  const handleItemClick = () => {
+    // Handle the item click event to
+    router.push(`/home/${factUuid}`);
   };
 
-  
-  const handleBookMark = (e, uuid) => {   //handle bookmark
+  const handleBookMark = async (e, uuid) => {
     e.stopPropagation();
-    try {
-      const request = HomeService.bookMarkSummary(uuid);
-      // fetchData(dispatch); // Pass the fetch the updated data
-    } catch (error) {
-      console.error('Error archiving summary:', error);
-    }
+    FactcheckService.bookMarkFact(uuid)
+      .then((res: any) => {
+        fetchData(dispatch); // Pass the fetch the updated data
+      })
+      .catch(err => {
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>{err?.message}. Please try again</p> // Add a closing </p> tag
+        });
+      });
   };
-
 
   const handleDelete = async (e, uuid) => {
     e.stopPropagation();
-    HomeService.deleteSummary(uuid)
-   .then((res: any) => {
-    // fetchData(dispatch); // Pass the fetch the updated data
-    NotificationService.success({
-      message: "success!",
-      addedText: <p>{res?.message} History deleted</p> // Add a closing </p> tag
-    });
-   })
-   .catch((err) => {
-      NotificationService.error({
-        message: "Error!",
-        addedText: <p>{err?.message} Please try again</p> // Add a closing </p> tag
+    FactcheckService.deleteFact(uuid)
+      .then((res: any) => {
+        fetchData(dispatch); // Pass the fetch the updated data
+        NotificationService.success({
+          message: 'success!',
+          addedText: <p>{res?.message} History deleted</p> // Add a closing </p> tag
+        });
+      })
+      .catch(err => {
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>{err?.message} Please try again</p> // Add a closing </p> tag
+        });
       });
-   })
-  }
+  };
 
-
-  // Parse the JSON string into an array of objects
-  // const parsedSummary = JSON.parse(summary);
-
-  // Access the first summary
-  const firstSummary = summary[0].summary;
-  const lastSummary = summary[summary.length - 1].summary;
-
-  // Truncate the summary
-  const truncatedSummary = useTruncate(firstSummary, 18);
-  const truncatedFirstSummary = useTruncate(lastSummary, 45);
-
-  // Format the date
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
   const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
   const formattedDate = parsedDate.toFormat('yyyy-MM-dd HH:mm'); // Format the parsed date
@@ -94,26 +87,27 @@ function ListItem({
       <div className="flex gap-3 items-center  hover:text-gray-400">
         {/* Save icon */}
         <Image
-          src={require(`../../../../../public/icons/on.saved.svg`)}
+          src={
+            isBookmarked
+              ? require(`../../../../../public/icons/on.saved.svg`)
+              : require(`../../../../../public/icons/saved.svg`)
+          }
           alt="documents"
           className="cursor-pointer w-4 h-4"
-          width={10}
-          height={10}
+          width={30}
+          height={30}
           onClick={e => handleBookMark(e, uuid)}
         />
-        {/* name */}
-        <p className="text-sirp-black-500 ml-2 md:w-[12rem] hover:text-gray-400">
-          {useTruncate(title, 20)}
+        {/* title */}
+        <p className="text-sirp-black-500 ml-2 md:w-[40rem] hover:text-gray-400">
+          {useTruncate(title, 90)}
         </p>
       </div>
-      {/* description */}
-      <div className="hover:text-gray-400 hidden md:block">
-        <p className="text-black-100 w-[25rem]">{truncatedFirstSummary}</p>
-      </div>
-      {/* message */}
+
+      {/* confidence level */}
       {showaction === 0 ? (
         <div className="md:w-[15%] hidden md:block">
-          <p className="text-gray-400 border-l-2 pl-2 ">{truncatedSummary}</p>
+          <p className="text-gray-400 border-l-2 pl-2 ">{factLevel}</p>
         </div>
       ) : null}
       {/* time */}

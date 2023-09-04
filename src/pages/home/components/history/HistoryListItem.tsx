@@ -3,12 +3,13 @@ import { useRouter } from 'next/router';
 import { useTruncate } from '@/components/custom-hooks';
 import Image from 'next/image';
 import ListItemModels from '../../../../utils/model/home.models';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { DateTime } from 'luxon';
-import HomeService from '@/services/factcheck.service';
-// import { fetchData } from '@/hooks/FetchData';
+import FactcheckService from '@/services/factcheck.service';
+import { fetchData } from '@/hooks/FetchData';
 import NotificationService from '@/services/notification.service';
 
+//Needs any help with this on this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
 
 function ListItem({
   uuid,
@@ -23,53 +24,52 @@ function ListItem({
   const router = useRouter();
   const dispatch = useDispatch();
 
-
   const handleHover = () => {
     setShowAction(1);
     // console.log(factLevel, 'factLevel')
   };
 
-  const handleHoverOut = () => {  // Handle the hover out event
+  const handleHoverOut = () => {
+    // Handle the hover out event
     setShowAction(0);
   };
 
-  const handleItemClick = () => {  // Handle the item click event to
+  const handleItemClick = () => {
+    // Handle the item click event to
     router.push(`/home/${factUuid}`);
   };
 
   const handleBookMark = async (e, uuid) => {
     e.stopPropagation();
-   HomeService.bookMarkSummary(uuid)
-   .then((res: any) => {
-    // fetchData(dispatch); // Pass the fetch the updated data
-   })
-   .catch((err) => {
-      NotificationService.error({
-        message: "Error!",
-        addedText: <p>{err?.message}. Please try again</p> // Add a closing </p> tag
+    FactcheckService.bookMarkFact(uuid)
+      .then((res: any) => {
+        fetchData(dispatch); // Pass the fetch the updated data
+      })
+      .catch(err => {
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>{err?.message}. Please try again</p> // Add a closing </p> tag
+        });
       });
-   })
-      
   };
-  
+
   const handleDelete = async (e, uuid) => {
     e.stopPropagation();
-    HomeService.deleteSummary(uuid)
-   .then((res: any) => {
-    // fetchData(dispatch); // Pass the fetch the updated data
-    NotificationService.success({
-      message: "success!",
-      addedText: <p>{res?.message} History deleted</p> // Add a closing </p> tag
-    });
-   })
-   .catch((err) => {
-      NotificationService.error({
-        message: "Error!",
-        addedText: <p>{err?.message} Please try again</p> // Add a closing </p> tag
+    FactcheckService.deleteFact(uuid)
+      .then((res: any) => {
+        fetchData(dispatch); // Pass the fetch the updated data
+        NotificationService.success({
+          message: 'success!',
+          addedText: <p>{res?.message} History deleted</p> // Add a closing </p> tag
+        });
+      })
+      .catch(err => {
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>{err?.message} Please try again</p> // Add a closing </p> tag
+        });
       });
-   })
-  }
-
+  };
 
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
   const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
@@ -103,7 +103,7 @@ function ListItem({
           {useTruncate(title, 90)}
         </p>
       </div>
-    
+
       {/* confidence level */}
       {showaction === 0 ? (
         <div className="md:w-[15%] hidden md:block">

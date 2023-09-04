@@ -5,25 +5,24 @@ import NoBookMark from './NoBookMark';
 import { useSelector } from 'react-redux';
 
 function HistoryContent() {
-  const data = []
-  // const { bookMark } = useSelector((store: any) => store.summary); // Get the data from Redux store
+  const { bookMark } = useSelector((store: any) => store.factcheck); // Get the data from Redux store
   return (
     <>
-      {data.length > 0 ? (
+      {bookMark.length > 0 ? (
         <>
-          {data?.map(item => (
+          {bookMark?.map(item => (
             <div key={item.uuid}>
-              <ListItem
-                uuid={item.uuid}
-                summaryUuid={item.summaryUuid}
-                title={item.summary.title}
-                summary={item.summary.summaryArray}
-                time={item.createdAt}
-                isBookmarked={item.bookmark}
-                buttonType="action"
-                actionButtons={<DeleteIcon doc={item.title} />}
-              />
-            </div>
+            <ListItem
+              uuid={item.uuid}
+              factUuid={item.fact.uuid}
+              title={item.fact.url}
+              factLevel={item.fact.confidence.level}
+              time={item.createdAt}
+              isBookmarked={item.bookmark}
+              buttonType="action"
+              actionButtons={<DeleteIcon doc={item.fact.url} />}
+            />
+          </div>
           ))}
         </>
       ) : (
