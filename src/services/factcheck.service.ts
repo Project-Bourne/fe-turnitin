@@ -95,10 +95,10 @@ class FactcheckService {
    * @returns {Promise<void>} - Resolves when the workspace is deleted successfully.
    */
 
-  static async deleteSummary(id) {
+  static async deleteFact(id) {
     try {
       await request(
-        `/delete/summary/history/${id}`,
+        `/delete/fact/${id}`,
         'PUT',
         {},
         true,
@@ -116,10 +116,10 @@ class FactcheckService {
    * @returns {Promise<void>} - Resolves when the workspace is deleted successfully.
    */
 
-  static async bookMarkSummary(id) {
+  static async bookMarkFact(id) {
     try {
       await request(
-        `/bookmark/summary/${id}`,
+        `/bookmark/fact/${id}`,
         'PUT',
         {},
         true,

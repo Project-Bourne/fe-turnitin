@@ -1,12 +1,11 @@
-import HomeService from '@/services/factcheck.service';
+import FactcheckService from '@/services/factcheck.service';
 import { setHistory } from '@/redux/reducer/factcheckSlice';
 
 export async function fetchData(dispatch) {
-  const homeService = new HomeService();
+  const factService = new FactcheckService();
   try {
-    const Data = await homeService.getFactHistory();
+    const Data = await factService.getFactHistory();
     if (Data.status) {
-      // console.log(Data.data, 'data');
       dispatch(setHistory(Data.data));
     } 
   } catch (error) {
