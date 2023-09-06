@@ -4,8 +4,8 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import HistoryIcon from "@mui/icons-material/History";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
-import History from "./Histroy";
-import BookMark from "../bookMark/BookMark";
+import History from "./conponents/history/Histroy";
+import BookMark from "./conponents/bookMark/BookMark";
 import { setActiveTab } from '@/redux/reducer/tabSlice';
 
 

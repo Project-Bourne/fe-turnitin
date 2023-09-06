@@ -4,14 +4,15 @@
  * Object Request Header
  */
 
-let access = '';
-if (typeof window !== 'undefined') {
-  access = localStorage.getItem("deep-access") || '';
-}export const requestHeader = {
+// let access = '';
+// if (typeof window !== 'undefined') {
+//   access = localStorage.getItem("deep-access") || '';
+// }
+export const requestHeader = {
     Accept: 'application/json',
     'Cache-Control': 'no-cache',
     'Content-Type': 'application/json',
-    'deep-token':access,
+    'deep-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsInJvbGUiOiIxIiwiaWF0IjoxNjkzOTc2NDk1LCJleHAiOjE2OTQwNjI4OTV9.pCBN5y_W8DsxwKBdq-CxOfSSR2u8OzTcoX3c7VptISk'
 }
 // console.log(access, 'access')
   
@@ -29,7 +30,7 @@ if (typeof window !== 'undefined') {
 
  
   
-  let API_USER_URL = "http://localhost:5050/";
+  let API_USER_URL = "http://192.81.213.226:84";
   export async function request(url, method, payload, token, text, form) {
     requestHeader['Content-Type'] =
       form === true ? 'multipart/form-data' : 'application/json';

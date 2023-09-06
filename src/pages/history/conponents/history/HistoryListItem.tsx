@@ -8,6 +8,7 @@ import { DateTime } from 'luxon';
 import FactcheckService from '@/services/factcheck.service';
 import { fetchData } from '@/hooks/FetchData';
 import NotificationService from '@/services/notification.service';
+import { setData } from '@/redux/reducer/factcheckSlice';
 
 //Needs any help with this on this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
 
@@ -36,7 +37,28 @@ function ListItem({
 
   const handleItemClick = () => {
     // Handle the item click event to
-    router.push(`/home/${factUuid}`);
+    async function fetchSummary() {
+      const factService = new FactcheckService();
+      if (factUuid) {
+        try {
+          const response = await factService.getFact(factUuid);
+          if (response.status) {
+            console.log(response.data);
+            dispatch(setData(response.data));
+          } else {
+            NotificationService.error({
+              message: 'Error!',
+              addedText: <p>Something happend. Please try again</p> // Add a closing </p> tag
+            });
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+    }
+
+    fetchSummary();
+    router.push(`/home`);
   };
 
   const handleBookMark = async (e, uuid) => {

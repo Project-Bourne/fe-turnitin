@@ -23,9 +23,7 @@ function SourceSection({ isLoading }) {
                   <Skeleton width={70} />
                 ) : (
                   <li className="border p-2 rounded-[0.7rem] text-[0.7rem] bg-sirp-keynotebg">
-                    <a href={source} target="_blank" rel="noopener noreferrer">
-                      {source}
-                    </a>
+                    {source}
                   </li>
                 )}
               </div>
