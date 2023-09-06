@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 function NoHistory() {
     return (
-        <main className="flex items-center justify-center flex-col gap-4">
+        <main className="flex items-center justify-center flex-col my-[5rem] gap-4">
             <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
                 <span> <Image
                     src={require(`../../../../../public/icons/no_history.svg`)}
