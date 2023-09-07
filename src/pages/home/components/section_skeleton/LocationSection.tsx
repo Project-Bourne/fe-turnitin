@@ -2,6 +2,7 @@ import React from "react";
 import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import PlaceIcon from '@mui/icons-material/Place';
 
 function LocationSection({ isLoading }) {
   return (
@@ -13,12 +14,7 @@ function LocationSection({ isLoading }) {
         {isLoading ? (
           <Skeleton width={50} height={50} circle />
         ) : (
-          <Image
-            src={require("../../../../../public/icons/map.svg")}
-            alt="documents"
-            className="cursor-pointer"
-            width={50}
-          />
+          <PlaceIcon/>
         )}
 
         <div>

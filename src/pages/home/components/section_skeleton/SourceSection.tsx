@@ -16,7 +16,7 @@ function SourceSection({ isLoading }) {
       </p>
       <div className="flex gap-3 items-center w-[30rem]  mt-3">
         <div>
-          <ul className="flex flex-wrap gap-2">
+          <ul className="flex flex-wrap w-[29rem] gap-2">
             {sources.map((source, index) => (
               <div key={index}>
                 {isLoading ? (

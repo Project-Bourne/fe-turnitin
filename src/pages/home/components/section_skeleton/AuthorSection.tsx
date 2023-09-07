@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { useSelector } from 'react-redux';
+import PersonIcon from '@mui/icons-material/Person';
 
 function AuthorSection({ isLoading }) {
   const { data } = useSelector((state: any) => state.factcheck);
@@ -16,12 +17,7 @@ function AuthorSection({ isLoading }) {
         {isLoading ? (
           <Skeleton circle width={50} height={50} />
         ) : (
-          <Image
-            src={require('../../../../../public/icons/avatarmeta.svg')}
-            alt="documents"
-            className="cursor-pointer"
-            width={50}
-          />
+          <PersonIcon/>
         )}
         <div>
           <p className="font-bold">

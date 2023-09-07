@@ -4,6 +4,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import { DateTime } from 'luxon';
 import { useSelector } from 'react-redux';
+import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 function DateSection({ isLoading }) {
   const { data } = useSelector((state: any) => state.factcheck);
@@ -23,12 +24,7 @@ function DateSection({ isLoading }) {
         {isLoading ? (
           <Skeleton width={50} height={50} circle />
         ) : (
-          <Image
-            src={require('../../../../../public/icons/date.svg')}
-            alt="documents"
-            className="cursor-pointer"
-            width={50}
-          />
+          <CalendarTodayIcon/>
         )}
 
         <div>
