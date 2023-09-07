@@ -57,7 +57,7 @@ export const data = [
     mainText: '4000',
     subText: 'Total Documents',
     url: '/dashboard',
-    linkText: 'Open Oracle'
+    linkText: 'Open Deep Chat'
   }
 ];
 

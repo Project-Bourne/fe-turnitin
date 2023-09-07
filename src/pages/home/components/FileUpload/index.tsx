@@ -6,6 +6,7 @@ import FactcheckService from '@/services/factcheck.service';
 import FileUploadSection from './FileUploadSection';
 import { setData, setFileName } from '@/redux/reducer/factcheckSlice';
 import HomeContent from '../../[homecontent]';
+import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
 import LoadingModal from './LoadingModal';
 import NotificationService from '@/services/notification.service';
@@ -117,41 +118,52 @@ const FileUpload = () => {
       ) : (
         <div>
           {formData?.length == 0 ? (
-            <section className="flex justify-end wi-full mr-[2rem] mb-[1rem]">
-              <span className="font-normal text-[#383E42]">
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept=".txt,.doc,.docx,.pdf"
-                  className="hidden"
-                  onChange={handleFileUpload}
+            <div className="flex items-center w-[100%] justify-end pr-[2rem] pb-[1rem]">
+              <span className="text-grey-400 mr-2 text-sm text-sirp-primary">
+                {file?.name}
+              </span>
+              <label
+                htmlFor="file-input"
+                className="px-4 py-1 rounded-lg"
+                style={{
+                  cursor: 'pointer',
+                  color: '#4582C4',
+                  backgroundColor: 'white',
+                  border: '1px solid #4582C4'
+                }}
+              >
+                <DriveFolderUploadIcon
+                  style={{ color: '#4582C4', cursor: 'pointer' }}
                 />
-                <label
-                  className="text-blue-400 cursor-pointer"
-                  htmlFor="file-upload"
-                >
-                  <div className="border px-5 py-5 rounded-[1rem] bg-sirp-primary text-white">
-                    Upload File
-                  </div>
-                </label>
-              </span>
-            </section>
+                Upload File
+              </label>
+
+              <input
+                type="file"
+                id="file-input"
+                style={{ display: 'none' }}
+                accept=".pdf,.doc,.docx,.txt"
+                onChange={handleFileUpload}
+              />
+            </div>
           ) : (
-            <section className="flex justify-end wi-full mr-[2rem] mb-[1rem]">
-              <span className="font-normal text-[#383E42]">
-                <label
-                  className="text-blue-400 cursor-pointer"
-                  htmlFor="file-upload"
-                >
-                  <div
-                    onClick={handleSubmit}
-                    className="border px-5 py-5 rounded-[1rem] bg-sirp-primary text-white"
-                  >
-                    Run Fact check
-                  </div>
-                </label>
-              </span>
-            </section>
+            <div
+              className="flex items-center w-[100%] justify-end pr-[2rem] pb-[1rem]"
+              onClick={handleSubmit}
+            >
+              <label
+                htmlFor="file-input"
+                className="px-4 py-1 rounded-lg"
+                style={{
+                  cursor: 'pointer',
+                  color: '#4582C4',
+                  backgroundColor: 'white',
+                  border: '1px solid #4582C4'
+                }}
+              >
+                Run factcheck
+              </label>
+            </div>
           )}
           <form
             onSubmit={handleSubmit}
@@ -168,7 +180,7 @@ const FileUpload = () => {
             </span>
             <input
               type="text"
-              placeholder="Copy and paste content text here"
+              placeholder="Copy and paste Link here"
               className="w-[95%] h-[4rem] outline-none focus:ring-0"
               onChange={e => setFormData(e.target.value)}
               value={formData}
