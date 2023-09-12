@@ -32,7 +32,7 @@ class FactcheckService {
   async factcheckUpload(uploadData) {
     try {
       const response = await request(
-        '/summary/file',
+        '/check/file/url',
         'POST',
         uploadData,
         true,

@@ -12,7 +12,7 @@ function Crawled() {
   // Check if data.url exists
   const { data } = useSelector((state: any) => state.factcheck);
 
-  const title = data.url ? data.url : 'No Title';
+  const title = data.confidence.title ? data.confidence.title : "No Title";
   const content = data.confidence.content ? data.confidence.content : 'No Content';
 
   const [hideMeta, setHideMeta] = useState(true); // Hide and show meta data

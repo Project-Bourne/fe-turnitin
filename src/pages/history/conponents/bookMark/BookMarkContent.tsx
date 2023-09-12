@@ -15,7 +15,7 @@ function HistoryContent() {
             <ListItem
               uuid={item.uuid}
               factUuid={item.fact.uuid}
-              title={item.fact.url}
+              title={item.fact.confidence.title}
               factLevel={item.fact.confidence.level}
               time={item.createdAt}
               isBookmarked={item.bookmark}

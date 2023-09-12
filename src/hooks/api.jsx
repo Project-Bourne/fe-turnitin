@@ -12,8 +12,7 @@ export const requestHeader = {
   Accept: 'application/json',
   'Cache-Control': 'no-cache',
   'Content-Type': 'application/json',
-  'deep-token':
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsInJvbGUiOiIxIiwiaWF0IjoxNjk0MDk1MDI0LCJleHAiOjE2OTQxODE0MjR9.l1vY1_hLdghoWK1lcsS8AL82vM_gEH7dVyc6jX2aFp4'
+  'deep-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsImlhdCI6MTY5NDQzNTQwOSwiZXhwIjoxNjk0NTIxODA5fQ.P3uuF3rGuQcZ-9RgPwOvUzGDtn3uvUiPMGdTcR5jmtI'
 };
 // console.log(access, 'access')
 

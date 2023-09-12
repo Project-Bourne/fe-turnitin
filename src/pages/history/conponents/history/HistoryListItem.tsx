@@ -122,7 +122,7 @@ function ListItem({
         />
         {/* title */}
         <p className="text-sirp-black-500 ml-2 md:w-[40rem] hover:text-gray-400">
-          {useTruncate(title, 90)}
+        {useTruncate(title, 87)}
         </p>
       </div>
 

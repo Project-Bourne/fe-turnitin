@@ -10,7 +10,7 @@ import { fetchData } from '@/hooks/FetchData';
 import NotificationService from '@/services/notification.service';
 import { setData } from '@/redux/reducer/factcheckSlice';
 
-//Needs any help with this on this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
+//Need any help with  this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
 
 function ListItem({
   uuid,
@@ -124,7 +124,7 @@ function ListItem({
         />
         {/* title */}
         <p className="text-sirp-black-500 ml-2 md:w-[40rem] hover:text-gray-400">
-          {useTruncate(title, 90)}
+        {useTruncate(title, 87)}
         </p>
       </div>
 

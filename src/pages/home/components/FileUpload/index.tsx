@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import FactcheckService from '@/services/factcheck.service';
 import FileUploadSection from './FileUploadSection';
-import { setData, setFileName } from '@/redux/reducer/factcheckSlice';
+import { setData, setFileName, setUploadText, setUploadUri } from '@/redux/reducer/factcheckSlice';
 import HomeContent from '../../[homecontent]';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
 import LoadingModal from './LoadingModal';
 import NotificationService from '@/services/notification.service';
+
+//if you have any problem understanding this file/application please reachout to me on +2348100915641 or email me on christopherabraham8@gmail.com
 
 const FileUpload = () => {
   const { data } = useSelector((state: any) => state.factcheck);
@@ -25,11 +27,6 @@ const FileUpload = () => {
   const handleSubmit = async e => {
     e.preventDefault();
 
-    // dummy text but will come from the crawler
-    const titleUrl =
-      "anxiety as tribunal finally picks date to deliver judgement on obi, atiku's petitions against tinubu";
-    const contentUrl =
-      "the much-anticipated verdict of the presidential election petition court is expected to be delivered on wednesday, september 6officials of the court of appeal, who confirmed this to journalists, said proceedings will be open to live broadcast by interested television stationsthe lp and the pdp as well as their presidential candidates had petitioned the tribunal seeking to nullify the election of president bola tinubu as the winner of the 2023 electionpay attention: donate to legit charity on patreon. your support matters!fct, abuja - the petitions filed by atiku abubakar, the peoples democratic party (pdp)’s presidential candidate, and peter obi of the labour party (lp), against the electoral victory of president bola tinubu of the all progressives congress (apc) are nearing their conclusion.according to a communiqué, the presidential election petition court (pepc) sitting in abuja will deliver judgment on petitions challenging the election of tinubu on wednesday, september 6.read alsobreaking: pdp reacts as tribunal confirms date to deliver judgementthe presidential election tribunal will deliver its judgement on peter obi and atiku's petitions on wednesday in abuja. photo credits: asiwaju bola ahmed tinubu, mr. peter obi, atiku abubakarsource: facebookafrica independent television (ait) said it received the notice of the judgement which 'was communicated by the secretary of the pepc panel, josephine ekperobe' .pay attention: free webinar on media literacy aug 31, 12pm by legit.ng, leap africa, and ydos 2023 - register per the nation, a senior official of the court disclosed that the proceedings, planned to commence at 9 a.m., will be aired live on television.tinubu, the flagbearer of the apc, was declared the february 25, 2023, presidential poll winner with 8,794,726 votes.but dissatisfied with the result, atiku and obi approached the court to challenge the election outcome. legit.ng understands that by law, the tribunal has 180 days to determine the petitions and that expires on september 16, 2023.ohanaeze speaks on possible rerunin a piece of related news, legit.ng reported that the chidi ibeh-led faction of ohanaeze ndigbo said the north will likely work against tinubu if the tribunal orders a rerun.";
     // Validation: Check if formData is empty or has less than five characters
     if (formData.trim() === '' || formData.length < 5) {
       // Notify the user of the validation error, and don't proceed with the submission.
@@ -47,9 +44,7 @@ const FileUpload = () => {
     try {
       setIsLoading(true);
       const dataObj = {
-        url: formData,
-        title: titleUrl,
-        content: contentUrl
+        url: formData
       };
       const response = await factcheckService.factcheckUrl(dataObj);
       if (response.status) {
@@ -97,7 +92,18 @@ const FileUpload = () => {
 
         if (response.status) {
           const responseData = await response.json();
-          // Dispatch actions if needed
+          const fileText= (responseData.data[0].text);
+          const fileUri = (responseData.data[0].uri);
+          dispatch(setUploadText(fileText))
+          dispatch(setUploadUri(fileUri))
+          NotificationService.success({
+            message: 'Success!',
+            addedText: (
+              <p>
+                {responseData.message}
+              </p>
+            )
+          });
         } else {
           console.error('File upload failed.');
         }
@@ -119,9 +125,6 @@ const FileUpload = () => {
         <div>
           {formData?.length == 0 ? (
             <div className="flex items-center w-[100%] justify-end pr-[2rem] pb-[1rem]">
-              <span className="text-grey-400 mr-2 text-sm text-sirp-primary">
-                {file?.name}
-              </span>
               <label
                 htmlFor="file-input"
                 className="px-4 py-1 rounded-lg"

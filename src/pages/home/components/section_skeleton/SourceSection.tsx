@@ -14,7 +14,7 @@ function SourceSection({ isLoading }) {
       <p className="text-gray-500">
         {isLoading ? <Skeleton width={50} /> : 'BackedBy'}
       </p>
-      <div className="flex gap-3 items-center w-[30rem]  mt-3">
+      <div className="flex gap-3 items-center w-[30rem] mt-3">
         <div>
           <ul className="flex flex-wrap w-[29rem] gap-2">
             {sources.map((source, index) => (
@@ -23,7 +23,13 @@ function SourceSection({ isLoading }) {
                   <Skeleton width={70} />
                 ) : (
                   <li className="border p-2 rounded-[0.7rem] text-[0.7rem] bg-sirp-keynotebg">
-                    {source}
+                    <a
+                      href={source.href}
+                      target="_blank" // Opens link in a new tab
+                      rel="noopener noreferrer" // Security best practice for external links
+                    >
+                      {source.origin}
+                    </a>
                   </li>
                 )}
               </div>
