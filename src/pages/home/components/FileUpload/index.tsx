@@ -4,7 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
 import FactcheckService from '@/services/factcheck.service';
 import FileUploadSection from './FileUploadSection';
-import { setData, setFileName, setUploadText, setUploadUri } from '@/redux/reducer/factcheckSlice';
+import {
+  setData,
+  setFileName,
+  setUploadText,
+  setUploadUri
+} from '@/redux/reducer/factcheckSlice';
 import HomeContent from '../../[homecontent]';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 
@@ -50,7 +55,11 @@ const FileUpload = () => {
       if (response.status) {
         dispatch(setData(response.data));
         console.log(response.data);
-        // router.push(`/home/${response.data.uuid}`);
+        NotificationService.success({
+          message: 'Success!',
+          addedText: <p>{response.message}</p>,
+          position: 'top-right'
+        });
       } else {
         NotificationService.error({
           message: 'Error!',
@@ -59,7 +68,10 @@ const FileUpload = () => {
         router.push(`/home`);
       }
     } catch (error) {
-      // Handle the error appropriately
+      NotificationService.error({
+        message: 'Error!',
+        addedText: <p>Something went wrong. Please try again.</p>
+      });
     } finally {
       setIsLoading(false);
       setFormData('');
@@ -92,23 +104,25 @@ const FileUpload = () => {
 
         if (response.status) {
           const responseData = await response.json();
-          const fileText= (responseData.data[0].text);
-          const fileUri = (responseData.data[0].uri);
-          dispatch(setUploadText(fileText))
-          dispatch(setUploadUri(fileUri))
+          const fileText = responseData.data[0].text;
+          const fileUri = responseData.data[0].uri;
+          dispatch(setUploadText(fileText));
+          dispatch(setUploadUri(fileUri));
           NotificationService.success({
             message: 'Success!',
-            addedText: (
-              <p>
-                {responseData.message}
-              </p>
-            )
+            addedText: <p>{responseData.message}</p>
           });
         } else {
-          console.error('File upload failed.');
+          NotificationService.error({
+            message: 'Error!',
+            addedText: <p>fail to upload. Please try again.</p>
+          });
         }
       } catch (error) {
-        console.error('Error uploading file:', error);
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>fail to upload. Please try again.</p>
+        });
       }
     }
   };

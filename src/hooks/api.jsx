@@ -4,18 +4,18 @@
  * Object Request Header
  */
 
-// let access = '';
-// if (typeof window !== 'undefined') {
-//   access = localStorage.getItem("deep-access") || '';
-// }
+let access = '';
+if (typeof window !== 'undefined') {
+  access =
+    localStorage.getItem('deep-access') ||
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsImlhdCI6MTY5NDU5NTU0MSwiZXhwIjoxNjk0NjgxOTQxfQ.HHBT8TIaUtvSMttJnAAj9jNCJ_RReHLg8LEaBBiEs0U';
+}
 export const requestHeader = {
   Accept: 'application/json',
   'Cache-Control': 'no-cache',
   'Content-Type': 'application/json',
-  'deep-token':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsImlhdCI6MTY5NDQzNTQwOSwiZXhwIjoxNjk0NTIxODA5fQ.P3uuF3rGuQcZ-9RgPwOvUzGDtn3uvUiPMGdTcR5jmtI'
+  'deep-token': access
 };
-// console.log(access, 'access')
-
 /**
  *
  * @param {string} url

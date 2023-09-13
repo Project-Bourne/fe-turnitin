@@ -26,8 +26,11 @@ function FileUploadSection({ file, handleDeleteFile }) {
       const response = await factcheckService.factcheckUpload(dataObj);
       if (response.status) {
         dispatch(setData(response.data));
-        console.log(response.data);
-        // router.push(`/home/${response.data.uuid}`);
+        NotificationService.success({
+          message: 'Success!',
+          addedText: <p>{response.message}</p>,
+          position: 'top-right'
+        });
       } else {
         NotificationService.error({
           message: 'Error!',
@@ -36,7 +39,11 @@ function FileUploadSection({ file, handleDeleteFile }) {
         router.push(`/home`);
       }
     } catch (error) {
-      // Handle the error appropriately
+      NotificationService.error({
+        message: 'Error!',
+        addedText: <p>Something went wrong. Please try again.</p>
+      });
+      router.push(`/home`);
     } finally {
       setIsLoading(false);
     }
