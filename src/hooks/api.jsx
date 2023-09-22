@@ -7,7 +7,8 @@
 let access = '';
 if (typeof window !== 'undefined') {
   access =
-    localStorage.getItem('deep-access') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0OWIyNzc3LWNjZjUtNDhhNy05NmRjLTM0M2VkZWYxYmJlMyIsImlhdCI6MTY5NTM3OTI4NCwiZXhwIjoxNjk1NDY1Njg0fQ.2h0YkAjyGC6UblNi5AIQYfJ4J-yUs08LE4YYs66v7Gw"
+    localStorage.getItem('deep-access') ||
+    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0OWIyNzc3LWNjZjUtNDhhNy05NmRjLTM0M2VkZWYxYmJlMyIsImlhdCI6MTY5NTM4NDQzMywiZXhwIjoxNjk1NDcwODMzfQ.wDt7XSeyo4G-3nGoK47HPXJlkmVK1cTepkJj08n2QLY';
 }
 export const requestHeader = {
   Accept: 'application/json',
