@@ -7,8 +7,7 @@
 let access = '';
 if (typeof window !== 'undefined') {
   access =
-    localStorage.getItem('deep-access') ||
-    'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY4MGE5ZmIxLTRlMzktNDRiNC1hZjM2LTc2MDNkMjJlMDMzMCIsImlhdCI6MTY5NDU5NTU0MSwiZXhwIjoxNjk0NjgxOTQxfQ.HHBT8TIaUtvSMttJnAAj9jNCJ_RReHLg8LEaBBiEs0U';
+    localStorage.getItem('deep-access') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI0OWIyNzc3LWNjZjUtNDhhNy05NmRjLTM0M2VkZWYxYmJlMyIsImlhdCI6MTY5NTM3OTI4NCwiZXhwIjoxNjk1NDY1Njg0fQ.2h0YkAjyGC6UblNi5AIQYfJ4J-yUs08LE4YYs66v7Gw"
 }
 export const requestHeader = {
   Accept: 'application/json',
@@ -28,7 +27,7 @@ export const requestHeader = {
  *
  */
 
-let API_USER_URL = 'http://192.81.213.226:84';
+let API_USER_URL = 'http://192.81.213.226:81/84';
 export async function request(url, method, payload, token, text, form) {
   requestHeader['Content-Type'] =
     form === true ? 'multipart/form-data' : 'application/json';
