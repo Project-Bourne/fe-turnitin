@@ -3,10 +3,7 @@ import { useRouter } from 'next/router';
 import ActionIcons from './components/actionIcons/ActionIcon';
 import Min_and_Max_icon from './components/Min_Max_icon';
 import MetaData from './components/MetaData';
-import { setData } from '@/redux/reducer/factcheckSlice';
-import FactcheckService from '@/services/factcheck.service';
 import { useDispatch, useSelector } from 'react-redux';
-import NotificationService from '@/services/notification.service';
 
 function Crawled() {
   // Check if data.url exists
