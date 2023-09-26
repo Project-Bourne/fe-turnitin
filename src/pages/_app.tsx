@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AppLayout } from '@/layout/index';
 import { Provider } from "react-redux";
 import { store, persistor } from "../redux/store";
 import { PersistGate } from "redux-persist/integration/react";
 import '@/styles/globals.css';
+import { useRouter } from 'next/router';
 
 function App({ Component, pageProps, ...appProps }) {
   const isLayoutNeeded = appProps.router.pathname.includes("/auth");
@@ -15,6 +16,17 @@ function App({ Component, pageProps, ...appProps }) {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, y: 20, transition: { duration: 0.5 } },
   };
+
+  const router = useRouter();
+  useEffect(() => {
+    router.push(
+      {
+        pathname: `/home`,
+      },
+      undefined,
+      { shallow: true }
+    )
+  }, );
 
   return (
     <Provider store={store}>
