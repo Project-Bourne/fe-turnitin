@@ -4,7 +4,7 @@ type TruncateModel = {
 }
 
 const useTruncate = (text, breakAt) => {
-    if(text.length > breakAt){
+    if(text?.length > breakAt){
         let brokenText = text.substr(0, breakAt)
         let truncatedText = brokenText + '...';
         return truncatedText;

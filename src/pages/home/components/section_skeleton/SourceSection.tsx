@@ -28,7 +28,7 @@ function SourceSection({ isLoading }) {
                       target="_blank" // Opens link in a new tab
                       rel="noopener noreferrer" // Security best practice for external links
                     >
-                      {source.origin}
+                       {source.origin.replace('https://www.', '')}
                     </a>
                   </li>
                 )}

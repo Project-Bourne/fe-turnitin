@@ -184,7 +184,7 @@ const FileUpload = () => {
           )}
           <form
             onSubmit={handleSubmit}
-            className="flex align-middle w-full border-2 rounded-full border-[#E5E7EB]-500 border-dotted"
+            className="flex align-middle w-full border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
           >
             <span className="flex align-middle justify-center mx-3">
               <Image
@@ -195,10 +195,11 @@ const FileUpload = () => {
                 priority
               />
             </span>
-            <input
-              type="text"
-              placeholder="Copy and paste Link here"
-              className="w-[95%] h-[4rem] outline-none focus:ring-0"
+            <textarea
+              placeholder="Copy and paste content text here"
+              className={`w-[95%] outline-none focus:ring-0 py-[2rem] ${
+                formData.length > 0 ? 'h-[20rem]' : 'h-[6rem]'
+              }`}
               onChange={e => setFormData(e.target.value)}
               value={formData}
             />
