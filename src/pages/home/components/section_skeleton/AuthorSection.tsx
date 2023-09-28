@@ -6,8 +6,8 @@ import { useSelector } from 'react-redux';
 import PersonIcon from '@mui/icons-material/Person';
 
 function AuthorSection({ isLoading }) {
-  const { data } = useSelector((state: any) => state.factcheck);
-  const author = data.confidence?.author ? data.confidence.author : 'Author not found';
+  const { data } = useSelector((state: any) => state?.factcheck);
+  const author = data?.confidence?.author ? data?.confidence?.author : 'Author not found';
   return (
     <div className="mt-3 w-[25rem]">
       <p className="text-gray-500 mt-3">

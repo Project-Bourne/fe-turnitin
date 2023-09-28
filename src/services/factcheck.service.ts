@@ -130,6 +130,23 @@ class FactcheckService {
       throw error;
     }
   }
+
+  static async getUserViaAccessToken() {
+    try {
+      const response = await request(
+        `/token/user`,
+        "GET",
+        {},
+        true,
+        false,
+        false,
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
+
 }
 
 // Export the Service class.

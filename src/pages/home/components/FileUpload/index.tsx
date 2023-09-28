@@ -12,7 +12,7 @@ import {
 } from '@/redux/reducer/factcheckSlice';
 import HomeContent from '../../[homecontent]';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
-
+import { Tooltip } from '@mui/material';
 import LoadingModal from './LoadingModal';
 import NotificationService from '@/services/notification.service';
 
@@ -29,6 +29,13 @@ const FileUpload = () => {
   const dispatch = useDispatch();
   const factcheckService = new FactcheckService();
 
+  const handleTextareaChange = e => {
+    setFormData(e.target.value);
+    // Automatically adjust the textarea's height
+    e.target.style.height = 'auto';
+    e.target.style.height = e.target.scrollHeight + 'px';
+  };
+
   const handleSubmit = async e => {
     e.preventDefault();
 
@@ -37,11 +44,8 @@ const FileUpload = () => {
       // Notify the user of the validation error, and don't proceed with the submission.
       NotificationService.error({
         message: 'Error!',
-        addedText: (
-          <p>
-            Input must not be empty and should have at least five characters.
-          </p>
-        )
+        addedText: <p>Something happend. Please try again</p>, // Add a closing </p> tag
+        position: 'top-center'
       });
       return;
     }
@@ -58,19 +62,21 @@ const FileUpload = () => {
         NotificationService.success({
           message: 'Success!',
           addedText: <p>{response.message}</p>,
-          position: 'top-right'
+          position: 'top-center'
         });
       } else {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>Something went wrong. Please try again.</p>
+          addedText: <p>Something went wrong. Please try again.</p>,
+          position: 'top-center'
         });
         router.push(`/home`);
       }
     } catch (error) {
       NotificationService.error({
         message: 'Error!',
-        addedText: <p>Something went wrong. Please try again.</p>
+        addedText: <p>Something went wrong. Please try again.</p>,
+        position: 'top-center'
       });
     } finally {
       setIsLoading(false);
@@ -110,18 +116,21 @@ const FileUpload = () => {
           dispatch(setUploadUri(fileUri));
           NotificationService.success({
             message: 'Success!',
-            addedText: <p>{responseData.message}</p>
+            addedText: <p>{responseData.message}</p>,
+            position: 'top-center'
           });
         } else {
           NotificationService.error({
             message: 'Error!',
-            addedText: <p>fail to upload. Please try again.</p>
+            addedText: <p>fail to upload. Please try again.</p>,
+            position: 'top-center'
           });
         }
       } catch (error) {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>fail to upload. Please try again.</p>
+          addedText: <p>fail to upload. Please try again.</p>,
+          position: 'top-center'
         });
       }
     }
@@ -197,11 +206,9 @@ const FileUpload = () => {
             </span>
             <textarea
               placeholder="Copy and paste content text here"
-              className={`w-[95%] outline-none focus:ring-0 py-[2rem] ${
-                formData.length > 0 ? 'h-[20rem]' : 'h-[6rem]'
-              }`}
-              onChange={e => setFormData(e.target.value)}
+              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[2rem] resize-y min-h-[2rem] max-h-[15rem] overflow-auto`}
               value={formData}
+              onChange={handleTextareaChange}
             />
             <span className="flex align-middle justify-center mx-3">
               <Image

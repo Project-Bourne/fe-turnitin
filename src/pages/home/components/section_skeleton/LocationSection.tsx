@@ -1,8 +1,6 @@
 import React from "react";
-import Image from "next/image";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
-import PlaceIcon from '@mui/icons-material/Place';
 import PublicIcon from '@mui/icons-material/Public';
 
 function LocationSection({ isLoading }) {

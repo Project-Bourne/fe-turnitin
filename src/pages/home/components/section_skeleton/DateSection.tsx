@@ -7,8 +7,8 @@ import { useSelector } from 'react-redux';
 import CalendarTodayIcon from '@mui/icons-material/CalendarToday';
 
 function DateSection({ isLoading }) {
-  const { data } = useSelector((state: any) => state.factcheck);
-  const time = data.createdAt ? data.createdAt : 'No Date';
+  const { data } = useSelector((state: any) => state?.factcheck);
+  const time = data?.createdAt ? data?.createdAt : 'No Date';
 
   const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
   const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone

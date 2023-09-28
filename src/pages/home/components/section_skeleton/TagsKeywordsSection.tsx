@@ -5,10 +5,10 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useSelector } from 'react-redux';
 
 function TagsKeywordsSection({ isLoading }) {
-  const { data } = useSelector((state: any) => state.factcheck);
+  const { data } = useSelector((state: any) => state?.factcheck);
 
   // Check if data.url exists using optional chaining
-  const source = data?.url ? data.url : 'No Title';
+  const source = data?.url ? data?.url : 'No Title';
 
   return (
     <div className="w-[25rem]">

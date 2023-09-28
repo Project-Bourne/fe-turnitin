@@ -5,8 +5,8 @@ import { useSelector } from 'react-redux';
 
 function SourceSection({ isLoading }) {
   const { data } = useSelector((state: any) => state.factcheck);
-  const sources = data.confidence.backedBy
-    ? data.confidence.backedBy
+  const sources = data?.confidence?.backedBy
+    ? data?.confidence?.backedBy
     : ['Source not found'];
 
   return (
@@ -28,7 +28,7 @@ function SourceSection({ isLoading }) {
                       target="_blank" // Opens link in a new tab
                       rel="noopener noreferrer" // Security best practice for external links
                     >
-                       {source.origin.replace('https://www.', '')}
+                      {source.origin.replace('https://www.', '')}
                     </a>
                   </li>
                 )}

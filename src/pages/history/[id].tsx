@@ -1,20 +1,20 @@
-import React, { useEffect, useState } from 'react';
-import ActionIcons from './components/actionIcons/ActionIcon';
-import Min_and_Max_icon from './components/Min_Max_icon';
-import MetaData from './components/MetaData';
+import React, { useState } from 'react';
+import ActionIcons from '../home/components/actionIcons/ActionIcon';
+import Min_and_Max_icon from '../home/components/Min_Max_icon';
+import MetaData from '../home/components/MetaData';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Crawled() {
   // Check if data.url exists
   const { data } = useSelector((state: any) => state.factcheck);
 
-  const title = data.confidence.title ? data.confidence.title : "No Title";
-  const content = data.confidence.content ? data.confidence.content : 'No Content';
+  const title = data.confidence.title ? data.confidence.title : 'No Title';
+  const content = data.confidence.content
+    ? data.confidence.content
+    : 'No Content';
 
   const [hideMeta, setHideMeta] = useState(true); // Hide and show meta data
   const dispatch = useDispatch();
-
-
 
   //   // Update homeRoute with the current URL when the component mounts
   //   async function fetchSummary() {
@@ -50,7 +50,7 @@ function Crawled() {
   return (
     <div className="bg-sirp-lightGrey h-[100%] mt-[3rem] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
-        <div className="flex justify-end w-full">
+        <div className="flex justify-end w-full mr-[2rem]">
           <ActionIcons />
         </div>
         <div className="bg-white my-[3rem] mx-5 rounded-[1rem] w-[100%]">

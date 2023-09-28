@@ -1,85 +1,70 @@
 import React, { useState } from "react";
 import Image from "next/image";
-// import CustomModal from "@/components/ui/CustomModal";
-// import Factcheck from "../ModalPopUp/factcheck";
-// import Collaborate from "../ModalPopUp/collaborate";
-// import DocumentExport from "../ModalPopUp/DocumentExport";
+import { Tooltip } from "@mui/material";
 
 const ActionIcons = () => {
-  const [factcheck, setFactcheck] = useState(false);
-  const [collaborate, setCollaborate] = useState(false);
-  const [documents, setDocuments] = useState(false);
+  const handleCollab = () => {
+    console.log("collabe");
+  };
+
   return (
     <>
-      <div className="flex gap-1 mr-2 px-5">
-        <Image
-          src={require("../../../../../public/icons/h3.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-          onClick={() => setDocuments(true)}
-        />
-        <Image
-          src={require("../../../../../public/icons/h2.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../../../public/icons/h1.svg")}
-          alt="documents"
-          className=" cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../../../public/icons/action.saved.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-        />
-        <Image
-          src={require("../../../../../public/icons/h4.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-          onClick={() => setCollaborate(true)}
-        />
-        <Image
-          src={require("../../../../../public/icons/h6.svg")}
-          alt="documents"
-          className="cursor-pointer"
-          width={50}
-          onClick={() => setFactcheck(true)}
-        />
+      <div className="flex flex-row justify-end gap-[0.5rem] mr-5">
+        <Tooltip title="Export to Collab">
+          <Image
+            src={require("../../../../../public/icons/action_collab.svg")}
+            alt="documents"
+            className=" cursor-pointer"
+            width={60}
+            onClick={handleCollab}
+          />
+        </Tooltip>
+
+        <Tooltip title="Export to Summarizer">
+          <Image
+            src={require("../../../../../public/icons/action_summarizer.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={60}
+          />
+        </Tooltip>
+
+        <Tooltip title="Export to Analyzer">
+          <Image
+            src={require("../../../../../public/icons/action_analyzer.svg")}
+            alt="documents"
+            className=" cursor-pointer"
+            width={60}
+          />
+        </Tooltip>
+
+        <Tooltip title="Export to translator">
+          <Image
+            src={require("../../../../../public/icons/action_translator.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={60}
+          />
+        </Tooltip>
+
+        <Tooltip title="Export to Deep chat">
+          <Image
+            src={require("../../../../../public/icons/action_deepchat.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={60}
+          />
+        </Tooltip>
+
+        <Tooltip title="Export to Interrogator">
+          <Image
+            src={require("../../../../../public/icons/action_interrogator.svg")}
+            alt="documents"
+            className="cursor-pointer"
+            width={60}
+          />
+        </Tooltip>
       </div>
-      {/* factcheck models */}
-      {/* {factcheck && (
-        <CustomModal
-          style="bg-white md:w-[30%] w-[20%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-          closeModal={() => setFactcheck(false)}
-        >
-          <Factcheck />
-        </CustomModal>
-      )} */}
-
-      {/* collaborate models */}
-
-      {/* {collaborate && (
-        <CustomModal
-          style="bg-white md:w-[50%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-          closeModal={() => setCollaborate(false)}
-        >
-          <Collaborate />
-        </CustomModal>
-      )} */}
-      {/* {documents && (
-        <CustomModal
-          style="bg-white md:w-[50%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-          closeModal={() => setDocuments(false)}
-        >
-         <DocumentExport/>
-        </CustomModal>
-      )} */}
     </>
   );
 };
