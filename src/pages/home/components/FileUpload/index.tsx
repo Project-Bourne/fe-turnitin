@@ -67,15 +67,15 @@ const FileUpload = () => {
       } else {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>Something went wrong. Please try again.</p>,
+          addedText: <p>{`${response?.message}, please try again`}</p>,
           position: 'top-center'
         });
         router.push(`/home`);
       }
-    } catch (error) {
+    } catch (error:any) {
       NotificationService.error({
         message: 'Error!',
-        addedText: <p>Something went wrong. Please try again.</p>,
+        addedText: <p>{`${error?.message}, please try again`}</p>,
         position: 'top-center'
       });
     } finally {
@@ -116,7 +116,7 @@ const FileUpload = () => {
           dispatch(setUploadUri(fileUri));
           NotificationService.success({
             message: 'Success!',
-            addedText: <p>{responseData.message}</p>,
+            addedText: <p>{responseData?.message}</p>,
             position: 'top-center'
           });
         } else {
@@ -126,10 +126,10 @@ const FileUpload = () => {
             position: 'top-center'
           });
         }
-      } catch (error) {
+      } catch (error:any) {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>fail to upload. Please try again.</p>,
+          addedText: <p>{`${error?.message}, please try again`}</p>,
           position: 'top-center'
         });
       }

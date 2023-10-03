@@ -55,15 +55,15 @@ function ListItem({
             setLoading(false);
             NotificationService.error({
               message: 'Error!',
-              addedText: <p>Something happend. Please try again</p>, // Add a closing </p> tag
+              addedText: <p>{`${response?.message}, please try again`}</p>, // Add a closing </p> tag
               position: 'top-center'
             });
           }
-        } catch (err) {
+        } catch (err:any) {
           setLoading(false);
           NotificationService.error({
             message: 'Error!',
-            addedText: <p>Error Please try again</p>, // Add a closing </p> tag
+            addedText: <p>{`${err?.message}, please try again`}</p>, // Add a closing </p> tag
             position: 'top-center'
           });
         }

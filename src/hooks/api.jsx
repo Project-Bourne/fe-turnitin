@@ -1,8 +1,3 @@
-// import { API_USER_URL } from '@env';
-
-/**
- * Object Request Header
- */
 
 import { Cookies } from 'react-cookie';
 const cookies = new Cookies();

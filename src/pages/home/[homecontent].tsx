@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import ActionIcons from './components/actionIcons/ActionIcon';
 import Min_and_Max_icon from './components/Min_Max_icon';
 import MetaData from './components/MetaData';
@@ -14,31 +14,6 @@ function Crawled() {
   const [hideMeta, setHideMeta] = useState(true); // Hide and show meta data
   const dispatch = useDispatch();
 
-
-
-  //   // Update homeRoute with the current URL when the component mounts
-  //   async function fetchSummary() {
-  //     const factService = new FactcheckService();
-  //     if (id) {
-  //       try {
-  //         const response = await factService.getFact(id);
-  //         if (response.status) {
-  //           console.log(response.data);
-  //           dispatch(setData(response.data));
-  //         } else {
-  //           NotificationService.error({
-  //             message: 'Error!',
-  //             addedText: <p>Something happend. Please try again</p> // Add a closing </p> tag
-  //           });
-  //         }
-  //       } catch (err) {
-  //         console.error(err);
-  //       }
-  //     }
-  //   }
-
-  //   fetchSummary();
-  // }, [id, dispatch]);
   const handleMax = () => {
     setHideMeta(true);
   };

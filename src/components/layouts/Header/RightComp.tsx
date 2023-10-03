@@ -10,10 +10,12 @@ import notification from "../../../../public/icons/notification.svg";
 import down from "../../../../public/icons/down.svg";
 import dashboard from "../../../../public/icons/dashboard.svg";
 import { Cookies, useCookies } from "react-cookie";
+import DashboardDropdown from "./DropdownItems";
 
 function RightComp() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [toggleDashboard, setToggleDashboard] = useState(false);
   const authService = new AuthService();
   const [cookies, setCookie, removeCookie] = useCookies(["deep-access"]);
   const { userInfo, userAccessToken, refreshToken } = useSelector(
@@ -54,16 +56,18 @@ function RightComp() {
           priority
         />
       </div>
-      <div className={`${styles.view1} hidden md:flex`}>
+      <div className={`${styles.view1} hidden md:flex relative`}>
         <Image
           src={dashboard}
-          alt="dashbaord"
+          alt="dashboard"
           width={20}
           height={20}
           className="self-center"
+          onClick={() => setToggleDashboard((prevState) => !prevState)}
           style={{ alignSelf: "center" }}
           priority
         />
+        {toggleDashboard && <DashboardDropdown />}
       </div>
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
