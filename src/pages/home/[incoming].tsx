@@ -7,13 +7,12 @@ import { setData } from '@/redux/reducer/factcheckSlice';
 import NotificationService from '@/services/notification.service';
 import { useRouter } from 'next/router';
 import { Cookies } from 'react-cookie';
-import { useTruncate } from "@/components/custom-hooks";
-
+import { useTruncate } from '@/components/custom-hooks';
+import { Tooltip } from '@mui/material';
+import CustomModal from '@/components/ui/CustomModal';
+import Loader from '../history/conponents/Loader';
 
 function FileUploadSection() {
-  // const { fileName, uploadText, uploadUri,  } = useSelector(
-  //   (store: any) => store.factcheck
-  // );
   const [isLoading, setIsLoading] = useState(false);
   const factcheckService = new FactcheckService();
   const dispatch = useDispatch();
@@ -68,7 +67,6 @@ function FileUploadSection() {
 
           if (!response.ok) {
             throw new Error(`HTTP error! Status: ${response.status}`);
-            setLoading(false);
           }
           const data = await response.json();
           switch (routeName) {
@@ -107,16 +105,14 @@ function FileUploadSection() {
     fetchData();
   }, [incoming]);
 
-  console.log(uploadText, 'uploadText');
   const truncatedTitle = useTruncate(uploadText, 40);
-
 
   const handleFactUpload = async () => {
     try {
       setIsLoading(true);
       const dataObj = {
-        text: uploadText
-        // uri: uploadUri
+        text: uploadText,
+        // uri: ''
       };
       const response = await factcheckService.factcheckUpload(dataObj);
       if (response.status) {
@@ -150,6 +146,16 @@ function FileUploadSection() {
   return (
     <div>
       <div className="p-10 flex align-middle items-center w-full flex-col justify-center">
+      {loading && (
+        <CustomModal
+          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          closeModal={() => setLoading(false)}
+        >
+          <div className="flex justify-center items-center mt-[10rem]">
+            <Loader />
+          </div>
+        </CustomModal>
+      )}
         {/* File Information */}
         <div className="p-5 flex md:w-[50%] w-[100%] align-middle justify-between bg-[#F3F5F6] border-2 border-[E8EAEC] rounded-[15px]">
           <div className="flex align-middle items-center justify-center">
@@ -165,21 +171,25 @@ function FileUploadSection() {
             <div className="mx-4">
               <span>{truncatedTitle}</span>
               <div>
-                <span className="text-xs text-[#6B7280]">Exported to factcheck </span>
+                <span className="text-xs text-[#6B7280]">
+                  Exported to factcheck{' '}
+                </span>
                 <span className="text-xs text-[#6B7280]">100% uploaded</span>
               </div>
             </div>
           </div>
-          <span className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[70px] h-[40px] cursor-pointer">
-            <Image
-              src={require(`../../../public/icons/red-delete.svg`)}
-              alt="upload image"
-              width={18}
-              height={18}
-              priority
-              onClick={() =>router.push(`/home`)}
-            />
-          </span>
+          <Tooltip title="Delete">
+            <span className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[70px] h-[40px] cursor-pointer">
+              <Image
+                src={require(`../../../public/icons/red-delete.svg`)}
+                alt="upload image"
+                width={18}
+                height={18}
+                priority
+                onClick={() => router.push(`/home`)}
+              />
+            </span>
+          </Tooltip>
         </div>
         {/* Summarize Button */}
         <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
