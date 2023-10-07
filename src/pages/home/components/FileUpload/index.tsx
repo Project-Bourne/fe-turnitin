@@ -10,7 +10,7 @@ import {
   setUploadText,
   setUploadUri
 } from '@/redux/reducer/factcheckSlice';
-import HomeContent from '../../[homecontent]';
+import HomeContent from '../[homecontent]';
 import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { Tooltip } from '@mui/material';
 import LoadingModal from './LoadingModal';
@@ -28,6 +28,7 @@ const FileUpload = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const factcheckService = new FactcheckService();
+  const [uploadDisabled, setUploadDisabled] = useState(true);
 
   const handleTextareaChange = e => {
     setFormData(e.target.value);
@@ -58,7 +59,6 @@ const FileUpload = () => {
       const response = await factcheckService.factcheckUrl(dataObj);
       if (response.status) {
         dispatch(setData(response.data));
-        console.log(response.data);
         NotificationService.success({
           message: 'Success!',
           addedText: <p>{response.message}</p>,
@@ -72,7 +72,7 @@ const FileUpload = () => {
         });
         router.push(`/home`);
       }
-    } catch (error:any) {
+    } catch (error: any) {
       NotificationService.error({
         message: 'Error!',
         addedText: <p>{`${error?.message}, please try again`}</p>,
@@ -112,6 +112,7 @@ const FileUpload = () => {
           const responseData = await response.json();
           const fileText = responseData.data[0].text;
           const fileUri = responseData.data[0].uri;
+          setUploadDisabled(false);
           dispatch(setUploadText(fileText));
           dispatch(setUploadUri(fileUri));
           NotificationService.success({
@@ -126,7 +127,7 @@ const FileUpload = () => {
             position: 'top-center'
           });
         }
-      } catch (error:any) {
+      } catch (error: any) {
         NotificationService.error({
           message: 'Error!',
           addedText: <p>{`${error?.message}, please try again`}</p>,
@@ -143,7 +144,7 @@ const FileUpload = () => {
   return (
     <div className="m-5">
       {isFileUploaded ? (
-        <FileUploadSection file={file} handleDeleteFile={handleDeleteFile} />
+        <FileUploadSection file={file} handleDeleteFile={handleDeleteFile} uploadDisabled={uploadDisabled}  />
       ) : (
         <div>
           {formData?.length == 0 ? (

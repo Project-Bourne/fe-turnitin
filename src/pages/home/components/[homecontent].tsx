@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
-import ActionIcons from './components/actionIcons/ActionIcon';
-import Min_and_Max_icon from './components/Min_Max_icon';
-import MetaData from './components/MetaData';
+import ActionIcons from './actionIcons/ActionIcon';
+import Min_and_Max_icon from './Min_Max_icon';
+import MetaData from './MetaData';
 import { useDispatch, useSelector } from 'react-redux';
 
 function Crawled() {
   // Check if data.url exists
   const { data } = useSelector((state: any) => state.factcheck);
 
-  const title = data.confidence.title ? data.confidence.title : "No Title";
-  const content = data.confidence.content ? data.confidence.content : 'No Content';
+  const title = data?.confidence?.title ? data?.confidence?.title : "No Title";
+  const content = data?.confidence?.content ? data?.confidence?.content : 'No Content';
+  const id = data?.uuid ? data?.uuid : 'No ID';
 
   const [hideMeta, setHideMeta] = useState(true); // Hide and show meta data
-  const dispatch = useDispatch();
 
   const handleMax = () => {
     setHideMeta(true);
@@ -26,7 +26,7 @@ function Crawled() {
     <div className="bg-sirp-lightGrey h-[100%] mt-[3rem] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
         <div className="flex justify-end w-full">
-          <ActionIcons />
+          <ActionIcons docId={id} />
         </div>
         <div className="bg-white my-[3rem] mx-5 rounded-[1rem] w-[100%]">
           <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />

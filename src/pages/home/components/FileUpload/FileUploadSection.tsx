@@ -7,14 +7,15 @@ import { setData } from '@/redux/reducer/factcheckSlice';
 import NotificationService from '@/services/notification.service';
 import { useRouter } from 'next/router';
 
-function FileUploadSection({ file, handleDeleteFile }) {
-  const { fileName, uploadText, uploadUri } = useSelector(
+function FileUploadSection({ file, handleDeleteFile, uploadDisabled }) {
+  const { fileName, uploadText, uploadUri,  } = useSelector(
     (store: any) => store.factcheck
   );
   const [isLoading, setIsLoading] = useState(false);
   const factcheckService = new FactcheckService();
   const dispatch = useDispatch();
   const router = useRouter();
+
 
   const handleFactUpload = async () => {
     try {
@@ -88,12 +89,18 @@ function FileUploadSection({ file, handleDeleteFile }) {
         </div>
         {/* Summarize Button */}
         <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
-          <div
-            className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
-            onClick={handleFactUpload}
-          >
-            <span>Summarize</span>
-          </div>
+          {uploadDisabled ? (
+            <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-gray-300 border-2 text-gray-600 rounded-[15px] font-extrabold">
+              <span>Factchecker</span>
+            </div>
+          ) : (
+            <div
+              className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
+              onClick={handleFactUpload}
+            >
+              <span>Factchecker</span>
+            </div>
+          )}
         </div>
       </div>
       {isLoading && <LoadingModal closeModal={closeModal} />}

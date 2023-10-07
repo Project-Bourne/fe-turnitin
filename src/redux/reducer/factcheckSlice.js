@@ -8,7 +8,8 @@ const factcheckSlice = createSlice({
     bookMark: [],
     data: [],
     uploadText: [],
-    uploadUri: []
+    uploadUri: [],
+    isUploadDisabled: true
   
 
   },
@@ -30,6 +31,9 @@ const factcheckSlice = createSlice({
     },
     setUploadUri: (state, action) => {
       state.uploadUri = action.payload;
+    },
+    setUploadDisabled: (state, action) => {
+      state.isUploadDisabled = action.payload;
     }
 
 
@@ -42,7 +46,8 @@ export const {
   setBookMark,
   setData,
   setUploadText,
-  setUploadUri
+  setUploadUri,
+  setUploadDisabled
 } = factcheckSlice.actions;
 
 export default factcheckSlice.reducer;

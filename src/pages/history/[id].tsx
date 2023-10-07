@@ -12,11 +12,11 @@ function Crawled() {
   const content = data.confidence.content
     ? data.confidence.content
     : 'No Content';
+  const id = data?.uuid ? data?.uuid : 'No ID';
 
   const [hideMeta, setHideMeta] = useState(true); // Hide and show meta data
   const dispatch = useDispatch();
 
-  //   // Update homeRoute with the current URL when the component mounts
   //   async function fetchSummary() {
   //     const factService = new FactcheckService();
   //     if (id) {
@@ -51,7 +51,7 @@ function Crawled() {
     <div className="bg-sirp-lightGrey h-[100%] mt-[3rem] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between  flex-wrap md:px-5 md:py-5 ">
         <div className="flex justify-end w-full mr-[2rem]">
-          <ActionIcons />
+          <ActionIcons docId={id} />
         </div>
         <div className="bg-white my-[3rem] mx-5 rounded-[1rem] w-[100%]">
           <Min_and_Max_icon maxOnClick={handleMax} minOnClick={handleMin} />

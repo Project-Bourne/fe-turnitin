@@ -48,7 +48,6 @@ function ListItem({
           setLoading(true);
           const response = await factService.getFact(factUuid);
           if (response.status) {
-            console.log(response.data);
             dispatch(setData(response.data));
             setLoading(false);
           } else {
