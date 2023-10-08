@@ -18,7 +18,7 @@ const ActionIcons = ({ docId }) => {
       router.push(`http://192.81.213.226:31/home/${id}&factcheck`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226:34/home/${id}&factcheck`);
+      router.push(`http://192.81.213.226:32/home/${id}&factcheck`);
     }
     if (to === "deepchat") {
       router.push(`http://192.81.213.226:35/home/${id}&factcheck`);
