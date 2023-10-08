@@ -74,7 +74,7 @@ const ActionIcons = ({ docId }) => {
 
         {/* translator */}
         {permissions.includes("translator") && (
-          <Tooltip title="Export to translator">
+          <Tooltip title="Export to Translator">
             <Image
               src={require("../../../../../public/icons/action_translator.svg")}
               alt="documents"
