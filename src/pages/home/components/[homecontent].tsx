@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import ActionIcons from './actionIcons/ActionIcon';
 import Min_and_Max_icon from './Min_Max_icon';
 import MetaData from './MetaData';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 function Crawled() {
   // Check if data.url exists

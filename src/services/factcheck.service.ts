@@ -22,6 +22,21 @@ class FactcheckService {
       throw error;
     }
   }
+  static async reviewFactcheckUrl(url) {
+    try {
+      const response = await request(
+        '/review/url',
+        'POST',
+        url,
+        true,
+        false,
+        false
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   /**
    * summarising text contents.
@@ -131,21 +146,6 @@ class FactcheckService {
     }
   }
 
-  static async getUserViaAccessToken() {
-    try {
-      const response = await request(
-        `/token/user`,
-        "GET",
-        {},
-        true,
-        false,
-        false,
-      );
-      return response;
-    } catch (error) {
-      throw error;
-    }
-  }
 
 }
 

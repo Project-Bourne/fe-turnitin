@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import ProgressBar from "../ProgressBar";
@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 function ConfidenceSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
 const confidencePercent = data?.confidence?.level ? data?.confidence?.level : 0;
+
 
   return (
     <div className="mt-3 w-[25rem]">
