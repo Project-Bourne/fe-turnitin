@@ -12,22 +12,22 @@ const ActionIcons = ({ docId }) => {
 
   const handleExport = (id: string, to: string) => {
     if (to === "collab") {
-      router.push(`http://192.81.213.226:36/documents/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:36/documents/${id}&factcheck`);
     }
     if (to === "analyzer") {
-      router.push(`http://192.81.213.226:31/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:31/home/${id}&factcheck`);
     }
     if (to === "summarizer") {
-      router.push(`http://192.81.213.226:32/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:32/home/${id}&factcheck`);
     }
     if (to === "deepchat") {
-      router.push(`http://192.81.213.226:35/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:35/home/${id}&factcheck`);
     }
     if (to === "interrogator") {
-      router.push(`http://192.81.213.226:37/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:37/home/${id}&factcheck`);
     }
     if (to === "translator") {
-      router.push(`http://192.81.213.226:33/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:33/home/${id}&factcheck`);
     }
   };
 
@@ -47,7 +47,7 @@ const ActionIcons = ({ docId }) => {
           </Tooltip>
         )}
         {/* factcheck */}
-        {permissions.includes("summarizer") && (
+        {permissions?.includes("summarizer") && (
           <Tooltip title="Export to Summarizer">
             <Image
               src={require("../../../../../public/icons/action_summarizer.svg")}
@@ -60,7 +60,7 @@ const ActionIcons = ({ docId }) => {
         )}
 
         {/* analyzer */}
-        {permissions.includes("analyser") && (
+        {permissions?.includes("analyser") && (
           <Tooltip title="Export to Analyzer">
             <Image
               src={require("../../../../../public/icons/action_analyzer.svg")}
@@ -73,7 +73,7 @@ const ActionIcons = ({ docId }) => {
         )}
 
         {/* translator */}
-        {permissions.includes("translator") && (
+        {permissions?.includes("translator") && (
           <Tooltip title="Export to Translator">
             <Image
               src={require("../../../../../public/icons/action_translator.svg")}
@@ -86,7 +86,7 @@ const ActionIcons = ({ docId }) => {
         )}
 
         {/* deepchat */}
-        {permissions.includes("deep chat") && (
+        {permissions?.includes("deep chat") && (
           <Tooltip title="Export to Deep chat">
             <Image
               src={require("../../../../../public/icons/action_deepchat.svg")}
@@ -99,7 +99,7 @@ const ActionIcons = ({ docId }) => {
         )}
 
         {/* interrogator */}
-        {permissions.includes("interrogator") && (
+        {permissions?.includes("interrogator") && (
           <Tooltip title="Export to Interrogator">
             <Image
               src={require("../../../../../public/icons/action_interrogator.svg")}

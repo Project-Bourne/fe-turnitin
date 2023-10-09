@@ -91,9 +91,9 @@ function FileUploadSection() {
           setLoading(false);
         } catch (error: any) {
           console.error('Error:', error);
-          NotificationService.error({
+          NotificationService?.error({
             message: 'Error!',
-            addedText: <p>{`${error.message}, please try again`}</p>,
+            addedText: <p>{`${error?.message}, please try again`}</p>,
             position: 'top-center'
           });
         } finally {
@@ -115,11 +115,11 @@ function FileUploadSection() {
         // uri: ''
       };
       const response = await factcheckService.factcheckUpload(dataObj);
-      if (response.status) {
+      if (response?.status) {
         dispatch(setData(response.data));
         NotificationService.success({
           message: 'Success!',
-          addedText: <p>{response.message}</p>,
+          addedText: <p>{response?.message}</p>,
           position: 'top-right'
         });
       } else {
@@ -127,7 +127,7 @@ function FileUploadSection() {
           message: 'Error!',
           addedText: <p>Something went wrong. Please try again.</p>
         });
-        router.push(`/home`);
+        router?.push(`/home`);
       }
     } catch (error) {
       NotificationService.error({
