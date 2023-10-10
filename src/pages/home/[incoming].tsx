@@ -31,7 +31,7 @@ function FileUploadSection() {
       setLoading(true);
       if (typeof incoming === 'string') {
         try {
-          const [routeId, routeName] = incoming.split('&');
+          const [routeId, routeName] = incoming?.split('&');
           let url;
 
           switch (routeName) {
@@ -118,7 +118,7 @@ function FileUploadSection() {
       setIsLoading(true);
       const dataObj = {
         text: uploadText,
-        // uri: ''
+        uri: 'export'
       };
       const response = await factcheckService.factcheckUpload(dataObj);
       if (response?.status) {
