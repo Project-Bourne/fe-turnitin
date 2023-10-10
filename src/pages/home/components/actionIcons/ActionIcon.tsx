@@ -35,7 +35,7 @@ const ActionIcons = ({ docId }) => {
     <>
       <div className="flex flex-row justify-end gap-[0.5rem] mr-5">
         {/* collab */}
-        {permissions.includes("collab") && (
+        {permissions?.includes("collab") && (
           <Tooltip title="Export to Collab">
             <Image
               src={require("../../../../../public/icons/action_collab.svg")}
