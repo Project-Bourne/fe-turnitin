@@ -44,6 +44,9 @@ function FileUploadSection() {
             case 'factcheck':
               url = `http://192.81.213.226:81/84/fact/${routeId}`;
               break;
+            case 'irp':
+              url = `http://192.81.213.226:81/84/fact/${routeId}`;
+              break;
             case 'deepchat':
               url = `http://192.81.213.226:81/85/deepchat/${routeId}`;
               break;
@@ -74,6 +77,9 @@ function FileUploadSection() {
               setUploadText(data?.data?.textTranslation);
               break;
             case 'factcheck':
+              setUploadText(data?.data?.confidence?.content5wh);
+              break;
+            case 'irp':
               setUploadText(data?.data?.confidence?.content5wh);
               break;
             case 'summarizer':
