@@ -14,12 +14,6 @@ const BASE_URL = 'http://192.81.213.226';
 
 const dropdownItems = [
   {
-    name: 'Admin',
-    to: `${BASE_URL}/30/home`,
-    key: 'admin',
-    icon: admin
-  },
-  {
     name: 'IRP',
     to: `${BASE_URL}/30/home`,
     key: 'irp',
@@ -73,8 +67,10 @@ function DashboardDropdown() {
   return (
     <ul className="bg-sirp-lightGrey shadow absolute top-[3rem] pt-1 flex md:grid grid-cols-3 rounded z-30 w-[130px] md:w-[300px]">
       {dropdownItems.map((item, index) => {
-        if (permissions.includes(item.key)) {
-          return (
+        const shouldRender = item.key === 'irp' || permissions.includes(item.key);
+        
+        return (
+          shouldRender && (
             <li
               key={index}
               className="py-1.5 px-2  text-black border-b-[1px] border-r-[1px] border-b-gray-200/[0.5] border-r-gray-200/[0.5] text-[12px] text-center"
@@ -92,11 +88,12 @@ function DashboardDropdown() {
                 <span>{item.name}</span>
               </Link>
             </li>
-          );
-        }
+          )
+        );
       })}
     </ul>
   );
 }
 
 export default DashboardDropdown;
+
