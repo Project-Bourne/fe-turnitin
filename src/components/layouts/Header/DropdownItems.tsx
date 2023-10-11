@@ -71,24 +71,22 @@ function DashboardDropdown() {
   );
 
   return (
-    <ul className="bg-sirp- shadow absolute top-[3rem] rounded z-30 w-[130px]">
+    <ul className="bg-sirp-lightGrey shadow absolute top-[3rem] pt-1 flex md:grid grid-cols-3 rounded z-30 w-[130px] md:w-[300px]">
       {dropdownItems.map((item, index) => {
-        const shouldRender =
-          item.key === 'irp' || permissions.includes(item.key);
-        if (shouldRender) {
+        if (permissions.includes(item.key)) {
           return (
             <li
               key={index}
-              className="py-1.5 px-2 bg-sirp-lightGrey text-black border-b-[1px] border-b-gray-200/[0.5] text-[12px]"
+              className="py-1.5 px-2  text-black border-b-[1px] border-r-[1px] border-b-gray-200/[0.5] border-r-gray-200/[0.5] text-[12px] text-center"
             >
-              <Link href={item.to} className="flex gap-x-3 items-center">
+              <Link href={item.to} className="grid gap-x-3 items-center">
                 <Image
                   src={item.icon}
                   alt={item.key}
                   className={`${
-                    item.key !== 'deep chat'
-                      ? 'h-[10px] w-[10px]'
-                      : 'h-[20px] w-[10px]'
+                    item.key !== "deep chat"
+                      ? "h-[10px] w-[10px] md:mx-auto"
+                      : "h-[20px] w-[10px] md:mx-auto"
                   } `}
                 />
                 <span>{item.name}</span>
@@ -96,7 +94,6 @@ function DashboardDropdown() {
             </li>
           );
         }
-        return null; // Do not render this item if the condition is not met
       })}
     </ul>
   );
