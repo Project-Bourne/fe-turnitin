@@ -7,10 +7,10 @@ import { setData } from '@/redux/reducer/factcheckSlice';
 import NotificationService from '@/services/notification.service';
 import { useRouter } from 'next/router';
 import { Cookies } from 'react-cookie';
-import { useTruncate } from '@/components/custom-hooks';
-import { Tooltip } from '@mui/material';
+import Auth from "../../services/auth.service"
 import CustomModal from '@/components/ui/CustomModal';
 import Loader from '../history/conponents/Loader';
+import { setUserInfo } from '@/redux/reducer/authReducer';
 
 function FileUploadSection() {
   const [isLoading, setIsLoading] = useState(false);
@@ -27,13 +27,38 @@ function FileUploadSection() {
   };
 
   useEffect(() => {
+    setLoading(true);
+    try {
+      Auth
+        .getUserViaAccessToken()
+        .then((response) => {
+          setLoading(false);
+          if (response?.status) {
+            console.log("user data via login", response);
+            dispatch(setUserInfo(response?.data));
+          }
+          else {
+            router.push('http://192.81.213.226:30/auth/login')}
+        })
+        .catch((err) => {
+          NotificationService.error({
+            message: "Error!",
+            addedText: <p>something happened. please try again</p>,
+            position: "top-center",
+          });
+        });
+    } catch (err) {
+      console.log(err);
+    }
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       if (typeof incoming === 'string') {
         try {
-          const [routeId, routeName] = incoming?.split('&');
+          const [routeId, routeName] = incoming.split('&');
           let url;
-
           switch (routeName) {
             case 'summarizer':
               url = `http://192.81.213.226:81/82/summary/${routeId}`;
@@ -50,7 +75,7 @@ function FileUploadSection() {
             case 'deepchat':
               url = `http://192.81.213.226:81/85/deepchat/${routeId}`;
               break;
-            case 'analyzer':
+            case 'analyser':
               url = `http://192.81.213.226:81/81/analysis/${routeId}`;
               break;
             case 'interrogator':
@@ -85,7 +110,7 @@ function FileUploadSection() {
             case 'summarizer':
               setUploadText(data?.data?.summaryArray[0].summary);
               break;
-            case 'analyzer':
+            case 'analyser':
               setUploadText(data?.data?.text);
             case 'interrogator':
             case 'collab':
@@ -96,7 +121,6 @@ function FileUploadSection() {
           }
           setLoading(false);
         } catch (error: any) {
-          console.error('Error:', error);
           NotificationService?.error({
             message: 'Error!',
             addedText: <p>{`${error?.message}, please try again`}</p>,
@@ -110,8 +134,6 @@ function FileUploadSection() {
 
     fetchData();
   }, [incoming]);
-
-  const truncatedTitle = useTruncate(uploadText, 40);
 
   const handleFactUpload = async () => {
     try {
@@ -152,50 +174,49 @@ function FileUploadSection() {
   return (
     <div>
       <div className="p-10 flex align-middle items-center w-full flex-col justify-center">
-      {loading && (
-        <CustomModal
-          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-          closeModal={() => setLoading(false)}
-        >
-          <div className="flex justify-center items-center mt-[10rem]">
-            <Loader />
-          </div>
-        </CustomModal>
-      )}
+        {loading && (
+          <CustomModal
+            style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+            closeModal={() => setLoading(false)}
+          >
+            <div className="flex justify-center items-center mt-[10rem]">
+              <Loader />
+            </div>
+          </CustomModal>
+        )}
         {/* File Information */}
-        <div className="p-5 flex md:w-[50%] w-[100%] align-middle justify-between bg-[#F3F5F6] border-2 border-[E8EAEC] rounded-[15px]">
-          <div className="flex align-middle items-center justify-center">
-            <span className="rounded-full bg-[#E8F8FD] flex align-middle justify-center w-[40px] h-[40px]">
+        <div className='w-full'>
+          <form
+            onSubmit={handleFactUpload}
+            className="flex align-middle w-full h-[15rem] border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
+          >
+            <span className="flex align-middle justify-center mx-3">
               <Image
-                src={require(`../../../public/icons/file.svg`)}
+                src={require('../../../public/icons/link.svg')}
                 alt="upload image"
                 width={20}
                 height={20}
                 priority
               />
             </span>
-            <div className="mx-4">
-              <span>{truncatedTitle}</span>
-              <div>
-                <span className="text-xs text-[#6B7280]">
-                  Exported to factcheck{' '}
-                </span>
-                <span className="text-xs text-[#6B7280]">100% uploaded</span>
-              </div>
-            </div>
-          </div>
-          <Tooltip title="Delete">
-            <span className="rounded-full bg-[#FEE2E2] flex align-middle justify-center w-[70px] h-[40px] cursor-pointer">
+            <textarea
+              placeholder="Copy and paste content text here"
+              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[2rem] resize-y min-h-[2rem] max-h-[15rem] overflow-auto`}
+              value={uploadText}
+              onChange={e => setUploadText(e.target.value)} // Uncomment this line
+            />
+
+            <span className="flex align-middle justify-center mx-3">
               <Image
-                src={require(`../../../public/icons/red-delete.svg`)}
+                className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
+                src={require('../../../public/icons/x.svg')}
                 alt="upload image"
-                width={18}
-                height={18}
-                priority
-                onClick={() => router.push(`/home`)}
+                width={20}
+                height={20}
+                onClick={() => setUploadText('')}
               />
             </span>
-          </Tooltip>
+          </form>
         </div>
         {/* Summarize Button */}
         <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">

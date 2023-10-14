@@ -7,9 +7,10 @@ function ProgressBar() {
   const { data } = useSelector((state: any) => state.factcheck);
 
   // Extract the numeric value and remove the "%" symbol
-  const confidencePercent = data.confidence.level
-    ? parseInt(data.confidence.level.replace("%", ""), 10)
-    : 0;
+  const confidencePercent = data.confidence.level.endsWith("%")
+  ? parseInt(data.confidence.level, 10)
+  : 0;
+
     
 
   // Define a function to determine the stroke color based on the percentage
