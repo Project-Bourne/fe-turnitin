@@ -31,8 +31,12 @@ const index = () => {
             position: 'top-center'
           });
         });
-    } catch (err) {
-      console.log(err);
+    } catch (err:any) {
+      NotificationService.error({
+        message: 'Error!',
+        addedText: <p>{`${err.message}. Please try again`}</p>,
+        position: 'top-center'
+      });
     }
   }, []);
 
