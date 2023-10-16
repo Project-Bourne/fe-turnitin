@@ -6,9 +6,9 @@ import { useSelector } from 'react-redux';
 
 function TagsKeywordsSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
-
+  const source = data?.url;
+  const domain = source ? new URL(source)?.hostname : '';
   // Check if data.url exists using optional chaining
-  const source = data?.url ? data?.url : 'No Title';
 
   return (
     <div className="w-[25rem]">
@@ -20,9 +20,9 @@ function TagsKeywordsSection({ isLoading }) {
           href={source}
           target="_blank"
           rel="noopener noreferrer"
-          className="truncate" // This class truncates the text if it overflows
+          className="text-blue-400" // This class truncates the text if it overflows
         >
-          {source} 
+          {domain} 
         </a>
       </div>
     </div>
