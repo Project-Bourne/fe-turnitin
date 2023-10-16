@@ -18,7 +18,6 @@ const index = () => {
         .then(response => {
           setLoading(false);
           if (response?.status) {
-            console.log('user data via login', response);
             dispatch(setUserInfo(response?.data));
           } else {
             router.push('http://192.81.213.226:30/auth/login');

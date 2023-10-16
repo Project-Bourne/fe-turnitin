@@ -7,17 +7,25 @@ import PersonIcon from '@mui/icons-material/Person';
 
 function AuthorSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
-  const author = data?.confidence?.author ? data?.confidence?.author : 'Author not found';
+  const source = data?.url;
+  const domain = source ? new URL(source)?.hostname : '';
+  let author = data?.confidence?.author;
+
+  // Check if author is a non-empty string, if not, use the domain
+  if (typeof author !== 'string' || author.trim() === '') {
+    author = domain;
+  }
+
   return (
     <div className="mt-3 w-[25rem]">
       <p className="text-gray-500 mt-3">
         {isLoading ? <Skeleton width={50} /> : 'Author'}
       </p>
-      <div className="flex gap-3 items-center my-5  cursor-pointer">
+      <div className="flex gap-3 items-center my-5 cursor-pointer">
         {isLoading ? (
           <Skeleton circle width={50} height={50} />
         ) : (
-          <PersonIcon/>
+          <PersonIcon />
         )}
         <div>
           <p className="font-bold">
@@ -28,4 +36,5 @@ function AuthorSection({ isLoading }) {
     </div>
   );
 }
+
 export default AuthorSection;

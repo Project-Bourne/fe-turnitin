@@ -8,7 +8,7 @@ function TitleSection({ isLoading }) {
   const { data } = useSelector((state: any) => state.factcheck);
 
   // Check if data.url exists
-  const title = data.confidence.title ? data.confidence.title : "No Title";
+  const title = data?.confidence?.title ? data?.confidence?.title : "No Title";
 
 
   return (

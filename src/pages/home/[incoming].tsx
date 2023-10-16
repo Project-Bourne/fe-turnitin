@@ -26,31 +26,6 @@ function FileUploadSection() {
     'deep-token': token
   };
 
-  useEffect(() => {
-    setLoading(true);
-    try {
-      Auth
-        .getUserViaAccessToken()
-        .then((response) => {
-          setLoading(false);
-          if (response?.status) {
-            console.log("user data via login", response);
-            dispatch(setUserInfo(response?.data));
-          }
-          else {
-            router.push('http://192.81.213.226:30/auth/login')}
-        })
-        .catch((err) => {
-          NotificationService.error({
-            message: "Error!",
-            addedText: <p>something happened. please try again</p>,
-            position: "top-center",
-          });
-        });
-    } catch (err) {
-      console.log(err);
-    }
-  }, []);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -58,6 +33,8 @@ function FileUploadSection() {
       if (typeof incoming === 'string') {
         try {
           const [routeId, routeName] = incoming.split('&');
+          console.log('routeId', routeId);
+          console.log('routeName', routeName);
           let url;
           switch (routeName) {
             case 'summarizer':
@@ -97,6 +74,7 @@ function FileUploadSection() {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
+          console.log('data', data);
           switch (routeName) {
             case 'translator':
               setUploadText(data?.data?.textTranslation);

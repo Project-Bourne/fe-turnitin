@@ -14,45 +14,51 @@ const BASE_URL = 'http://192.81.213.226';
 
 const dropdownItems = [
   {
+    name: 'Admin',
+    to: `${BASE_URL}:38/home`,
+    key: 'admin',
+    icon: admin
+  },
+  {
     name: 'IRP',
-    to: `${BASE_URL}/30/home`,
+    to: `${BASE_URL}:30/home`,
     key: 'irp',
     icon: irp
   },
   {
     name: 'Collab',
-    to: `${BASE_URL}/36/home`,
+    to: `${BASE_URL}:36/home`,
     key: 'collab',
     icon: collab
   },
   {
     name: 'Analyzer',
-    to: `${BASE_URL}/31/home`,
+    to: `${BASE_URL}:31/home`,
     key: 'analyser',
     icon: analyzer
   },
   {
     name: 'Summarizer',
-    to: `${BASE_URL}/32/home`,
+    to: `${BASE_URL}:32/home`,
     key: 'summarizer',
     icon: summarizer
   },
   {
     name: 'Translator',
-    to: `${BASE_URL}/33/home`,
+    to: `${BASE_URL}:33/home`,
     key: 'translator',
     icon: translator
   },
   {
     name: 'Deep Chat',
-    to: `${BASE_URL}/35/home`,
+    to: `${BASE_URL}:35/home`,
     key: 'deep chat',
     icon: deep_chat
   },
 
   {
     name: 'Interrogator',
-    to: `${BASE_URL}/37/home`, // change route
+    to: `${BASE_URL}:37/home`, // change route
     key: 'interrogator',
     icon: interrogator
   }

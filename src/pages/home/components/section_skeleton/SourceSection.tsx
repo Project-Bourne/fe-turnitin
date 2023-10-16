@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useSelector } from 'react-redux';
 
 function SourceSection({ isLoading }) {
-  const { data } = useSelector((state: any) => state.factcheck);
+  const { data } = useSelector((state: any) => state?.factcheck);
   const sources = data?.confidence?.backedBy
     ? data?.confidence?.backedBy
     : ['Source not found'];

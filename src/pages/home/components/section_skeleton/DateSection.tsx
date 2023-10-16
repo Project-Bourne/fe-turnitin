@@ -10,10 +10,10 @@ function DateSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
   const time = data?.createdAt ? data?.createdAt : 'No Date';
 
-  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
-  const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
-  const formattedDate = parsedDate.toFormat('yyyy-MM-dd'); // Format the parsed date
-  const formattedTime = parsedDate.toFormat('HH:mm'); // Format the parsed date
+  const userTimeZone = Intl?.DateTimeFormat()?.resolvedOptions().timeZone; // Get user's time zone
+  const parsedDate = DateTime?.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
+  const formattedDate = parsedDate?.toFormat('yyyy-MM-dd'); // Format the parsed date
+  const formattedTime = parsedDate?.toFormat('HH:mm'); // Format the parsed date
 
   return (
     <div className="w-[25rem]">

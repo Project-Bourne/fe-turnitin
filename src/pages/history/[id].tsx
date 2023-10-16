@@ -7,9 +7,9 @@ import { useSelector } from 'react-redux';
 function Crawled() {
   const { data } = useSelector((state: any) => state.factcheck);
 
-  const title = data.confidence.title || 'No Title';
-  const content = data.confidence.content || 'No Content';
-  const id = data.uuid || 'No ID';
+  const title = data?.confidence?.title || 'No Title';
+  const content = data?.confidence?.content || 'No Content';
+  const id = data?.uuid || 'No ID';
 
   const [hideMeta, setHideMeta] = useState(true);
 
