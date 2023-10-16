@@ -7,7 +7,7 @@ import { setData } from '@/redux/reducer/factcheckSlice';
 import NotificationService from '@/services/notification.service';
 import { useRouter } from 'next/router';
 import { Cookies } from 'react-cookie';
-import Auth from "../../services/auth.service"
+import Auth from '../../services/auth.service';
 import CustomModal from '@/components/ui/CustomModal';
 import Loader from '../history/conponents/Loader';
 import { setUserInfo } from '@/redux/reducer/authReducer';
@@ -25,7 +25,6 @@ function FileUploadSection() {
   const headers = {
     'deep-token': token
   };
-
 
   useEffect(() => {
     const fetchData = async () => {
@@ -59,7 +58,7 @@ function FileUploadSection() {
               url = `http://196700:h/${routeId}`;
               break;
             case 'collab':
-              url = `http://192.81.213.226:81/86/api/v1/${routeId}`;
+              url = `http://192.81.213.226:81/86/api/v1/doc/${routeId}`;
               break;
             default:
               throw new Error('Invalid routeName');
@@ -90,8 +89,13 @@ function FileUploadSection() {
               break;
             case 'analyser':
               setUploadText(data?.data?.text);
-            case 'interrogator':
             case 'collab':
+              const collabData: string[] = data?.data?.data?.ops.map(el => {
+                return el.insert;
+              });
+              setUploadText(collabData.join(' '));
+              break;
+            case 'interrogator':
             case 'deepchat':
               break;
             default:
@@ -163,7 +167,7 @@ function FileUploadSection() {
           </CustomModal>
         )}
         {/* File Information */}
-        <div className='w-full'>
+        <div className="w-full">
           <form
             onSubmit={handleFactUpload}
             className="flex align-middle w-full h-[15rem] border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
