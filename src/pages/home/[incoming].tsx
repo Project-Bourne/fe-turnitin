@@ -11,6 +11,7 @@ import Auth from '../../services/auth.service';
 import CustomModal from '@/components/ui/CustomModal';
 import Loader from '../history/conponents/Loader';
 import { setUserInfo } from '@/redux/reducer/authReducer';
+import HomeContent from './components/[homecontent]';
 
 function FileUploadSection() {
   const [isLoading, setIsLoading] = useState(false);
@@ -20,6 +21,7 @@ function FileUploadSection() {
   const [loading, setLoading] = useState(false);
   const [uploadText, setUploadText] = useState('');
   const { incoming } = router.query;
+  const [imporData, setImportData] = useState([]);
   const cookies = new Cookies();
   const token = cookies.get('deep-access');
   const headers = {
@@ -127,6 +129,7 @@ function FileUploadSection() {
       const response = await factcheckService.factcheckUpload(dataObj);
       if (response?.status) {
         dispatch(setData(response.data));
+        setImportData(response.data);
         NotificationService.success({
           message: 'Success!',
           addedText: <p>{response?.message}</p>,
@@ -144,7 +147,7 @@ function FileUploadSection() {
         message: 'Error!',
         addedText: <p>Something went wrong. Please try again.</p>
       });
-      router.push(`/home`);
+      router.push(`/home/`);
     } finally {
       setIsLoading(false);
     }
@@ -183,7 +186,7 @@ function FileUploadSection() {
             </span>
             <textarea
               placeholder="Copy and paste content text here"
-              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[2rem] resize-y min-h-[2rem] max-h-[15rem] overflow-auto`}
+              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[1.5rem] resize-y min-h-[1.5rem] max-h-[15rem] overflow-auto`}
               value={uploadText}
               onChange={e => setUploadText(e.target.value)} // Uncomment this line
             />
@@ -210,6 +213,30 @@ function FileUploadSection() {
           </div>
         </div>
       </div>
+      {imporData?.length == 0 ? (
+        <main className="flex items-center justify-center flex-col gap-4 mt-[5rem]">
+          {/* <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
+            <span>
+              {' '}
+              <Image
+                src={require(`../../../../../public/icons/no_history.svg`)}
+                alt="upload image"
+                width={150}
+                height={150}
+                priority
+              />
+            </span>
+            <h1 className="font-[700] text-2xl">No factcheck yet</h1>
+            <span className="text-gray-400">
+              Your recent factcheck will appear here
+            </span>
+          </div> */}
+        </main>
+      ) : (
+        <div>
+          <HomeContent />
+        </div>
+      )}
       {isLoading && <LoadingModal closeModal={closeModal} />}
     </div>
   );

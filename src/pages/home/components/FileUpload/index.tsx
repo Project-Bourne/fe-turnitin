@@ -20,6 +20,9 @@ import NotificationService from '@/services/notification.service';
 
 const FileUpload = () => {
   const { data } = useSelector((state: any) => state.factcheck);
+  const { userInfo } = useSelector((state: any) => state?.auth);
+  const fullName = `${userInfo?.firstName} ${userInfo?.lastName}`;
+  const userId = userInfo?.uuid
 
   const [formData, setFormData] = useState('');
   const [file, setFile] = useState(null);
@@ -98,6 +101,9 @@ const FileUpload = () => {
       setIsFileUploaded(true);
       const formData = new FormData();
       formData.append('files', selectedFile);
+      formData.append("userId", userId);
+      formData.append("userName", fullName);
+      console.log(formData);
 
       try {
         const response = await fetch(

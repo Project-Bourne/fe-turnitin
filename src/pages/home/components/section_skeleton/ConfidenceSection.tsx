@@ -12,7 +12,7 @@ function ConfidenceSection({ isLoading }) {
   const [loading, setLoading] = useState(false);
   const { data } = useSelector((state: any) => state?.factcheck);
   const confidencePercent = data?.confidence?.level
-    ? Math.round(parseFloat(data?.confidence?.level))
+    ? Math.ceil(parseFloat(data?.confidence?.level))
     : 0;
   const source = data?.url ? data?.url : '';
 
@@ -77,7 +77,7 @@ function ConfidenceSection({ isLoading }) {
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              `${confidencePercent} Confidence Level`
+              `${confidencePercent}% Confidence Level`
             )}
           </p>
           {isLoading ? (
