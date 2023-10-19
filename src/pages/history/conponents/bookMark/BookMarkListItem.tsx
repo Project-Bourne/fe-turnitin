@@ -48,7 +48,7 @@ function ListItem({
           setLoading(true);
           const response = await factService.getFact(factUuid);
           if (response.status) {
-            dispatch(setData(response.data));
+            dispatch(setData(response?.data));
             setLoading(false);
           } else {
             NotificationService.error({
@@ -76,7 +76,7 @@ function ListItem({
 
   const handleBookMark = async (e, uuid) => {
     e.stopPropagation();
-    FactcheckService.bookMarkFact(uuid)
+    FactcheckService?.bookMarkFact(uuid)
       .then((res: any) => {
         fetchData(dispatch); // Pass the fetch the updated data
       })
@@ -110,9 +110,9 @@ function ListItem({
       });
   };
 
-  const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
-  const parsedDate = DateTime.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
-  const formattedDate = parsedDate.toFormat('yyyy-MM-dd HH:mm'); // Format the parsed date
+  const userTimeZone = Intl?.DateTimeFormat().resolvedOptions().timeZone; // Get user's time zone
+  const parsedDate = DateTime?.fromISO(time, { zone: userTimeZone }); // Convert UTC date to user's local time zone
+  const formattedDate = parsedDate?.toFormat('yyyy-MM-dd HH:mm'); // Format the parsed date
 
   return (
     <div
@@ -125,7 +125,7 @@ function ListItem({
     >
       <div className="flex gap-3 items-center  hover:text-gray-400">
         {/* Save icon */}
-        <Tooltip title="Remove from bookmark">
+        <Tooltip title="Remove from Bookmark">
           <Image
             src={
               isBookmarked

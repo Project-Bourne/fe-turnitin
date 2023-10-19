@@ -17,18 +17,18 @@ export const NavBarContents = [
         id: 2,
         route: "/history"
     },
-    {
-        name: "Training",
-        icon: "training.svg",
-        id: 3,
-        route: "/training"
-    },
-    {
-        name: "Settings",
-        icon: "settings.svg",
-        id: 4,
-        route: "http://192.81.213.226:30/settings/profile"
-    },
+    // {
+    //     name: "Training",
+    //     icon: "training.svg",
+    //     id: 3,
+    //     route: "/training"
+    // },
+    // {
+    //     name: "Settings",
+    //     icon: "settings.svg",
+    //     id: 4,
+    //     route: "http://192.81.213.226:30/settings/profile"
+    // },
 ]
 
 export const SettingsData = [

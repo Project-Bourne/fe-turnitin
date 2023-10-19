@@ -12,7 +12,7 @@ const ActionIcons = ({ docId }) => {
 
   const handleExport = (id: string, to: string) => {
     if (to === "collab") {
-      router?.push(`http://192.81.213.226:36/documents/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:36/document/${id}&factcheck`);
     }
     if (to === "analyser") {
       router?.push(`http://192.81.213.226:31/home/${id}&factcheck`);
@@ -87,7 +87,7 @@ const ActionIcons = ({ docId }) => {
 
         {/* deepchat */}
         {permissions?.includes("deep chat") && (
-          <Tooltip title="Export to Deep chat">
+          <Tooltip title="Export to Deep Chat">
             <Image
               src={require("../../../../../public/icons/action_deepchat.svg")}
               alt="documents"

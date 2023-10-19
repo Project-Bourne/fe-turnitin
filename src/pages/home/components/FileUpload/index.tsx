@@ -171,6 +171,8 @@ const FileUpload = () => {
                 style={{ display: 'none' }}
                 accept=".pdf,.doc,.docx,.txt"
                 onChange={handleFileUpload}
+                onClick={() => {setUploadDisabled(true);
+                }}
               />
             </div>
           ) : (

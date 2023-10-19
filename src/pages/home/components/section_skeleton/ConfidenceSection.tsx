@@ -12,7 +12,7 @@ function ConfidenceSection({ isLoading }) {
   const [loading, setLoading] = useState(false);
   const { data } = useSelector((state: any) => state?.factcheck);
   const confidencePercent = data?.confidence?.level
-    ? data?.confidence?.level
+    ? Math.round(parseFloat(data?.confidence?.level))
     : 0;
   const source = data?.url ? data?.url : '';
 
@@ -47,20 +47,20 @@ function ConfidenceSection({ isLoading }) {
     } finally {
       setLoading(false);
     }
-  };
+  }
 
   return (
     <div className="mt-3 w-[25rem]">
-       {loading && (
-          <CustomModal
-            style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
-            closeModal={() => setLoading(false)}
-          >
-            <div className="flex justify-center items-center mt-[10rem]">
-              <Loader />
-            </div>
-          </CustomModal>
-        )}
+      {loading && (
+        <CustomModal
+          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          closeModal={() => setLoading(false)}
+        >
+          <div className="flex justify-center items-center mt-[10rem]">
+            <Loader />
+          </div>
+        </CustomModal>
+      )}
       <p className="text-gray-500 mt-3 pl-10">
         {isLoading ? <Skeleton width={150} /> : 'Confidence'}
       </p>
@@ -69,7 +69,7 @@ function ConfidenceSection({ isLoading }) {
           {isLoading ? (
             <Skeleton width={50} height={50} circle />
           ) : (
-            <ProgressBar /> //circular progress bar
+            <ProgressBar />
           )}
         </div>
         <div>
@@ -84,7 +84,7 @@ function ConfidenceSection({ isLoading }) {
             <Skeleton width={150} />
           ) : (
             <p
-              className="text-red-500 text-xs  rounded-[1rem] border text-center w-[8rem] cursor-pointer"
+              className="text-red-500 text-xs rounded-[1rem] border text-center w-[8rem] cursor-pointer"
               onClick={handleSubmit}
             >
               Review confidence
@@ -95,4 +95,5 @@ function ConfidenceSection({ isLoading }) {
     </div>
   );
 }
+
 export default ConfidenceSection;

@@ -124,7 +124,7 @@ function ListItem({
       <div className="flex gap-3 items-center  hover:text-gray-400">
         {/* Save icon */}
         <Tooltip
-          title={isBookmarked ? 'Remove from bookmark' : 'Save to bookmark'}
+          title={isBookmarked ? 'Remove from Bookmark' : 'Save to Bookmark'}
         >
           <Image
             src={

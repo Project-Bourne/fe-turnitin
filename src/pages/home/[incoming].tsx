@@ -206,7 +206,7 @@ function FileUploadSection() {
             className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
             onClick={handleFactUpload}
           >
-            <span>Factchecker</span>
+            <span>Factcheck</span>
           </div>
         </div>
       </div>
