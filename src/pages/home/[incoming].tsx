@@ -124,7 +124,7 @@ function FileUploadSection() {
       setIsLoading(true);
       const dataObj = {
         text: uploadText,
-        uri: 'export'
+        uri: 'Uploaded File'
       };
       const response = await factcheckService.factcheckUpload(dataObj);
       if (response?.status) {
@@ -170,74 +170,59 @@ function FileUploadSection() {
           </CustomModal>
         )}
         {/* File Information */}
-        <div className="w-full">
-          <form
-            onSubmit={handleFactUpload}
-            className="flex align-middle w-full h-[15rem] border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
-          >
-            <span className="flex align-middle justify-center mx-3">
-              <Image
-                src={require('../../../public/icons/link.svg')}
-                alt="upload image"
-                width={20}
-                height={20}
-                priority
-              />
-            </span>
-            <textarea
-              placeholder="Copy and paste content text here"
-              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[1.5rem] resize-y min-h-[1.5rem] max-h-[15rem] overflow-auto`}
-              value={uploadText}
-              onChange={e => setUploadText(e.target.value)} // Uncomment this line
-            />
 
-            <span className="flex align-middle justify-center mx-3">
-              <Image
-                className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
-                src={require('../../../public/icons/x.svg')}
-                alt="upload image"
-                width={20}
-                height={20}
-                onClick={() => setUploadText('')}
-              />
-            </span>
-          </form>
-        </div>
-        {/* Summarize Button */}
-        <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
-          <div
-            className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
-            onClick={handleFactUpload}
-          >
-            <span>Factcheck</span>
+        {imporData?.length == 0 ? (
+          <>
+            <div className="w-full">
+              <form
+                onSubmit={handleFactUpload}
+                className="flex align-middle w-full h-[15rem] border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
+              >
+                <span className="flex align-middle justify-center mx-3">
+                  <Image
+                    src={require('../../../public/icons/link.svg')}
+                    alt="upload image"
+                    width={20}
+                    height={20}
+                    priority
+                  />
+                </span>
+                <textarea
+                  placeholder="Copy and paste content text here"
+                  className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[1.5rem] resize-y min-h-[1.5rem] max-h-[15rem] overflow-auto`}
+                  value={uploadText}
+                  onChange={e => setUploadText(e.target.value)} // Uncomment this line
+                />
+
+                <span className="flex align-middle justify-center mx-3">
+                  <Image
+                    className="flex align-middle justify-center font-light text-[#A1ADB5] cursor-pointer"
+                    src={require('../../../public/icons/x.svg')}
+                    alt="upload image"
+                    width={20}
+                    height={20}
+                    onClick={() => setUploadText('')}
+                  />
+                </span>
+              </form>
+            </div>
+            {/* factcheck Button */}
+            <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
+              <div
+                className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
+                onClick={handleFactUpload}
+              >
+                <span>Factcheck</span>
+              </div>
+            </div>
+          </>
+        ) : (
+          <div>
+            <HomeContent />
           </div>
-        </div>
+        )}
+        {isLoading && <LoadingModal closeModal={closeModal} />}
       </div>
-      {imporData?.length == 0 ? (
-        <main className="flex items-center justify-center flex-col gap-4 mt-[5rem]">
-          {/* <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
-            <span>
-              {' '}
-              <Image
-                src={require(`../../../../../public/icons/no_history.svg`)}
-                alt="upload image"
-                width={150}
-                height={150}
-                priority
-              />
-            </span>
-            <h1 className="font-[700] text-2xl">No factcheck yet</h1>
-            <span className="text-gray-400">
-              Your recent factcheck will appear here
-            </span>
-          </div> */}
-        </main>
-      ) : (
-        <div>
-          <HomeContent />
-        </div>
-      )}
-      {isLoading && <LoadingModal closeModal={closeModal} />}
     </div>
   );
 }
