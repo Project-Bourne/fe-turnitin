@@ -17,7 +17,7 @@ function TagsKeywordsSection({ isLoading }) {
     }
   } catch (error) {
     // Handle the error here, e.g., set domain to a default value
-    domain = 'Invalid URL';
+    domain = 'Uploaded File';
   }
 
   return (

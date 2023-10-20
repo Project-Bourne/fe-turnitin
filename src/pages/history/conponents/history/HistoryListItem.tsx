@@ -29,6 +29,13 @@ function ListItem({
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
 
+
+// First, extract the numeric value from the string
+const numericValue = parseFloat(factLevel);
+
+// Then, apply Math.ceil to round it up to the nearest integer
+const roundedValue = Math.ceil(numericValue);
+
   const handleHover = () => {
     setShowAction(1);
     // console.log(factLevel, 'factLevel')
@@ -148,7 +155,7 @@ function ListItem({
       {/* confidence level */}
       {showaction === 0 ? (
         <div className="md:w-[15%] hidden md:block">
-          <p className="text-gray-400 border-l-2 pl-2 ">{factLevel}</p>
+          <p className="text-gray-400 border-l-2 pl-2 ">{roundedValue}%</p>
         </div>
       ) : null}
       {/* time */}
