@@ -9,7 +9,7 @@ function HistoryContent() {
   const { bookMark } = useSelector((store: any) => store.factcheck); // Get the data from Redux store
   return (
     <>
-      {bookMark.length > 0 ? (
+      {bookMark?.length > 0 ? (
         <>
           <HistoryTableHeader />
 

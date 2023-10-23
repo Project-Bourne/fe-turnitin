@@ -3,7 +3,7 @@ const cookies = new Cookies();
 let access = '';
 if (typeof window !== 'undefined') {
   access =
-    cookies.get('deep-access') || "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyMzFiOTVjLWRkOWUtNGNkYS04ZTg3LWFkOGIyZWVjYTg5YSIsImlhdCI6MTY5ODA1NDc5MSwiZXhwIjoxNjk4MDU4MzkxfQ.-uMuYzR6k4Ier4rdDTZQB6nfRIRSPStVR6sEdnrHtLg"}
+    cookies.get('deep-access') ||"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjIyMzFiOTVjLWRkOWUtNGNkYS04ZTg3LWFkOGIyZWVjYTg5YSIsImlhdCI6MTY5ODA2ODIzNywiZXhwIjoxNjk4MDcxODM3fQ.8hZIToaWGz9_Qya-tyUyl5sPNcPM48HBZghd_a76kHA"}
 
 export const requestHeader = {
   Accept: 'application/json',

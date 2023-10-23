@@ -85,10 +85,10 @@ class FactcheckService {
     }
   }
 
-  async getFactHistory() {
+  async getFactHistory(page=1) {
     try {
       const response = await request(
-        '/fact/user',
+        `/fact/user?page=${page}`,
         'GET',
         {},
         true,
