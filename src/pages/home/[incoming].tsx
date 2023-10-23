@@ -72,7 +72,6 @@ function FileUploadSection() {
           });
 
           if (!response.ok) {
-            throw new Error(`HTTP error! Status: ${response.status}`);
           }
           const data = await response.json();
           console.log('data', data);
@@ -147,7 +146,7 @@ function FileUploadSection() {
         message: 'Error!',
         addedText: <p>Something went wrong. Please try again.</p>
       });
-      router.push(`/home/`);
+      router.push(`/home`);
     } finally {
       setIsLoading(false);
     }
@@ -207,12 +206,12 @@ function FileUploadSection() {
               </form>
             </div>
             {/* factcheck Button */}
-            <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
+            <div className="flex md:w-[50%] w-[100%] justify-center mt-4 mx-auto">
               <div
                 className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-[#4582C4] border-2 text-white rounded-[15px] font-extrabold"
                 onClick={handleFactUpload}
               >
-                <span>Factcheck</span>
+                <span>Fact Check</span>
               </div>
             </div>
           </>
