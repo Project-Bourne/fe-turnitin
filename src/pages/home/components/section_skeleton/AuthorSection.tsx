@@ -18,7 +18,7 @@ function AuthorSection({ isLoading }) {
     }
   } catch (error) {
     // Handle the error here, e.g., set domain to a default value
-    domain = 'Invalid URL';
+    domain = 'Uploaded file';
   }
 
   let author = data?.confidence?.author;

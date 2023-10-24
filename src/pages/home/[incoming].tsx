@@ -12,6 +12,10 @@ import CustomModal from '@/components/ui/CustomModal';
 import Loader from '../history/conponents/Loader';
 import { setUserInfo } from '@/redux/reducer/authReducer';
 import HomeContent from './components/[homecontent]';
+import TextareaAutosize from 'react-textarea-autosize';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { Tooltip } from '@mui/material';
+
 
 function FileUploadSection() {
   const [isLoading, setIsLoading] = useState(false);
@@ -172,10 +176,13 @@ function FileUploadSection() {
 
         {imporData?.length == 0 ? (
           <>
-            <div className="w-full">
+            <div className="w-[100%]">
+            <Tooltip title="Back" placement="top">
+            <KeyboardBackspaceIcon onClick={() => router.back()} className='my-5'/>
+          </Tooltip>
               <form
                 onSubmit={handleFactUpload}
-                className="flex align-middle w-full h-[15rem] border-2 rounded-[1rem] border-[#E5E7EB]-500 border-dotted"
+                className="flex align-middle border-2 rounded-[1rem] "
               >
                 <span className="flex align-middle justify-center mx-3">
                   <Image
@@ -186,11 +193,13 @@ function FileUploadSection() {
                     priority
                   />
                 </span>
-                <textarea
+                <TextareaAutosize
+                  minRows={3}
                   placeholder="Copy and paste content text here"
-                  className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[1.5rem] resize-y min-h-[1.5rem] max-h-[15rem] overflow-auto`}
+                  onChange={e => setUploadText(e.target.value)} // Uncomment this line              className={`w-[95%] p-5`}
                   value={uploadText}
-                  onChange={e => setUploadText(e.target.value)} // Uncomment this line
+                  maxRows={20}
+                  className='w-full py-5 border-none outline-none'
                 />
 
                 <span className="flex align-middle justify-center mx-3">
@@ -213,6 +222,7 @@ function FileUploadSection() {
               >
                 <span>Fact Check</span>
               </div>
+              
             </div>
           </>
         ) : (

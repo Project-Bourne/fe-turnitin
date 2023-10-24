@@ -16,38 +16,51 @@ function ConfidenceSection({ isLoading }) {
     : 0;
   const source = data?.url ? data?.url : '';
 
-  const handleSubmit = async e => {
+  const isURL = (url) => {
+    // Regular expression to check if a string is a valid URL
+    const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([/\w \.-]*)*\/?$/;
+    return urlPattern.test(url);
+  };
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       setLoading(true);
-      const dataObj = {
-        url: source
-      };
-      const response = await FactcheckService.reviewFactcheckUrl(dataObj);
-      if (response.status) {
-        NotificationService.success({
-          message: 'Success!',
-          addedText: <p>Review confidence successful</p>,
-          position: 'top-center'
-        });
+      if (isURL(source)) {
+        const dataObj = {
+          url: source,
+        };
+        const response = await FactcheckService.reviewFactcheckUrl(dataObj);
+        if (response.status) {
+          NotificationService.success({
+            message: 'Success!',
+            addedText: <p>Review confidence successful</p>,
+            position: 'top-center',
+          });
+        } else {
+          NotificationService.error({
+            message: 'Error!',
+            addedText: <p>{`${response?.message}, please try again`}</p>,
+            position: 'top-center',
+          });
+        }
       } else {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>{`${response?.message}, please try again`}</p>,
-          position: 'top-center'
+          addedText: <p>Invalid URL. Please enter a valid URL.</p>,
+          position: 'top-center',
         });
-        // router.push(`/home`);
       }
     } catch (error: any) {
       NotificationService.error({
         message: 'Error!',
         addedText: <p>{`${error?.message}, please try again`}</p>,
-        position: 'top-center'
+        position: 'top-center',
       });
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="mt-3 w-[25rem]">
@@ -80,9 +93,7 @@ function ConfidenceSection({ isLoading }) {
               `${confidencePercent}% Confidence Level`
             )}
           </p>
-          {isLoading ? (
-            <Skeleton width={150} />
-          ) : (
+          {isURL(source) && !isLoading && (
             <p
               className="text-red-500 text-xs rounded-[1rem] border text-center w-[8rem] cursor-pointer"
               onClick={handleSubmit}

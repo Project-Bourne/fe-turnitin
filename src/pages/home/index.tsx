@@ -27,7 +27,7 @@ const index = () => {
           });
   
           // Redirect the user to the login page
-          router.push('http://192.81.213.226:30/auth/login');
+          // router.push('http://192.81.213.226:30/auth/login');
         }
       })
       .catch(err => {

@@ -15,6 +15,8 @@ import DriveFolderUploadIcon from '@mui/icons-material/DriveFolderUpload';
 import { Tooltip } from '@mui/material';
 import LoadingModal from './LoadingModal';
 import NotificationService from '@/services/notification.service';
+import TextareaAutosize from 'react-textarea-autosize';
+
 
 //if you have any problem understanding this file/application please reachout to me on +2348100915641 or email me on christopherabraham8@gmail.com
 
@@ -23,7 +25,6 @@ const FileUpload = () => {
   const { userInfo } = useSelector((state: any) => state?.auth);
   const fullName = `${userInfo?.firstName} ${userInfo?.lastName}`;
   const userId = userInfo?.uuid
-
   const [formData, setFormData] = useState('');
   const [file, setFile] = useState(null);
   const [isFileUploaded, setIsFileUploaded] = useState(false);
@@ -33,27 +34,19 @@ const FileUpload = () => {
   const factcheckService = new FactcheckService();
   const [uploadDisabled, setUploadDisabled] = useState(true);
 
-  const handleTextareaChange = e => {
-    setFormData(e.target.value);
-    // Automatically adjust the textarea's height
-    e.target.style.height = 'auto';
-    e.target.style.height = e.target.scrollHeight + 'px';
-  };
-
+  // function to run the factcheck link and return the result
   const handleSubmit = async e => {
     e.preventDefault();
-
     // Validation: Check if formData is empty or has less than five characters
-    if (formData.trim() === '' || formData.length < 5) {
+    if (formData?.trim() === '' || formData?.length < 5) {
       // Notify the user of the validation error, and don't proceed with the submission.
       NotificationService.error({
         message: 'Error!',
-        addedText: <p>Something happend. Please try again</p>, // Add a closing </p> tag
+        addedText: <p>Please Input a valid link or Link characters should be greater than 5</p>, // Add a closing </p> tag
         position: 'top-center'
       });
       return;
     }
-
     try {
       setIsLoading(true);
       const dataObj = {
@@ -67,6 +60,7 @@ const FileUpload = () => {
           addedText: <p>{response.message}</p>,
           position: 'top-center'
         });
+        setFormData('');
       } else {
         NotificationService.error({
           message: 'Error!',
@@ -92,6 +86,8 @@ const FileUpload = () => {
     setIsFileUploaded(false);
   };
 
+
+  // function to run file uplaod first 
   const handleFileUpload = async event => {
     event.preventDefault();
     dispatch(setFileName(event.target.files[0].name));
@@ -103,8 +99,6 @@ const FileUpload = () => {
       formData.append('files', selectedFile);
       formData.append("userId", userId);
       formData.append("userName", fullName);
-      console.log(formData);
-
       try {
         const response = await fetch(
           'http://192.81.213.226:81/89/api/v1/uploads',
@@ -152,6 +146,7 @@ const FileUpload = () => {
       {isFileUploaded ? (
         <FileUploadSection file={file} handleDeleteFile={handleDeleteFile} uploadDisabled={uploadDisabled}  />
       ) : (
+        
         <div>
           {formData?.length == 0 ? (
             <div className="flex items-center w-[100%] justify-end pr-[2rem] pb-[1rem]">
@@ -213,11 +208,14 @@ const FileUpload = () => {
                 priority
               />
             </span>
-            <textarea
-              placeholder="Copy and paste content text here"
-              className={`w-[95%] outline-none text-justify focus:ring-0 pt-[0.5rem] my-[2rem] resize-y min-h-[2rem] max-h-[15rem] overflow-auto`}
+            <TextareaAutosize
+              minRows={1}
+              placeholder="Copy and paste link here"
+              onChange={e => setFormData(e.target.value)}
+              className={`w-[95%] p-5`}
               value={formData}
-              onChange={handleTextareaChange}
+              maxRows={5}
+              style={{ border: 'none', outline: 'none' }} // Add this inline style
             />
             <span className="flex align-middle justify-center mx-3">
               <Image

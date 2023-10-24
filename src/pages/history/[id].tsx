@@ -3,8 +3,12 @@ import ActionIcons from '../home/components/actionIcons/ActionIcon';
 import MinAndMaxIcon from '../home/components/Min_Max_icon';
 import MetaData from '../home/components/MetaData';
 import { useSelector } from 'react-redux';
+import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
+import { useRouter } from 'next/router';
+import { Tooltip } from '@mui/material';
 
 function Crawled() {
+  const router = useRouter();
   const { data } = useSelector((state: any) => state.factcheck);
 
   const title = data?.confidence?.title || 'No Title';
@@ -27,7 +31,10 @@ function Crawled() {
   return (
     <div className="bg-sirp-lightGrey h-[100%] mt-[3rem] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between flex-wrap md:px-5 md:py-5">
-        <div className="flex justify-end w-full mr-[2rem]">
+      <div className="flex flex-row justify-between items-center w-full">
+          <Tooltip title="Back" placement="top">
+            <KeyboardBackspaceIcon onClick={() => router.back()} />
+          </Tooltip>
           <ActionIcons docId={id} />
         </div>
         <div className="bg-white my-[3rem] mx-5 rounded-[1rem] w-[100%]">
