@@ -12,7 +12,7 @@ function Crawled() {
   const { data } = useSelector((state: any) => state.factcheck);
 
   const title = data?.confidence?.title || 'No Title';
-  const content = data?.confidence?.content || 'No Content';
+  const content = data?.confidence?.content5wh || 'No Content';
   const id = data?.uuid || 'No ID';
 
   const [hideMeta, setHideMeta] = useState(true);

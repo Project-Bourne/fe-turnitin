@@ -3,7 +3,7 @@ const cookies = new Cookies();
 let access = '';
 if (typeof window !== 'undefined') {
   access =
-    cookies.get('deep-access') ||"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM5MjI1ZDk1LTM1ZTktNGZhOS1iMWVlLWZmMjQyODYyYjZiZiIsImlhdCI6MTY5ODEzMDkzMywiZXhwIjoxNjk4MTM0NTMzfQ.ZNXDUXZN7Wdy8kwwqTcPgUrad-Ml8pxC3h9BhOHeJJ0"}
+    cookies.get('deep-access') ||""}
 
 export const requestHeader = {
   Accept: 'application/json',
@@ -34,11 +34,14 @@ export async function request(url, method, payload, token, text, form) {
       headers: Object.assign(requestHeader)
     })
       .then(res => {
-        if (text === true) {
+        if (res.status === 403) {
+          // Redirect to the login page
+          // window.location.href = 'http://192.81.213.226:30/auth/login';
+          throw new Error('Access forbidden. Redirecting to login page.');
+        }
+        else if (text === true) {
           return res.text();
-        } else if (res) {
-          return res.json();
-        } else {
+        }  else {
           return res.json();
         }
       })
@@ -83,10 +86,13 @@ export async function request2(url, method, payload, token, text, form) {
       headers: Object.assign(requestHeader)
     })
       .then(res => {
-        if (text === true) {
+        if (res.status === 403) {
+          // Redirect to the login page
+          // window.location.href = 'http://192.81.213.226:30/auth/login';
+          throw new Error('Access forbidden. Redirecting to login page.');
+        }
+        else if (text === true) {
           return res.text();
-        } else if (res) {
-          return res.json();
         } else {
           return res.json();
         }

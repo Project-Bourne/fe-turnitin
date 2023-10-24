@@ -6,7 +6,7 @@ export const NavBarContents = [
     //     route: "/dashboard"
     // },
     {
-        name: "Home",
+        name: "Fact Check",
         icon: "home.svg",
         id: 1,
         route: "/home"

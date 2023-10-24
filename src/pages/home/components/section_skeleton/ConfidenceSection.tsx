@@ -2,13 +2,15 @@ import React, { useState } from 'react';
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import ProgressBar from '../ProgressBar';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import NotificationService from '@/services/notification.service';
 import FactcheckService from '@/services/factcheck.service';
 import CustomModal from '@/components/ui/CustomModal';
 import Loader from '@/pages/history/conponents/Loader';
+import { setData } from '@/redux/reducer/factcheckSlice';
 
 function ConfidenceSection({ isLoading }) {
+  const dispatch = useDispatch();
   const [loading, setLoading] = useState(false);
   const { data } = useSelector((state: any) => state?.factcheck);
   const confidencePercent = data?.confidence?.level
@@ -16,10 +18,12 @@ function ConfidenceSection({ isLoading }) {
     : 0;
   const source = data?.url ? data?.url : '';
 
+  const factUuid = (data?.uuid);
+
   const isURL = (url) => {
     // Regular expression to check if a string is a valid URL
     const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([/\w \.-]*)*\/?$/;
-    return urlPattern.test(url);
+    return urlPattern?.test(url);
   };
 
   const handleSubmit = async (e) => {
@@ -37,6 +41,9 @@ function ConfidenceSection({ isLoading }) {
             addedText: <p>Review confidence successful</p>,
             position: 'top-center',
           });
+  
+          // Trigger handleUpdateFact after a successful review
+          handleUpdateFact();
         } else {
           NotificationService.error({
             message: 'Error!',
@@ -60,6 +67,31 @@ function ConfidenceSection({ isLoading }) {
     } finally {
       setLoading(false);
     }
+  };
+  
+
+  const handleUpdateFact = () => {
+    // Handle the item click event to
+    async function fetchSummary() {
+      const factService = new FactcheckService();
+      if (factUuid) {
+        try {
+          setLoading(true);
+          const response = await factService.getFact(factUuid);
+          if (response.status) {
+            dispatch(setData(response.data));
+            setLoading(false);
+          } else {
+            setLoading(false);
+           
+          }
+        } catch (err:any) {
+          setLoading(false);
+        }
+      }
+    }
+
+    fetchSummary();
   };
 
   return (
