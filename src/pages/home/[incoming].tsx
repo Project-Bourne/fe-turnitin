@@ -133,6 +133,7 @@ function FileUploadSection() {
       if (response?.status) {
         dispatch(setData(response.data));
         setImportData(response.data);
+        setUploadText('')
         NotificationService.success({
           message: 'Success!',
           addedText: <p>{response?.message}</p>,
@@ -153,6 +154,7 @@ function FileUploadSection() {
       router.push(`/home`);
     } finally {
       setIsLoading(false);
+      setUploadText('')
     }
   };
 
