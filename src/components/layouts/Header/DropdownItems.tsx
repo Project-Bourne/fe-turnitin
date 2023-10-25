@@ -87,8 +87,8 @@ function DashboardDropdown() {
                   alt={item.key}
                   className={`${
                     item.key !== "deep chat"
-                      ? "h-[10px] w-[10px] md:mx-auto"
-                      : "h-[20px] w-[10px] md:mx-auto"
+                      ? "h-[15px] w-[20px] md:mx-auto"
+                      : "h-[25px] w-[20px] md:mx-auto"
                   } `}
                 />
                 <span>{item.name}</span>

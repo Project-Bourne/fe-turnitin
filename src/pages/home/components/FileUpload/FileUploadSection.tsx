@@ -91,7 +91,7 @@ function FileUploadSection({ file, handleDeleteFile, uploadDisabled }) {
         <div className="flex md:w-[50%] w-[100%] align-middle justify-end mt-4">
           {uploadDisabled ? (
             <div className="p-5 cursor-pointer flex md:w-[30%] w-[50%] align-middle justify-center bg-gray-300 border-2 text-gray-600 rounded-[15px] font-extrabold">
-              <span>Factchecker</span>
+              <span>Uploading ...</span>
             </div>
           ) : (
             <div

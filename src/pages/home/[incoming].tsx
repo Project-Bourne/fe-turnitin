@@ -33,6 +33,25 @@ function FileUploadSection() {
   };
 
   useEffect(() => {
+    setLoading(true);
+    Auth.getUserViaAccessToken()
+      .then(response => {
+        setLoading(false);
+        if (response.status) {
+          dispatch(setUserInfo(response.data));
+        } 
+      })
+      .catch(err => {
+        setLoading(false);
+        NotificationService.error({
+          message: 'Error!',
+          addedText: <p>Something happened. Please try again.</p>,
+          position: 'top-center'
+        });
+      });
+  }, []);
+
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       if (typeof incoming === 'string') {
@@ -61,7 +80,7 @@ function FileUploadSection() {
               url = `http://192.81.213.226:81/81/analysis/${routeId}`;
               break;
             case 'interrogator':
-              url = `http://196700:h/${routeId}`;
+              url = `http://192.81.213.226:81/87/interrogation/message/${routeId}`;
               break;
             case 'collab':
               url = `http://192.81.213.226:81/86/api/v1/doc/${routeId}`;
@@ -101,6 +120,8 @@ function FileUploadSection() {
               setUploadText(collabData.join(' '));
               break;
             case 'interrogator':
+              setUploadText(data?.data?.answer);
+              break;
             case 'deepchat':
               break;
             default:

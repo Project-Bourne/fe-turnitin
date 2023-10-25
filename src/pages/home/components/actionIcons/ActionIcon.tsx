@@ -24,7 +24,7 @@ const ActionIcons = ({ docId }) => {
       router?.push(`http://192.81.213.226:35/home/${id}&factcheck`);
     }
     if (to === "interrogator") {
-      router?.push(`http://192.81.213.226:37/home/${id}&factcheck`);
+      router?.push(`http://192.81.213.226:82/home/query/${id}&factcheck`);
     }
     if (to === "translator") {
       router?.push(`http://192.81.213.226:33/home/${id}&factcheck`);
@@ -41,7 +41,7 @@ const ActionIcons = ({ docId }) => {
               src={require("../../../../../public/icons/action_collab.svg")}
               alt="documents"
               className=" cursor-pointer"
-              width={60}
+              width={80}
               onClick={() => handleExport(docId, "collab")}
             />
           </Tooltip>
@@ -54,7 +54,7 @@ const ActionIcons = ({ docId }) => {
               alt="documents"
               className="cursor-pointer"
               onClick={() => handleExport(docId, "summarizer")}
-              width={60}
+              width={80}
             />
           </Tooltip>
         )}
@@ -67,7 +67,7 @@ const ActionIcons = ({ docId }) => {
               alt="documents"
               className=" cursor-pointer"
               onClick={() => handleExport(docId, "analyser")}
-              width={60}
+              width={80}
             />
           </Tooltip>
         )}
@@ -80,7 +80,7 @@ const ActionIcons = ({ docId }) => {
               alt="documents"
               className="cursor-pointer"
               onClick={() => handleExport(docId, "translator")}
-              width={60}
+              width={80}
             />
           </Tooltip>
         )}
@@ -93,7 +93,7 @@ const ActionIcons = ({ docId }) => {
               alt="documents"
               className="cursor-pointer"
               onClick={() => handleExport(docId, "deepchat")}
-              width={60}
+              width={80}
             />
           </Tooltip>
         )}
@@ -106,7 +106,7 @@ const ActionIcons = ({ docId }) => {
               alt="documents"
               className="cursor-pointer"
               onClick={() => handleExport(docId, "interrogator")}
-              width={60}
+              width={80}
             />
           </Tooltip>
         )}

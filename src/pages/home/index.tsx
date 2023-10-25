@@ -24,7 +24,7 @@ const index = () => {
         setLoading(false);
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>Access Denial. Please try again.</p>,
+          addedText: <p>Something happened. Please try again.</p>,
           position: 'top-center'
         });
       });
