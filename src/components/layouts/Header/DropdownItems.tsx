@@ -55,10 +55,9 @@ const dropdownItems = [
     key: 'deep chat',
     icon: deep_chat
   },
-
   {
     name: 'Interrogator',
-    to: `${BASE_URL}:37/home`, // change route
+    to: `${BASE_URL}:82/home`, // change route
     key: 'interrogator',
     icon: interrogator
   }
