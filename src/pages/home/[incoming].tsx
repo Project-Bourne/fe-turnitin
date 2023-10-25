@@ -219,7 +219,7 @@ function FileUploadSection() {
                 <TextareaAutosize
                   minRows={3}
                   placeholder="Copy and paste content text here"
-                  onChange={e => setUploadText(e.target.value)} // Uncomment this line              className={`w-[95%] p-5`}
+                  onChange={e => setUploadText(e.target.value)} // Uncomment this line
                   value={uploadText}
                   maxRows={20}
                   className='w-full py-5 border-none outline-none'
