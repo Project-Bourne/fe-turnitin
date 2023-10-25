@@ -71,7 +71,7 @@ function DashboardDropdown() {
   );
 
   return (
-    <ul className="bg-sirp-lightGrey shadow absolute top-[3rem] pt-1 flex md:grid grid-cols-3 rounded z-30 w-[130px] md:w-[300px]">
+    <ul className="bg-sirp-lightGrey shadow absolute top-[4rem] -right-[6.7rem] pt-1 flex md:grid grid-cols-3 rounded z-30 w-[130px] md:w-[300px]">
       {dropdownItems.map((item, index) => {
         const shouldRender = item.key === 'irp' || permissions.includes(item.key);
         

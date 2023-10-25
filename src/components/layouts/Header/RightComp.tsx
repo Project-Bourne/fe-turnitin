@@ -69,7 +69,34 @@ function RightComp() {
         />
       </div> */}
 
-      <div
+      <div className="relative">
+        <div
+          className="grid justify-center mt-3.5"
+          onClick={handleDashboardToggle}
+        >
+          <div className={`${styles.view1} hidden md:flex`}>
+            <Image
+              src={dashboard}
+              alt="dashboard"
+              width={20}
+              height={20}
+              className="self-center"
+              style={{ alignSelf: 'center' }}
+              id="dashboard"
+              priority
+            />
+          </div>
+          <label
+            className="text-[12px] mx-2 hover:cursor-pointer"
+            htmlFor="dashboard"
+          >
+            Menu
+          </label>
+        </div>
+        {toggleDashboard && <DropdownItems />}
+      </div>
+
+      {/* <div
         className={`${styles.view1} hidden md:flex relative`}
         onClick={handleDashboardToggle}
       >
@@ -83,7 +110,7 @@ function RightComp() {
           priority
         />
         {toggleDashboard && <DropdownItems />}
-      </div>
+      </div> */}
 
       <div className="relative bg-sirp-lightGrey flex flex-row mr-2 py-2 px-2 md:px-5 h-[45px] rounded-[12px] items-center justify-center cursor-pointer">
         <div
@@ -174,7 +201,7 @@ function RightComp() {
 
 const styles = {
   view1:
-    'bg-sirp-lightGrey cursor-pointer flex py-2 px-2 rounded-[15px] w-[45px] h-[45px] items-center justify-center content-center mr-4'
+    'bg-sirp-lightGrey cursor-pointer flex py-1 px-1 rounded-[15px] w-[45px] h-[40px] items-center justify-center content-center mr-4'
 };
 
 export default RightComp;

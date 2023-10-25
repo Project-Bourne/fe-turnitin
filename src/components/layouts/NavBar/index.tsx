@@ -21,7 +21,7 @@ function NavBar() {
                     router.push("http://192.81.213.226:30");
                   }}
             />
-            <h1 className='text-sirp-primary font-semibold text-[22px] hidden md:block'>Fact Checker</h1>
+            <h1 className='text-sirp-primary font-semibold text-[22px] hidden md:block'>Deep Soul</h1>
         </div>
 
         <div className='w-full mt-10'>

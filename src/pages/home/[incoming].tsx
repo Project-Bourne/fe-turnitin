@@ -45,7 +45,7 @@ function FileUploadSection() {
         setLoading(false);
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>Something happened. Please try again.</p>,
+          addedText: <p>Access forbidden. Redirecting to login page.</p>,
           position: 'top-center'
         });
       });
