@@ -27,12 +27,12 @@ function TagsKeywordsSection({ isLoading }) {
       </p>
       <Tooltip title={source} placement="bottom">
         <div className="flex gap-3 items-center mt-3 p-2 overflow-hidden">
-          {source ? (
+          {source && domain !== 'Uploaded File' ? (
             <a
               href={source}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400" // This class truncates the text if it overflows
+              className="text-blue-400"
             >
               {domain}
             </a>

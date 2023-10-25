@@ -14,6 +14,7 @@ function Crawled() {
   const content = data?.confidence?.content || 'No Content';
   const id = data?.uuid || 'No ID';
 
+
   const [hideMeta, setHideMeta] = useState(true);
 
   const handleMax = () => {

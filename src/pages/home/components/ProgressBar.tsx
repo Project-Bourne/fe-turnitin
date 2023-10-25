@@ -4,10 +4,10 @@ import "react-circular-progressbar/dist/styles.css";
 import { useSelector } from "react-redux";
 
 function ProgressBar() {
-  const { data } = useSelector((state: any) => state.factcheck);
+  const { data } = useSelector((state: any) => state?.factcheck);
 
   // Extract the numeric value and remove the "%" symbol, then round up to the nearest integer
-  const confidencePercent = Math.ceil(parseFloat(data.confidence.level));
+  const confidencePercent = Math?.ceil(parseFloat(data?.confidence?.level));
 
   // Define a function to determine the stroke color based on the percentage
   const getStrokeColor = (percentage) => {

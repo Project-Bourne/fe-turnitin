@@ -51,10 +51,12 @@ const roundedValue = Math.ceil(numericValue);
     async function fetchSummary() {
       const factService = new FactcheckService();
       if (factUuid) {
+        console.log(factUuid, 'factUuid');
         try {
           setLoading(true);
           const response = await factService.getFact(factUuid);
           if (response.status) {
+            console.log('response.data history', response.data, );
             dispatch(setData(response.data));
             setLoading(false);
           } else {
