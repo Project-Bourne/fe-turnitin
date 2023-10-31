@@ -126,6 +126,7 @@ const FileUpload = () => {
             addedText: <p>fail to upload. Please try again.</p>,
             position: 'top-center'
           });
+          handleDeleteFile()
         }
       } catch (error: any) {
         NotificationService.error({
@@ -133,6 +134,7 @@ const FileUpload = () => {
           addedText: <p>{`${error?.message}, please try again`}</p>,
           position: 'top-center'
         });
+        handleDeleteFile()
       }
     }
   };
