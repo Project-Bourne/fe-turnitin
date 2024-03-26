@@ -3,22 +3,22 @@ import { useRouter } from 'next/router'
 import React, { useState } from 'react'
 
 type TabCompType = {
-    item: {
-        name: string,
-        icon?: string,
-        id: number,
-        route?: string,
-        selectedIcon: string
-    },
-    index: number,
-    route: string,
-    callback?: Function
+  item: {
+    name: string,
+    icon?: string,
+    id: number,
+    route?: string,
+    selectedIcon: string
+  },
+  index: number,
+  route: string,
+  callback?: Function
 }
 
-const TabComp = ({item, index, route, callback}: TabCompType) => {
-  
+const TabComp = ({ item, index, route, callback }: TabCompType) => {
+
   const router = useRouter();
-  
+
   // States
   const [path, setPath] = useState("");
 
@@ -29,24 +29,24 @@ const TabComp = ({item, index, route, callback}: TabCompType) => {
     // console.log('item', item, route);
     // callback();
     // console.log(route, path, route, `${path}` == `${route}`, )
-    router.push(
+    router.replace(
       {
         pathname: item.route
       },
       undefined,
       {
-        shallow: true 
+        shallow: true
       }
     )
 
   }
 
 
-  return (    
-    <div 
+  return (
+    <div
       className={
         item.route == router.pathname ? 'md:px-8 px-0 min-w-[max-content] h-full mx-5 pt-3 flex md:flex-row flex-wrap items-center border-b-2 text-sirp-primary border-sirp-primary pb-3 md:mr-10 mr-0 mb-[-2px] cursor-pointer'
-        : 'md:px-8 px-1 pt-3 flex md:flex-row flex-wrap min-w-[max-content] h-full mx-5 items-center border-b pb-3 md:mr-15 mr-0 mb-[-2px] cursor-pointer text-sirp-grey'
+          : 'md:px-8 px-1 pt-3 flex md:flex-row flex-wrap min-w-[max-content] h-full mx-5 items-center border-b pb-3 md:mr-15 mr-0 mb-[-2px] cursor-pointer text-sirp-grey'
       }
       onClick={updatePath}
     >
@@ -56,11 +56,11 @@ const TabComp = ({item, index, route, callback}: TabCompType) => {
         alt="settings tab"
         width={18}
         height={18}
-        style={{marginRight: 15}}
+        style={{ marginRight: 15 }}
         priority
       />
 
-      <h2 className={router.pathname == `${item.route}`  ? 'text-[12px] font-semibold' : 'text-[12px] font-semibold '}>{item.name}</h2>
+      <h2 className={router.pathname == `${item.route}` ? 'text-[12px] font-semibold' : 'text-[12px] font-semibold '}>{item.name}</h2>
     </div>
   )
 }

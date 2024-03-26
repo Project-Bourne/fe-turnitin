@@ -36,7 +36,7 @@ function ListItem({
 
   const handleItemClick = () => {
     // Handle the item click event to
-    router.push(`/home/${factUuid}`);
+    router.replace(`/home/${factUuid}`);
   };
 
   const handleBookMark = async (e, uuid) => {

@@ -10,14 +10,14 @@ export default function Home() {
   const router = useRouter();
 
   useEffect(() => {
-    router.push(
+    router.replace(
       {
         pathname: `/dashboard`,
       },
       undefined,
       { shallow: true }
     )
-  }, );
+  },);
 
   return (
     <>

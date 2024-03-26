@@ -36,13 +36,13 @@ const FileUpload = () => {
       const dataObj = { url: formData };
       const response = await factcheckService.factcheckUrl(dataObj);
       if (response.status) {
-        router.push(`/home/${response.data.uuid}`);
+        router.replace(`/home/${response.data.uuid}`);
       } else {
         NotificationService.error({
           message: 'Error!',
           addedText: <p>Something went wrong. Please try again.</p>,
         });
-        router.push(`/home`);
+        router.replace(`/home`);
       }
     } catch (error) {
       // Handle the error appropriately
@@ -59,7 +59,7 @@ const FileUpload = () => {
 
   const handleFileUpload = async event => {
     event.preventDefault();
-   dispatch(setFileName((event.target.files[0].name)));
+    dispatch(setFileName((event.target.files[0].name)));
     const selectedFile = event.target.files[0];
     setFile(selectedFile);
     if (selectedFile) {
@@ -167,9 +167,9 @@ const FileUpload = () => {
         </div>
       )}
       {isLoading && (
-       
-          <LoadingModal closeModal={closeModal} />
-      
+
+        <LoadingModal closeModal={closeModal} />
+
       )}
     </div>
   );
