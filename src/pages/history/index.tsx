@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import FileUploadSection from './components/FileUpload/index';
+import HistoryTab from './tab';
 import Auth from '../../services/auth.service';
-import NotificationService from '@/services/notification.service';
 import { setUserInfo } from '@/redux/reducer/authReducer';
-import { useDispatch } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import NotificationService from '@/services/notification.service';
 
 const index = () => {
   const router = useRouter();
@@ -29,11 +29,9 @@ const index = () => {
         });
       });
   }, []);
-  
-
   return (
     <div>
-      <FileUploadSection />
+      <HistoryTab />
     </div>
   );
 };

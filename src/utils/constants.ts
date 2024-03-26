@@ -1,28 +1,34 @@
 export const NavBarContents = [
+    // {
+    //     name: "Dashboard",
+    //     icon: "dashboard.svg",
+    //     id: 1,
+    //     route: "/dashboard"
+    // },
     {
-        name: "Dashboard",
-        icon: "dashboard.svg",
-        id: 1,
-        route: "/dashboard"
-    },
-    {
-        name: "Home",
+        name: "Fact Checker",
         icon: "home.svg",
-        id: 2,
+        id: 1,
         route: "/home"
     },
     {
-        name: "Training",
-        icon: "training.svg",
-        id: 3,
-        route: "/training"
+        name: "History",
+        icon: "history.svg",
+        id: 2,
+        route: "/history"
     },
-    {
-        name: "Settings",
-        icon: "settings.svg",
-        id: 4,
-        route: "/settings"
-    },
+    // {
+    //     name: "Training",
+    //     icon: "training.svg",
+    //     id: 3,
+    //     route: "/training"
+    // },
+    // {
+    //     name: "Settings",
+    //     icon: "settings.svg",
+    //     id: 4,
+    //     route: "http://192.81.213.226:30/settings/profile"
+    // },
 ]
 
 export const SettingsData = [

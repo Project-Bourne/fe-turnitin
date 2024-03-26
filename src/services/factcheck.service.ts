@@ -22,6 +22,21 @@ class FactcheckService {
       throw error;
     }
   }
+  static async reviewFactcheckUrl(url) {
+    try {
+      const response = await request(
+        '/review/url',
+        'POST',
+        url,
+        true,
+        false,
+        false
+      );
+      return response;
+    } catch (error) {
+      throw error;
+    }
+  }
 
   /**
    * summarising text contents.
@@ -32,7 +47,7 @@ class FactcheckService {
   async factcheckUpload(uploadData) {
     try {
       const response = await request(
-        '/summary/file',
+        '/check/file/url',
         'POST',
         uploadData,
         true,
@@ -70,10 +85,10 @@ class FactcheckService {
     }
   }
 
-  async getFactHistory() {
+  async getFactHistory(page=1) {
     try {
       const response = await request(
-        '/fact/user',
+        `/fact/user?page=${page}`,
         'GET',
         {},
         true,
@@ -130,6 +145,8 @@ class FactcheckService {
       throw error;
     }
   }
+
+
 }
 
 // Export the Service class.

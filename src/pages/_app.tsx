@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { AppLayout } from '@/layout/index';
 import { Provider } from "react-redux";
@@ -15,6 +15,7 @@ function App({ Component, pageProps, ...appProps }) {
     visible: { opacity: 1, y: 0, transition: { duration: 0.5 } },
     exit: { opacity: 0, y: 20, transition: { duration: 0.5 } },
   };
+
 
   return (
     <Provider store={store}>

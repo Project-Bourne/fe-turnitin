@@ -8,6 +8,10 @@ import { DateTime } from 'luxon';
 import FactcheckService from '@/services/factcheck.service';
 import { fetchData } from '@/hooks/FetchData';
 import NotificationService from '@/services/notification.service';
+import { setData } from '@/redux/reducer/factcheckSlice';
+import { Tooltip } from '@mui/material';
+import Loader from '../Loader';
+import CustomModal from '@/components/ui/CustomModal';
 
 //Needs any help with this on this fact checker? Contact me on 08100915641 or email me at christopherabraham8@gmail.com
 
@@ -23,6 +27,14 @@ function ListItem({
   const [showaction, setShowAction] = useState(0);
   const router = useRouter();
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
+
+
+// First, extract the numeric value from the string
+const numericValue = parseFloat(factLevel);
+
+// Then, apply Math.ceil to round it up to the nearest integer
+const roundedValue = Math.ceil(numericValue);
 
   const handleHover = () => {
     setShowAction(1);
@@ -36,7 +48,38 @@ function ListItem({
 
   const handleItemClick = () => {
     // Handle the item click event to
-    router.replace(`/home/${factUuid}`);
+    async function fetchSummary() {
+      const factService = new FactcheckService();
+      if (factUuid) {
+        console.log(factUuid, 'factUuid');
+        try {
+          setLoading(true);
+          const response = await factService.getFact(factUuid);
+          if (response.status) {
+            console.log('response.data history', response.data, );
+            dispatch(setData(response.data));
+            setLoading(false);
+          } else {
+            setLoading(false);
+            NotificationService.error({
+              message: 'Error!',
+              addedText: <p>{`${response?.message}, please try again`}</p>, // Add a closing </p> tag
+              position: 'top-center'
+            });
+          }
+        } catch (err:any) {
+          setLoading(false);
+          NotificationService.error({
+            message: 'Error!',
+            addedText: <p>{`${err?.message}, please try again`}</p>, // Add a closing </p> tag
+            position: 'top-center'
+          });
+        }
+      }
+    }
+
+    fetchSummary();
+    router.push(`/history/${factUuid}`);
   };
 
   const handleBookMark = async (e, uuid) => {
@@ -48,7 +91,8 @@ function ListItem({
       .catch(err => {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>{err?.message}. Please try again</p> // Add a closing </p> tag
+          addedText: <p>{err?.message}. Please try again</p>, // Add a closing </p> tag
+          position: 'top-center'
         });
       });
   };
@@ -60,13 +104,15 @@ function ListItem({
         fetchData(dispatch); // Pass the fetch the updated data
         NotificationService.success({
           message: 'success!',
-          addedText: <p>{res?.message} History deleted</p> // Add a closing </p> tag
+          addedText: <p>{res?.message} History deleted</p>, // Add a closing </p> tag
+          position: 'top-center'
         });
       })
       .catch(err => {
         NotificationService.error({
           message: 'Error!',
-          addedText: <p>{err?.message} Please try again</p> // Add a closing </p> tag
+          addedText: <p>{err?.message} Please try again</p>, // Add a closing </p> tag
+          position: 'top-center'
         });
       });
   };
@@ -86,28 +132,32 @@ function ListItem({
     >
       <div className="flex gap-3 items-center  hover:text-gray-400">
         {/* Save icon */}
-        <Image
-          src={
-            isBookmarked
-              ? require(`../../../../../public/icons/on.saved.svg`)
-              : require(`../../../../../public/icons/saved.svg`)
-          }
-          alt="documents"
-          className="cursor-pointer w-4 h-4"
-          width={30}
-          height={30}
-          onClick={e => handleBookMark(e, uuid)}
-        />
+        <Tooltip
+          title={isBookmarked ? 'Remove from Bookmark' : 'Save to Bookmark'}
+        >
+          <Image
+            src={
+              isBookmarked
+                ? require(`../../../../../public/icons/on.saved.svg`)
+                : require(`../../../../../public/icons/saved.svg`)
+            }
+            alt="documents"
+            className="cursor-pointer w-4 h-4"
+            width={30}
+            height={30}
+            onClick={e => handleBookMark(e, uuid)}
+          />
+        </Tooltip>
         {/* title */}
         <p className="text-sirp-black-500 ml-2 md:w-[40rem] hover:text-gray-400">
-          {useTruncate(title, 90)}
+          {useTruncate(title, 87)}
         </p>
       </div>
 
       {/* confidence level */}
       {showaction === 0 ? (
         <div className="md:w-[15%] hidden md:block">
-          <p className="text-gray-400 border-l-2 pl-2 ">{factLevel}</p>
+          <p className="text-gray-400 border-l-2 pl-2 ">{roundedValue}%</p>
         </div>
       ) : null}
       {/* time */}
@@ -119,6 +169,17 @@ function ListItem({
         <div className="border-l-2" onClick={e => handleDelete(e, uuid)}>
           {actionButtons}
         </div>
+      )}
+
+      {loading && (
+        <CustomModal
+          style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
+          closeModal={() => setLoading(false)}
+        >
+          <div className="flex justify-center items-center mt-[10rem]">
+            <Loader />
+          </div>
+        </CustomModal>
       )}
     </div>
   );
