@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { useDispatch, useSelector } from 'react-redux';
 import Image from 'next/image';
@@ -33,6 +33,21 @@ const FileUpload = () => {
   const dispatch = useDispatch();
   const factcheckService = new FactcheckService();
   const [uploadDisabled, setUploadDisabled] = useState(true);
+
+  useEffect(() => {
+    // reset data to avoid previous factchecked doc from showing
+    if (data && data.filename !== "") {
+      dispatch(setData({
+        fileName: '',
+        history: null,
+        bookMark: [],
+        data: [],
+        uploadText: [],
+        uploadUri: [],
+        isUploadDisabled: true
+      }))
+    }
+  }, [])
 
   // function to run the factcheck link and return the result
   const handleSubmit = async e => {

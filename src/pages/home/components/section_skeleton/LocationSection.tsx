@@ -8,7 +8,7 @@ function LocationSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
   const locations = data?.countries || [];
 
-  const locationText = locations?.length > 0 ? locations?.join(", ") : "Location not found";
+  const locationText = locations?.length > 0 ? locations?.join(", ") : "No Location Found";
 
   return (
     <div className="w-[25rem]">

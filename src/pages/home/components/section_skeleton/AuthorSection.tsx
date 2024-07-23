@@ -46,7 +46,10 @@ function AuthorSection({ isLoading }) {
         )}
         <div>
           <p className="font-bold">
-            {isLoading ? <Skeleton width={150} /> : author}
+            {isLoading ? 
+              <Skeleton width={150} /> : 
+              author.length > 0? author : domain  // Show author or domain if no author found
+            }
           </p>
         </div>
       </div>

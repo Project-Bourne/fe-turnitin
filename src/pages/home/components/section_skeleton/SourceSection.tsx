@@ -39,7 +39,7 @@ function SourceSection({ isLoading }) {
                   <Skeleton width={70} />
                 ) : (
                   <li className="border p-2 rounded-[0.7rem] text-[0.7rem] bg-sirp-keynotebg">
-                    Source not found
+                    No Sources Found
                   </li>
                 )}
               </div>

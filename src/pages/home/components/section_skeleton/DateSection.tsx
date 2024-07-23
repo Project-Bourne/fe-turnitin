@@ -29,10 +29,16 @@ function DateSection({ isLoading }) {
 
         <div>
           <p className="font-bold">
-            {isLoading ? <Skeleton width={150} /> :  formattedDate }
+            {isLoading ? 
+              <Skeleton width={150} /> :  
+              formattedDate ? formattedDate : "No Date" 
+            }
           </p>
           <p className="text-gray-500 text-sm">
-            {isLoading ? <Skeleton width={150} /> : formattedTime}
+            {isLoading ? 
+              <Skeleton width={150} /> : 
+              formattedTime ? formattedTime : "No Time"
+            }
           </p>
         </div>
       </div>

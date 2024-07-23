@@ -122,7 +122,7 @@ function ConfidenceSection({ isLoading }) {
             {isLoading ? (
               <Skeleton width={150} />
             ) : (
-              `${confidencePercent}% Confidence Level`
+              `${!Number.isNaN(confidencePercent) ? confidencePercent : 0}% Confidence Level`
             )}
           </p>
           {isURL(source) && !isLoading && (
