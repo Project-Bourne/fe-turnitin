@@ -113,6 +113,7 @@ function FileUploadSection() {
               break;
             case 'analyser':
               setUploadText(data?.data?.text);
+              break;
             case 'collab':
               const collabData: string[] = data?.data?.data?.ops.map(el => {
                 return el.insert;
