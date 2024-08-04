@@ -19,7 +19,7 @@ function App({ Component, pageProps, ...appProps }) {
 
   return (
     <Provider store={store}>
-      <PersistGate loading="null" persistor={persistor}>
+      <PersistGate persistor={persistor}>
         <LayoutWrapper>
           <motion.div
             key={appProps.router.route} // Ensure proper animation on route change
