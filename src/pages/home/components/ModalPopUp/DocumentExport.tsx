@@ -13,7 +13,8 @@ function DocumentExport() {
   };
   const navigateToDashboard = () => {
     // window.location.href = "../../home/dashboard/homedashboard";
-    window.location.replace("https://192.81.213.226:30")
+    // window.location.replace("https://192.81.213.226:30")
+    window.location.replace(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}`)
   };
 
   return (
