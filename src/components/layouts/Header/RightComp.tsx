@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import notification from '../../../../public/icons/notification.svg';
+// import notification from '../../../../public/icons/notification.svg';
 import dashboard from '../../../../public/icons/dashboard.svg';
 import down from '../../../../public/icons/down.svg';
 import { Cookies, useCookies } from 'react-cookie';
@@ -39,7 +39,9 @@ function RightComp() {
 
           removeCookie('deep-access', { path: '/' });
           removeCookie('uuid', { path: '/' });
-          router.push('http://192.81.213.226:30/auth/login');
+          // router.push(`http://192.81.213.226:30/auth/login`);
+          router.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/auth/login`);
+
 
           NotificationService.success({
             message: 'Logout operation successful!'
@@ -159,7 +161,9 @@ function RightComp() {
         <div
           className="ml-3 bg-sirp-lightGrey w-full self-center hidden md:block"
           onClick={() => {
-            router.push('http://192.81.213.226:30/settings/profile');
+            // router.push('http://192.81.213.226:30/settings/profile');
+            router.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/settings/profile`);
+
           }}
         >
           <h2 className="text-sirp-grey text-[13px] capitalize">

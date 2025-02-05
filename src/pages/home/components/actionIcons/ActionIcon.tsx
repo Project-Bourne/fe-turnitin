@@ -12,22 +12,28 @@ const ActionIcons = ({ docId }) => {
 
   const handleExport = (id: string, to: string) => {
     if (to === "collab") {
-      router?.push(`http://192.81.213.226:36/document/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:36/document/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_PORT}/document/${id}&factcheck`);
     }
     if (to === "analyser") {
-      router?.push(`http://192.81.213.226:31/home/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:31/home/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_ANALYZER_PORT}/home/${id}&factcheck`);
     }
     if (to === "summarizer") {
-      router?.push(`http://192.81.213.226:32/home/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:32/home/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_SUMMARIZER_PORT}/home/${id}&factcheck`);
     }
     if (to === "deepchat") {
-      router?.push(`http://192.81.213.226:35/home/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:35/home/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_DEEP_CHAT_PORT}/home/${id}&factcheck`);
     }
     if (to === "interrogator") {
-      router?.push(`http://192.81.213.226:82/home/query/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:82/home/query/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_INTERROGATOR_PORT}/home/query/${id}&factcheck`);
     }
     if (to === "translator") {
-      router?.push(`http://192.81.213.226:33/home/${id}&factcheck`);
+      // router?.push(`http://192.81.213.226:33/home/${id}&factcheck`);
+      router?.push(`http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_TRANSLATOR_PORT}/home/${id}&factcheck`);
     }
   };
 

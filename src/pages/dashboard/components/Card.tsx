@@ -8,7 +8,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_05.svg'),
     mainText: '4000',
     subText: 'Total Documents Crawled',
-    url: 'http://192.81.213.226:30/dashboard',
+    // url: 'http://192.81.213.226:30/dashboard',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_IRP_PORT}/dashboard`,
     linkText: 'Open IRP'
   },
   {
@@ -16,7 +17,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_08.svg'),
     mainText: '4000',
     subText: 'Total Documents Analyzed',
-    url: 'http://192.81.213.226:31/home',
+    // url: 'http://192.81.213.226:31/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_ANALYZER_PORT}/home`,
     linkText: 'Open Analyzer'
   },
   {
@@ -24,7 +26,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_09.svg'),
     mainText: '4000',
     subText: 'Total Interrogator Documents',
-    url: 'http://192.81.213.226:32/home',
+    // url: 'http://192.81.213.226:32/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:32/home`,
     linkText: 'Open Interrogator'
   },
   {
@@ -32,7 +35,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_0100.svg'),
     mainText: '4000',
     subText: 'Total Documents Translated',
-    url: 'http://192.81.213.226:33/home',
+    // url: 'http://192.81.213.226:33/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_TRANSLATOR_PORT}/home`,
     linkText: 'Open Translator'
   },
   {
@@ -40,7 +44,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_012.svg'),
     mainText: '4000',
     subText: 'Total Documents Summarized',
-    url: 'http://192.81.213.226:32/home',
+    // url: 'http://192.81.213.226:32/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_SUMMARIZER_PORT}/home`,
     linkText: 'Open Summarizer'
   },
   {
@@ -48,7 +53,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_07.svg'),
     mainText: '4000',
     subText: 'Total Exports to Collab',
-    url: 'http://192.81.213.226:36/home',
+    // url: 'http://192.81.213.226:36/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_COLLAB_PORT}/chats`,
     linkText: 'Open Collab Workspace'
   },
   {
@@ -56,7 +62,8 @@ export const data = [
     imgSrc: require('../../../../public/icons/frame_013.svg'),
     mainText: '4000',
     subText: 'Total Documents',
-    url: 'http://192.81.213.226:35/home',
+    // url: 'http://192.81.213.226:35/home',
+    url: `http://${process.env.NEXT_PUBLIC_SERVER_IP_ADDRESS}:${process.env.NEXT_PUBLIC_DEEP_CHAT_PORT}`,
     linkText: 'Open Deep Chat'
   }
 ];
