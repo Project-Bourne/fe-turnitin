@@ -103,6 +103,15 @@ function FileUploadSection() {
           });
 
           if (!response.ok) {
+            NotificationService.error({
+              message: 'Error!',
+              addedText: <p>Failed to fetch data. You will be redirected to the home page in 3 seconds.</p>,
+              position: 'top-center'
+            });
+            setTimeout(() => {
+              router.push('/home');
+            }, 3000);
+            return;
           }
           const data = await response.json();
           console.log('data', data);

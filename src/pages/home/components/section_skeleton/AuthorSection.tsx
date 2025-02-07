@@ -5,6 +5,20 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import { useSelector } from 'react-redux';
 import PersonIcon from '@mui/icons-material/Person';
 
+/**
+ * Formats and cleans up the author name
+ * @param {string} authorName - The raw author name
+ * @returns {string} - The cleaned and formatted author name
+ */
+const formatAuthorName = (authorName: string): string => {
+  if (!authorName) return '';
+  
+  // Remove duplicates by splitting on spaces and filtering unique words
+  const words = authorName.split(' ');
+  const uniqueWords = Array.from(new Set(words));
+  return uniqueWords.join(' ').trim();
+};
+
 function AuthorSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
   const source = data?.url;
@@ -26,11 +40,17 @@ function AuthorSection({ isLoading }) {
   // Check if author is an array and not empty
   if (Array.isArray(author) && author.length > 0) {
     author = author[0]; // Take the first element from the array
+  } else {
+    // Format the author name to remove duplications
+    author = formatAuthorName(author);
   }
 
   // If author is still an empty string, use the domain
   if (typeof author !== 'string' || author.trim() === '') {
     author = domain;
+  } else {
+    // Format the author name to remove duplications
+    author = formatAuthorName(author);
   }
 
   return (
@@ -48,7 +68,7 @@ function AuthorSection({ isLoading }) {
           <p className="font-bold">
             {isLoading ? 
               <Skeleton width={150} /> : 
-              author.length > 0? author : domain  // Show author or domain if no author found
+              author || domain  // Fallback to domain if author is empty after formatting
             }
           </p>
         </div>

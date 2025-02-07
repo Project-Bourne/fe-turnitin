@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux';
 import KeyboardBackspaceIcon from '@mui/icons-material/KeyboardBackspace';
 import { useRouter } from 'next/router';
 import { Tooltip } from '@mui/material';
+import ReactMarkdown from 'react-markdown';
 
 function Crawled() {
   const router = useRouter();
@@ -42,9 +43,19 @@ function Crawled() {
         </div>
         <div className="bg-white border mx-5 p-10 py-5 text-justify text-[1rem] leading-8 mb-10 rounded-[1rem] w-[100%]">
           {/* Map each paragraph to a <p> element */}
-          {paragraphs.map((paragraph, index) => (
+          <ReactMarkdown
+            className="text-justify text-[1rem] leading-8 mb-10 rounded-[1rem] w-[100%]"
+            components={{
+              p: ({ node, ...props }) => (
+                <p className="mb-4" {...props}>
+                  {props.children}
+                </p>
+              ),
+            }}
+          >{content}</ReactMarkdown>
+          {/* {paragraphs.map((paragraph, index) => (
             <p key={index}>{paragraph}</p>
-          ))}
+          ))} */}
         </div>
       </div>
     </div>

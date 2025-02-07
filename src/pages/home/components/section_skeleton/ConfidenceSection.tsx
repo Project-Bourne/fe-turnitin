@@ -20,10 +20,29 @@ function ConfidenceSection({ isLoading }) {
 
   const factUuid = (data?.uuid);
 
-  const isURL = (url) => {
-    // Regular expression to check if a string is a valid URL
-    const urlPattern = /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([/\w \.-]*)*\/?$/;
-    return urlPattern?.test(url);
+  /**
+   * Validates if a given string is a valid URL
+   * @param {string} url - The URL string to validate
+   * @returns {boolean} - Returns true if the URL is valid, false otherwise
+   */
+  const isURL = (url: string): boolean => {
+    if (!url || typeof url !== 'string') return false;
+    
+    try {
+      const urlObj = new URL(url);
+      return urlObj.protocol === 'http:' || urlObj.protocol === 'https:';
+    } catch {
+      // If the URL is not properly formatted, try adding https:// and validate again
+      try {
+        if (!url.startsWith('http://') && !url.startsWith('https://')) {
+          const urlObj = new URL(`https://${url}`);
+          return true;
+        }
+        return false;
+      } catch {
+        return false;
+      }
+    }
   };
 
   const handleSubmit = async (e) => {

@@ -8,7 +8,9 @@ function LocationSection({ isLoading }) {
   const { data } = useSelector((state: any) => state?.factcheck);
   const locations = data?.countries || [];
 
-  const locationText = locations?.length > 0 ? locations?.join(", ") : "No Location Found";
+  const locationText = locations?.length > 0 ? 
+    locations.map((location: string) => location.split(',')[0]).join(', ')
+  : "No Location Found";
 
   return (
     <div className="w-[25rem]">
@@ -23,7 +25,7 @@ function LocationSection({ isLoading }) {
       <div className="flex gap-3 items-center mt-3">
         <div>
           <span className="font-bold">
-            {isLoading ? <Skeleton width={150} /> : locationText}
+            {isLoading ? <Skeleton width={150} /> : locationText }
           </span>
         </div>
       </div>
