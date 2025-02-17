@@ -35,7 +35,7 @@ function HistoryContent() {
 
   return (
     <>
-     {loading && (
+     {loading || history?.facts?.length <= 0 && (
         <CustomModal
           style="md:w-[30%] w-[90%] relative top-[20%] rounded-xl mx-auto pt-3 px-3 pb-5"
           closeModal={() => setLoading(false)}
