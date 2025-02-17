@@ -249,7 +249,7 @@ const FileUpload = () => {
         </div>
       )}
 
-      {data?.length == 0 ? (
+      {!data.fileName ? (
         <main className="flex items-center justify-center flex-col gap-4 mt-[5rem]">
           <div className="flex items-center justify-centery w-[50%] font-bold flex-col p-3 rounded-[1rem] gap-3 text-xl ">
             <span>
@@ -264,7 +264,7 @@ const FileUpload = () => {
             </span>
             <h1 className="font-[700] text-2xl">No factcheck yet</h1>
             <span className="text-gray-400">
-              Your recent factcheck will appear here
+              Run a factcheck to see the result here or view previous factchecks in the history section
             </span>
           </div>
         </main>

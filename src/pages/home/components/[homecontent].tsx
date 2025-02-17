@@ -75,6 +75,14 @@ function Crawled() {
     );
   }
 
+  if (!content) {
+    return (
+      <div className="flex justify-center items-center h-screen">
+        <p>No content available</p>
+      </div>
+    );
+  }
+
   return (
     <div className="bg-sirp-lightGrey h-[100%] mt-[3rem] mx-5 rounded-[1rem]">
       <div className="flex md:justify-between flex-wrap md:px-5 md:py-5">
@@ -108,9 +116,6 @@ function Crawled() {
           >
             {content}
           </ReactMarkdown>
-          {/* {content.split('\n').map((paragraph, index) => (
-            <p key={index}>{paragraph}</p>
-          ))} */}
         </div>
       </div>
     </div>

@@ -1,5 +1,5 @@
 import  React  from "react";
-import ReactDOM from "react-dom";
+import ReactDOM, { render } from "react-dom";
 import CustomToast, { ToastModel }  from "@/components/ui/CustomToast";
 
 interface Props {
@@ -14,7 +14,7 @@ class NotificationService {
         const container = document.createElement('div');
         document.body.appendChild(container);
 
-        ReactDOM.render(
+        render(
             <CustomToast 
                 type={type} 
                 message={message} 
