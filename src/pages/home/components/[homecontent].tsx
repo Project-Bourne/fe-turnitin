@@ -11,6 +11,21 @@ import NotificationService from '@/services/notification.service';
 import Loader from '../../history/conponents/Loader';
 
 /**
+ * Formats markdown content for proper display
+ * @param {string} content - The content to format
+ * @returns {string} Formatted content
+ */
+const formatMarkdownContent = (content: string): string => {
+  if (!content) return '';
+  return content.toString()
+    .replace(/\\n/g, '\n')
+    .replace(/\*\*/g, '**')  // Preserve bold
+    .replace(/\*/g, '*')     // Preserve italic
+    .replace(/`/g, '`')      // Preserve code
+    .trim();
+};
+
+/**
  * Crawled component displays the content of a crawled document with metadata and actions
  * @returns {JSX.Element} The rendered Crawled component
  */
@@ -28,8 +43,8 @@ function Crawled() {
     if (data) {
       try {
         setLoading(true);
-        setTitle(data?.confidence?.title || 'No Title');
-        setContent(data?.confidence?.content5wh || 'No Content');
+        setTitle(formatMarkdownContent(data?.confidence?.title) || 'No Title');
+        setContent(formatMarkdownContent(data?.confidence?.content5wh) || 'No Content');
         setId(data?.uuid || 'No ID');
         setError(null);
       } catch (err: any) {
@@ -100,17 +115,37 @@ function Crawled() {
           {hideMeta ? (
             <MetaData />
           ) : (
-            <h1 className="md:text-lg font-bold pl-5 pb-2">{title}</h1>
+            <div className="md:text-lg font-bold pl-5 pb-2">
+              <ReactMarkdown className="prose">
+                {title}
+              </ReactMarkdown>
+            </div>
           )}
         </div>
         <div className="bg-white border mx-5 p-10 py-5 text-justify text-[1rem] leading-8 mb-10 rounded-[1rem] w-[100%]">
-          <ReactMarkdown
-            className="first-letter:capitalize text-justify leading-6 text-[1rem] mb-10"
+          <ReactMarkdown 
+            className="prose max-w-none first-letter:capitalize text-justify leading-6 text-[1rem] mb-10"
             components={{
               p: ({ children }) => (
                 <div className="mb-4">
                   {children}
                 </div>
+              ),
+              h1: ({ children }) => <h1 className="text-2xl font-bold mb-4">{children}</h1>,
+              h2: ({ children }) => <h2 className="text-xl font-bold mb-3">{children}</h2>,
+              h3: ({ children }) => <h3 className="text-lg font-bold mb-2">{children}</h3>,
+              ul: ({ children }) => <ul className="list-disc ml-4 mb-4">{children}</ul>,
+              ol: ({ children }) => <ol className="list-decimal ml-4 mb-4">{children}</ol>,
+              li: ({ children }) => <li className="mb-1">{children}</li>,
+              blockquote: ({ children }) => (
+                <blockquote className="border-l-4 border-gray-300 pl-4 italic my-4">
+                  {children}
+                </blockquote>
+              ),
+              code: ({ children }) => (
+                <code className="bg-gray-100 rounded px-1 py-0.5 font-mono text-sm">
+                  {children}
+                </code>
               ),
             }}
           >
