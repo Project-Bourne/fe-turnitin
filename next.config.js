@@ -15,6 +15,11 @@ const nextConfig = {
         port: "81",
         pathname: "/89/api/v1/download/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn-icons-png.flaticon.com",
+        pathname: "/**",
+      },
     ],
   },
   eslint: {
