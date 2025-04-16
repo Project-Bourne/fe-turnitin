@@ -2,11 +2,21 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { fetchData } from '@/hooks/FetchData';
 import HistoryContent from './HistroyContent';
+import FactcheckService from '@/services/factcheck.service';
 
 function History() {
   const dispatch = useDispatch();
 
+  // const fetchData = async () => {
+  //   const factcheckService = new FactcheckService()
+
+  //   const response = await factcheckService.getFactHistory();
+  //   console.log('Fact Response:', response)
+  //   dispatch(setHistory(response.data))
+  // }
+
   useEffect(() => {
+    // fetchData();
     fetchData(dispatch); // Pass the dispatch function
   }, [dispatch]);
 

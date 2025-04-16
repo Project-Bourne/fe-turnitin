@@ -98,6 +98,8 @@ class FactcheckService {
       if (response.status == false) {
         return false;
       }
+
+      console.log('Fact History Response: ', (response))
       return JSON.parse(response);
     } catch (error) {
       throw error;

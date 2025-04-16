@@ -12,7 +12,7 @@ const factcheckSlice = createSlice({
     isUploadDisabled: true
   },
   reducers: {
-   setFileName: (state, action) => {
+    setFileName: (state, action) => {
       state.fileName = action.payload;
     },
     setHistory: (state, action) => {

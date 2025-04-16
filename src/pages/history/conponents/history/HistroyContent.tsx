@@ -122,58 +122,58 @@ function HistoryContent() {
   }, [dispatch, currentPage, history?.facts]);
 
   // Create dummy data for testing
-  const dummyData: TableData[] = [
-    {
-      uuid: '1',
-      title: 'Climate Change Impact on Arctic Ice',
-      content5wh: 'Research shows accelerating ice melt in Arctic regions with significant impacts on local wildlife and global sea levels.',
-      summary: ['Arctic ice melting faster than predicted', 'Wildlife habitats threatened', 'Sea levels rising at concerning rate'],
-      createdAt: new Date().toISOString(),
-      isBookmarked: false,
-      onBookmark: handleBookmark,
-      onDelete: handleDelete,
-    },
-    {
-      uuid: '2',
-      title: 'COVID-19 Vaccine Efficacy Study',
-      content5wh: 'New study evaluates long-term efficacy of major COVID-19 vaccines against emerging variants, showing continued protection against severe disease.',
-      summary: ['Vaccines remain effective against severe disease', 'Protection against new variants varies', 'Boosters recommended for vulnerable populations'],
-      createdAt: new Date(Date.now() - 86400000).toISOString(), // Yesterday
-      isBookmarked: true,
-      onBookmark: handleBookmark,
-      onDelete: handleDelete,
-    },
-    {
-      uuid: '3',
-      title: 'Economic Impact of Remote Work',
-      content5wh: 'Analysis shows significant shifts in urban economies as remote work becomes permanent for many companies, affecting commercial real estate and local businesses.',
-      summary: ['Commercial real estate values declining in major cities', 'Suburban home prices rising', 'Local businesses adapting to changed foot traffic patterns'],
-      createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
-      isBookmarked: false,
-      onBookmark: handleBookmark,
-      onDelete: handleDelete,
-    },
-    {
-      uuid: '4',
-      title: 'Renewable Energy Milestone Reached',
-      content5wh: 'Several countries report renewable energy production exceeding 50% of their total energy needs for the first time, marking a significant milestone in green energy adoption.',
-      summary: ['Wind and solar lead growth', 'Storage technology improving', 'Policy incentives driving adoption'],
-      createdAt: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
-      isBookmarked: true,
-      onBookmark: handleBookmark,
-      onDelete: handleDelete,
-    },
-    {
-      uuid: '5',
-      title: 'AI Ethics Framework Proposed',
-      content5wh: 'International coalition proposes new ethical guidelines for artificial intelligence development, focusing on transparency, fairness, and privacy protections.',
-      summary: ['Guidelines address bias in algorithms', 'Privacy protections emphasized', 'Human oversight recommended for critical AI systems'],
-      createdAt: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
-      isBookmarked: false,
-      onBookmark: handleBookmark,
-      onDelete: handleDelete,
-    }
-  ];
+  // const dummyData: TableData[] = [
+  //   {
+  //     uuid: '1',
+  //     title: 'Climate Change Impact on Arctic Ice',
+  //     content5wh: 'Research shows accelerating ice melt in Arctic regions with significant impacts on local wildlife and global sea levels.',
+  //     summary: ['Arctic ice melting faster than predicted', 'Wildlife habitats threatened', 'Sea levels rising at concerning rate'],
+  //     createdAt: new Date().toISOString(),
+  //     isBookmarked: false,
+  //     onBookmark: handleBookmark,
+  //     onDelete: handleDelete,
+  //   },
+  //   {
+  //     uuid: '2',
+  //     title: 'COVID-19 Vaccine Efficacy Study',
+  //     content5wh: 'New study evaluates long-term efficacy of major COVID-19 vaccines against emerging variants, showing continued protection against severe disease.',
+  //     summary: ['Vaccines remain effective against severe disease', 'Protection against new variants varies', 'Boosters recommended for vulnerable populations'],
+  //     createdAt: new Date(Date.now() - 86400000).toISOString(), // Yesterday
+  //     isBookmarked: true,
+  //     onBookmark: handleBookmark,
+  //     onDelete: handleDelete,
+  //   },
+  //   {
+  //     uuid: '3',
+  //     title: 'Economic Impact of Remote Work',
+  //     content5wh: 'Analysis shows significant shifts in urban economies as remote work becomes permanent for many companies, affecting commercial real estate and local businesses.',
+  //     summary: ['Commercial real estate values declining in major cities', 'Suburban home prices rising', 'Local businesses adapting to changed foot traffic patterns'],
+  //     createdAt: new Date(Date.now() - 172800000).toISOString(), // 2 days ago
+  //     isBookmarked: false,
+  //     onBookmark: handleBookmark,
+  //     onDelete: handleDelete,
+  //   },
+  //   {
+  //     uuid: '4',
+  //     title: 'Renewable Energy Milestone Reached',
+  //     content5wh: 'Several countries report renewable energy production exceeding 50% of their total energy needs for the first time, marking a significant milestone in green energy adoption.',
+  //     summary: ['Wind and solar lead growth', 'Storage technology improving', 'Policy incentives driving adoption'],
+  //     createdAt: new Date(Date.now() - 259200000).toISOString(), // 3 days ago
+  //     isBookmarked: true,
+  //     onBookmark: handleBookmark,
+  //     onDelete: handleDelete,
+  //   },
+  //   {
+  //     uuid: '5',
+  //     title: 'AI Ethics Framework Proposed',
+  //     content5wh: 'International coalition proposes new ethical guidelines for artificial intelligence development, focusing on transparency, fairness, and privacy protections.',
+  //     summary: ['Guidelines address bias in algorithms', 'Privacy protections emphasized', 'Human oversight recommended for critical AI systems'],
+  //     createdAt: new Date(Date.now() - 345600000).toISOString(), // 4 days ago
+  //     isBookmarked: false,
+  //     onBookmark: handleBookmark,
+  //     onDelete: handleDelete,
+  //   }
+  // ];
 
   // Use dummy data instead of actual data for development/testing
   // const tableData: TableData[] = dummyData;
@@ -234,8 +234,8 @@ function HistoryContent() {
       {/* Render the new Table component */}
       <Table
         data={tableData}
-        totalItems={50} // Mock total items
-        page={0} // Start at first page
+        totalItems={history.totalItems} // Mock total items
+        page={history.currentPage} // Start at first page
         loading={loading}
         onPageChange={handlePageChange}
         // isBookmarkView is false by default, no need to pass

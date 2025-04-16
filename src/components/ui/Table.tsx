@@ -114,7 +114,7 @@ const Table: React.FC<TableProps> = ({
             render: (row: TableData) => (
                 <div className="text-[#383E42] truncate hover-bold">
                     <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                        {row.title || 'No title'}
+                        {useTruncate(row.title || 'No title', 40)}
                     </ReactMarkdown>
                 </div>
             )
@@ -142,7 +142,7 @@ const Table: React.FC<TableProps> = ({
                 return (
                     <div className="text-[#545C62] hover-bold">
                         <ReactMarkdown remarkPlugins={[remarkGfm]}>
-
+                            { row?.createdAt }
                         </ReactMarkdown>
                     </div>
                 );
